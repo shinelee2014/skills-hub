@@ -52,7 +52,7 @@ import {
   selectInstallToolIds,
   type InstallScope,
 } from './components/skills/installScope'
-import { handleWebInvoke } from './webAdapter'
+import { getGistSyncMeta, handleWebInvoke, pushToGist } from './webAdapter'
 import type {
   AutoUpdateConfigDto,
   FeaturedSkillDto,
@@ -390,14 +390,22 @@ function App() {
     }
   }, [invokeTauri])
 
+  const triggerGistAutoSyncIfEnabled = useCallback(() => {
+    const meta = getGistSyncMeta()
+    if (meta.autoSync && meta.token) {
+      void pushToGist(meta.token).catch(() => undefined)
+    }
+  }, [])
+
   const loadManagedSkills = useCallback(async () => {
     try {
       const result = await invokeTauri<ManagedSkill[]>('get_managed_skills')
       setManagedSkills(result)
+      triggerGistAutoSyncIfEnabled()
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err))
     }
-  }, [invokeTauri])
+  }, [invokeTauri, triggerGistAutoSyncIfEnabled])
 
   const loadTags = useCallback(async () => {
     try {
@@ -3629,6 +3637,10 @@ function App() {
             onGithubTokenChange={handleGithubTokenChange}
             githubProxyConfig={githubProxyConfig}
             onGithubProxyConfigChange={handleGithubProxyConfigChange}
+            onRefreshData={async () => {
+              await loadManagedSkills()
+              await loadTags()
+            }}
             onBack={handleCloseSettings}
             t={t}
           />

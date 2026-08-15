@@ -1,12 +1,33 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { ArrowLeft, Database, ExternalLink, Github, Palette, RefreshCw } from 'lucide-react'
+import {
+  ArrowLeft,
+  Cloud,
+  CloudDownload,
+  CloudUpload,
+  Database,
+  ExternalLink,
+  Github,
+  KeyRound,
+  LoaderCircle,
+  Palette,
+  RefreshCw,
+} from 'lucide-react'
 import { openUrl } from '@tauri-apps/plugin-opener'
 import type { TFunction } from 'i18next'
 import type { DownloadOptions, Update } from '@tauri-apps/plugin-updater'
 import { toast } from 'sonner'
 import type { GithubProxyConfigDto } from './types'
+import {
+  getGistSyncMeta,
+  pullFromGist,
+  pushToGist,
+  saveGistSyncMeta,
+  type GistSyncMeta,
+} from '../../webAdapter'
 
 const PROJECT_REPOSITORY_URL = 'https://github.com/qufei1993/skills-hub'
+const CREATE_GIST_TOKEN_URL =
+  'https://github.com/settings/tokens/new?scopes=gist&description=Skills%20Hub%20Cloud%20Sync'
 
 type UpdateStatus = 'idle' | 'checking' | 'up-to-date' | 'available' | 'downloading' | 'done' | 'error'
 type UpdaterProxyOptions = { proxy?: string }
@@ -37,6 +58,7 @@ type SettingsPageProps = {
   onClearGitCacheNow: () => void
   onGithubTokenChange: (token: string) => void
   onGithubProxyConfigChange: (enabled: boolean, port: number) => void
+  onRefreshData?: () => Promise<void>
   onBack: () => void
   t: TFunction
 }
@@ -58,6 +80,7 @@ const SettingsPage = ({
   onGithubTokenChange,
   githubProxyConfig,
   onGithubProxyConfigChange,
+  onRefreshData,
   onBack,
   t,
 }: SettingsPageProps) => {
@@ -65,6 +88,10 @@ const SettingsPage = ({
   useEffect(() => {
     setLocalToken(githubToken)
   }, [githubToken])
+
+  const [gistMeta, setGistMeta] = useState<GistSyncMeta>(getGistSyncMeta)
+  const [pushingGist, setPushingGist] = useState(false)
+  const [pullingGist, setPullingGist] = useState(false)
   const [localGithubProxyPort, setLocalGithubProxyPort] = useState(
     String(githubProxyConfig.port),
   )
@@ -155,6 +182,67 @@ const SettingsPage = ({
       toast.error(t('projectLink.openFailed'))
     }
   }, [isTauri, t])
+
+  const handlePushGist = useCallback(async () => {
+    const token = localToken.trim() || githubToken.trim()
+    if (!token) {
+      toast.error(t('gistSync.tokenRequired'))
+      return
+    }
+    setPushingGist(true)
+    try {
+      await pushToGist(token)
+      setGistMeta(getGistSyncMeta())
+      toast.success(t('gistSync.pushSuccess'))
+    } catch (err) {
+      toast.error(
+        t('gistSync.syncError', {
+          error: err instanceof Error ? err.message : String(err),
+        }),
+      )
+    } finally {
+      setPushingGist(false)
+    }
+  }, [githubToken, localToken, t])
+
+  const handlePullGist = useCallback(async () => {
+    const token = localToken.trim() || githubToken.trim()
+    if (!token) {
+      toast.error(t('gistSync.tokenRequired'))
+      return
+    }
+    setPullingGist(true)
+    try {
+      const res = await pullFromGist(token)
+      setGistMeta(getGistSyncMeta())
+      if (onRefreshData) {
+        await onRefreshData()
+      }
+      toast.success(
+        t('gistSync.pullSuccess', {
+          skillsCount: res.restoredSkillsCount,
+          tagsCount: res.restoredTagsCount,
+        }),
+      )
+    } catch (err) {
+      toast.error(
+        t('gistSync.syncError', {
+          error: err instanceof Error ? err.message : String(err),
+        }),
+      )
+    } finally {
+      setPullingGist(false)
+    }
+  }, [githubToken, localToken, onRefreshData, t])
+
+  const handleToggleAutoSync = useCallback(() => {
+    const next = saveGistSyncMeta({ autoSync: !gistMeta.autoSync })
+    setGistMeta(next)
+  }, [gistMeta.autoSync])
+
+  const handleOpenGistTokenPage = useCallback(() => {
+    window.open(CREATE_GIST_TOKEN_URL, '_blank', 'noopener,noreferrer')
+  }, [])
 
   return (
     <div className="settings-page">
@@ -364,6 +452,128 @@ const SettingsPage = ({
           </div>
 
           <div className="settings-column">
+            <section className="settings-card">
+              <div className="settings-card-head">
+                <span className="settings-card-icon">
+                  <Cloud size={18} />
+                </span>
+                <div>
+                  <h2>{t('gistSync.title')}</h2>
+                  <p>{t('gistSync.desc')}</p>
+                </div>
+              </div>
+              <div className="settings-card-body">
+                <div className="settings-field">
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
+                    <label className="settings-label" htmlFor="settings-gist-token" style={{ margin: 0 }}>
+                      {t('gistSync.tokenLabel')}
+                    </label>
+                    <button
+                      type="button"
+                      className="btn btn-link btn-sm"
+                      onClick={handleOpenGistTokenPage}
+                      style={{
+                        padding: 0,
+                        fontSize: 12,
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: 4,
+                        color: 'var(--accent-color, #2563eb)',
+                        background: 'transparent',
+                        border: 'none',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <KeyRound size={13} />
+                      {t('gistSync.createTokenLink')}
+                      <ExternalLink size={11} />
+                    </button>
+                  </div>
+                  <div className="settings-input-row">
+                    <input
+                      id="settings-gist-token"
+                      className="settings-input mono"
+                      type="password"
+                      placeholder={t('gistSync.tokenPlaceholder')}
+                      value={localToken}
+                      onChange={(e) => {
+                        setLocalToken(e.target.value)
+                        setGistMeta(saveGistSyncMeta({ token: e.target.value }))
+                      }}
+                      onBlur={() => {
+                        if (localToken !== githubToken) {
+                          onGithubTokenChange(localToken)
+                        }
+                      }}
+                    />
+                  </div>
+                  <div className="settings-helper">{t('gistSync.tokenHint')}</div>
+                </div>
+
+                <div className="settings-project-row" style={{ marginTop: 12 }}>
+                  <div className="settings-item-info">
+                    <div className="settings-item-title">{t('gistSync.statusConnected')}</div>
+                    <div className="settings-item-desc">
+                      {gistMeta.lastSyncedAt
+                        ? t('gistSync.lastSynced', { time: new Date(gistMeta.lastSyncedAt).toLocaleString() })
+                        : t('gistSync.neverSynced')}
+                    </div>
+                  </div>
+                  {gistMeta.gistUrl && (
+                    <a
+                      href={gistMeta.gistUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn btn-secondary btn-sm"
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: 4, textDecoration: 'none' }}
+                    >
+                      {t('gistSync.viewGist')}
+                      <ExternalLink size={12} />
+                    </a>
+                  )}
+                </div>
+
+                <div style={{ display: 'flex', gap: 10, marginTop: 12 }}>
+                  <button
+                    className="btn btn-primary btn-sm"
+                    type="button"
+                    style={{ flex: 1, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}
+                    onClick={() => void handlePushGist()}
+                    disabled={pushingGist || pullingGist}
+                  >
+                    {pushingGist ? <LoaderCircle size={14} className="titlebar-update-spinner" /> : <CloudUpload size={14} />}
+                    {pushingGist ? t('gistSync.pushing') : t('gistSync.pushButton')}
+                  </button>
+                  <button
+                    className="btn btn-secondary btn-sm"
+                    type="button"
+                    style={{ flex: 1, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}
+                    onClick={() => void handlePullGist()}
+                    disabled={pushingGist || pullingGist}
+                  >
+                    {pullingGist ? <LoaderCircle size={14} className="titlebar-update-spinner" /> : <CloudDownload size={14} />}
+                    {pullingGist ? t('gistSync.pulling') : t('gistSync.pullButton')}
+                  </button>
+                </div>
+
+                <div className="settings-field" style={{ marginTop: 16 }}>
+                  <div className="settings-item">
+                    <div className="settings-item-info">
+                      <div className="settings-item-title">{t('gistSync.autoSyncLabel')}</div>
+                    </div>
+                    <button
+                      type="button"
+                      className={`settings-toggle${gistMeta.autoSync ? ' checked' : ''}`}
+                      aria-pressed={gistMeta.autoSync}
+                      onClick={handleToggleAutoSync}
+                    >
+                      <span className="settings-toggle-knob" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
             <section className="settings-card">
             <div className="settings-card-head">
               <span className="settings-card-icon">

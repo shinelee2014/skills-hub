@@ -1032,3 +1032,256 @@ export async function handleWebInvoke<T>(
   }
 }
 
+export type GistSyncMeta = {
+  token: string
+  gistId: string | null
+  gistUrl: string | null
+  lastSyncedAt: string | null
+  autoSync: boolean
+}
+
+const GIST_SYNC_KEY = 'skills_hub_gist_sync'
+const GIST_FILENAME = 'skills-hub-sync.json'
+
+export const getGistSyncMeta = (): GistSyncMeta => {
+  if (typeof window === 'undefined') {
+    return { token: '', gistId: null, gistUrl: null, lastSyncedAt: null, autoSync: false }
+  }
+  try {
+    const raw = window.localStorage.getItem(GIST_SYNC_KEY)
+    if (raw) return JSON.parse(raw)
+  } catch {
+    // ignore
+  }
+  return { token: '', gistId: null, gistUrl: null, lastSyncedAt: null, autoSync: false }
+}
+
+export const saveGistSyncMeta = (meta: Partial<GistSyncMeta>): GistSyncMeta => {
+  const current = getGistSyncMeta()
+  const next = { ...current, ...meta }
+  if (typeof window !== 'undefined') {
+    try {
+      window.localStorage.setItem(GIST_SYNC_KEY, JSON.stringify(next))
+    } catch {
+      // ignore
+    }
+  }
+  return next
+}
+
+export async function pushToGist(token: string): Promise<{ gistId: string; gistUrl: string; updatedAt: string }> {
+  if (!token || !token.trim()) {
+    throw new Error('GitHub Token 为空，请先填写 Token')
+  }
+  const cleanToken = token.trim()
+  const skills = getWebManagedSkills()
+  const tags = getWebTags()
+  let skillScopeState: unknown = {}
+  try {
+    const rawScope = window.localStorage.getItem('skills_hub_skill_scope_state_v1')
+    if (rawScope) skillScopeState = JSON.parse(rawScope)
+  } catch {
+    // ignore
+  }
+
+  const payload = {
+    version: '1.0',
+    synced_at: new Date().toISOString(),
+    skills,
+    tags,
+    skill_scope_state: skillScopeState,
+  }
+
+  const content = JSON.stringify(payload, null, 2)
+  const meta = getGistSyncMeta()
+
+  let gistId = meta.gistId
+  const headers: Record<string, string> = {
+    Accept: 'application/vnd.github+json',
+    Authorization: `Bearer ${cleanToken}`,
+    'X-GitHub-Api-Version': '2022-11-28',
+    'Content-Type': 'application/json',
+  }
+
+  if (gistId) {
+    try {
+      const updateRes = await fetch(`https://api.github.com/gists/${gistId}`, {
+        method: 'PATCH',
+        headers,
+        body: JSON.stringify({
+          description: 'Skills Hub Cloud Sync (Private)',
+          files: {
+            [GIST_FILENAME]: {
+              content,
+            },
+          },
+        }),
+      })
+      if (updateRes.ok) {
+        const data = await updateRes.json()
+        const gistUrl = data.html_url || `https://gist.github.com/${gistId}`
+        saveGistSyncMeta({
+          token: cleanToken,
+          gistId,
+          gistUrl,
+          lastSyncedAt: new Date().toISOString(),
+        })
+        return { gistId, gistUrl, updatedAt: new Date().toISOString() }
+      }
+    } catch {
+      // fallback to search
+    }
+  }
+
+  // Search existing Gists
+  const listRes = await fetch('https://api.github.com/gists?per_page=100', { headers })
+  if (!listRes.ok) {
+    if (listRes.status === 401) {
+      throw new Error('GitHub Token 无效或未勾选 gist 权限 (Bad credentials)')
+    }
+    const errJson = await listRes.json().catch(() => ({}))
+    throw new Error(errJson.message || `GitHub API 请求失败: ${listRes.status}`)
+  }
+
+  const gists: Array<{ id: string; html_url: string; files: Record<string, unknown> }> = await listRes.json()
+  const found = gists.find((g) => Boolean(g.files && g.files[GIST_FILENAME]))
+
+  if (found) {
+    gistId = found.id
+    const updateRes = await fetch(`https://api.github.com/gists/${gistId}`, {
+      method: 'PATCH',
+      headers,
+      body: JSON.stringify({
+        description: 'Skills Hub Cloud Sync (Private)',
+        files: {
+          [GIST_FILENAME]: {
+            content,
+          },
+        },
+      }),
+    })
+    if (!updateRes.ok) {
+      const errJson = await updateRes.json().catch(() => ({}))
+      throw new Error(errJson.message || `更新 Gist 失败: ${updateRes.status}`)
+    }
+    const data = await updateRes.json()
+    const gistUrl = data.html_url || found.html_url
+    saveGistSyncMeta({
+      token: cleanToken,
+      gistId,
+      gistUrl,
+      lastSyncedAt: new Date().toISOString(),
+    })
+    return { gistId, gistUrl, updatedAt: new Date().toISOString() }
+  }
+
+  // Create new private Gist
+  const createRes = await fetch('https://api.github.com/gists', {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      description: 'Skills Hub Cloud Sync (Private)',
+      public: false,
+      files: {
+        [GIST_FILENAME]: {
+          content,
+        },
+      },
+    }),
+  })
+
+  if (!createRes.ok) {
+    const errJson = await createRes.json().catch(() => ({}))
+    throw new Error(errJson.message || `创建 Gist 失败: ${createRes.status}`)
+  }
+
+  const created = await createRes.json()
+  saveGistSyncMeta({
+    token: cleanToken,
+    gistId: created.id,
+    gistUrl: created.html_url,
+    lastSyncedAt: new Date().toISOString(),
+  })
+  return { gistId: created.id, gistUrl: created.html_url, updatedAt: new Date().toISOString() }
+}
+
+export async function pullFromGist(token: string): Promise<{
+  restoredSkillsCount: number
+  restoredTagsCount: number
+  gistUrl: string
+}> {
+  if (!token || !token.trim()) {
+    throw new Error('GitHub Token 为空，请先填写 Token')
+  }
+  const cleanToken = token.trim()
+  const headers: Record<string, string> = {
+    Accept: 'application/vnd.github+json',
+    Authorization: `Bearer ${cleanToken}`,
+    'X-GitHub-Api-Version': '2022-11-28',
+  }
+
+  const meta = getGistSyncMeta()
+  let rawContent: string | null = null
+  let gistUrl = meta.gistUrl || ''
+
+  if (meta.gistId) {
+    const getRes = await fetch(`https://api.github.com/gists/${meta.gistId}`, { headers }).catch(() => null)
+    if (getRes && getRes.ok) {
+      const data = await getRes.json()
+      gistUrl = data.html_url
+      if (data.files && data.files[GIST_FILENAME]) {
+        rawContent = data.files[GIST_FILENAME].content
+      }
+    }
+  }
+
+  if (!rawContent) {
+    const listRes = await fetch('https://api.github.com/gists?per_page=100', { headers })
+    if (!listRes.ok) {
+      if (listRes.status === 401) throw new Error('GitHub Token 无效或未勾选 gist 权限')
+      throw new Error(`GitHub API 请求失败: ${listRes.status}`)
+    }
+    const gists: Array<{ id: string; html_url: string; files: Record<string, { content?: string; raw_url?: string }> }> =
+      await listRes.json()
+    const found = gists.find((g) => Boolean(g.files && g.files[GIST_FILENAME]))
+    if (!found) {
+      throw new Error('未在您的 GitHub 账号中找到备份 Gist (skills-hub-sync.json)')
+    }
+    gistUrl = found.html_url
+    saveGistSyncMeta({ gistId: found.id, gistUrl: found.html_url })
+    const fileObj = found.files[GIST_FILENAME]
+    if (fileObj.content) {
+      rawContent = fileObj.content
+    } else if (fileObj.raw_url) {
+      const rawRes = await fetch(fileObj.raw_url)
+      rawContent = await rawRes.text()
+    }
+  }
+
+  if (!rawContent) {
+    throw new Error('未能获取到 Gist 备份文件内容')
+  }
+
+  const parsed = JSON.parse(rawContent)
+  const skills = Array.isArray(parsed.skills) ? parsed.skills : []
+  const tags = Array.isArray(parsed.tags) ? parsed.tags : []
+
+  saveWebManagedSkills(skills)
+  saveWebTags(tags)
+  if (parsed.skill_scope_state && typeof window !== 'undefined') {
+    window.localStorage.setItem('skills_hub_skill_scope_state_v1', JSON.stringify(parsed.skill_scope_state))
+  }
+
+  saveGistSyncMeta({
+    token: cleanToken,
+    lastSyncedAt: new Date().toISOString(),
+  })
+
+  return {
+    restoredSkillsCount: skills.length,
+    restoredTagsCount: tags.length,
+    gistUrl,
+  }
+}
+
+
