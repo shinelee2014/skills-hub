@@ -52,6 +52,7 @@ import {
   selectInstallToolIds,
   type InstallScope,
 } from './components/skills/installScope'
+import { handleWebInvoke } from './webAdapter'
 import type {
   AutoUpdateConfigDto,
   FeaturedSkillDto,
@@ -222,7 +223,10 @@ function App() {
   }, [sidebarCollapsed])
 
   useEffect(() => {
-    if (!isTauri) return
+    if (!isTauri) {
+      setAppVersion('0.8.1 (Web)')
+      return
+    }
     let active = true
     void import('@tauri-apps/api/app')
       .then(({ getVersion }) => getVersion())
@@ -236,9 +240,9 @@ function App() {
   }, [isTauri])
 
   const invokeTauri = useCallback(
-    async <T,>(command: string, args?: Record<string, unknown>) => {
+    async <T,>(command: string, args?: Record<string, unknown>): Promise<T> => {
       if (!isTauri) {
-        throw new Error('Tauri API is not available')
+        return handleWebInvoke<T>(command, args)
       }
       const { invoke } = await import('@tauri-apps/api/core')
       return invoke<T>(command, args)
@@ -404,12 +408,24 @@ function App() {
     }
   }, [invokeTauri])
 
-  useEffect(() => {
-    if (isTauri) {
-      loadManagedSkills()
-      loadTags()
+  const loadFeaturedSkills = useCallback(async () => {
+    if (featuredSkills.length > 0) return
+    setFeaturedLoading(true)
+    try {
+      const result = await invokeTauri<FeaturedSkillDto[]>('get_featured_skills')
+      setFeaturedSkills(result)
+    } catch {
+      // silent — explore tab will show empty state
+    } finally {
+      setFeaturedLoading(false)
     }
-  }, [isTauri, loadManagedSkills, loadTags])
+  }, [featuredSkills.length, invokeTauri])
+
+  useEffect(() => {
+    loadManagedSkills()
+    loadTags()
+    loadFeaturedSkills()
+  }, [loadManagedSkills, loadTags, loadFeaturedSkills])
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -495,66 +511,64 @@ function App() {
   }, [systemTheme, themePreference, themeStorageKey])
 
   useEffect(() => {
-    if (!isTauri) return
     invokeTauri<string>('get_central_repo_path')
       .then((path) => setStoragePath(path))
       .catch((err) => {
         setError(err instanceof Error ? err.message : String(err))
       })
-  }, [isTauri, invokeTauri])
+  }, [invokeTauri])
 
   useEffect(() => {
-    if (!isTauri) return
     invokeTauri<number>('get_git_cache_cleanup_days')
       .then((days) => setGitCacheCleanupDays(days))
       .catch((err) => {
         setError(err instanceof Error ? err.message : String(err))
       })
-  }, [isTauri, invokeTauri])
+  }, [invokeTauri])
 
   useEffect(() => {
-    if (!isTauri) return
     invokeTauri<number>('get_git_cache_ttl_secs')
       .then((secs) => setGitCacheTtlSecs(secs))
       .catch((err) => {
         setError(err instanceof Error ? err.message : String(err))
       })
-  }, [isTauri, invokeTauri])
+  }, [invokeTauri])
 
   useEffect(() => {
-    if (!isTauri) return
     invokeTauri<string>('get_github_token')
       .then((token) => setGithubToken(token))
       .catch(() => {})
-  }, [isTauri, invokeTauri])
+  }, [invokeTauri])
 
   useEffect(() => {
-    if (!isTauri) return
     invokeTauri<GithubProxyConfigDto>('get_github_proxy_config')
       .then((config) => setGithubProxyConfig(config))
       .catch((err) => {
         setError(err instanceof Error ? err.message : String(err))
       })
       .finally(() => setGithubProxyConfigLoaded(true))
-  }, [isTauri, invokeTauri])
+  }, [invokeTauri])
 
   useEffect(() => {
-    if (!isTauri) return
     invokeTauri<AutoUpdateConfigDto>('get_auto_update_config')
       .then((config) => setAutoUpdateConfig(config))
       .catch((err) => {
         setError(err instanceof Error ? err.message : String(err))
       })
-  }, [isTauri, invokeTauri])
+  }, [invokeTauri])
 
   useEffect(() => {
-    if (!isTauri) return
     invokeTauri<ToolConfigDto>('get_tool_config')
       .then((config) => setToolConfig(config))
       .catch((err) => {
         setError(err instanceof Error ? err.message : String(err))
       })
-  }, [isTauri, invokeTauri])
+    invokeTauri<ToolStatusDto>('get_tool_status')
+      .then((status) => setToolStatus(status))
+      .catch((err) => {
+        setError(err instanceof Error ? err.message : String(err))
+      })
+  }, [invokeTauri])
 
   useEffect(() => {
     if (isTauri) {
@@ -1309,19 +1323,6 @@ function App() {
     setShowAddModal(false)
     setActiveView('settings')
   }, [])
-
-  const loadFeaturedSkills = useCallback(async () => {
-    if (featuredSkills.length > 0) return
-    setFeaturedLoading(true)
-    try {
-      const result = await invokeTauri<FeaturedSkillDto[]>('get_featured_skills')
-      setFeaturedSkills(result)
-    } catch {
-      // silent — explore tab will show empty state
-    } finally {
-      setFeaturedLoading(false)
-    }
-  }, [featuredSkills.length, invokeTauri])
 
   const handleViewChange = useCallback(
     (view: 'myskills' | 'explore' | 'manage') => {

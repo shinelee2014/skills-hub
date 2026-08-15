@@ -1,0 +1,1034 @@
+import rawFeaturedSkills from '../featured-skills.json'
+import type {
+  AutoUpdateConfigDto,
+  FeaturedSkillDto,
+  InstallResultDto,
+  ManagedSkill,
+  OnlineSkillDto,
+  SkillFileEntry,
+  TagWithCountDto,
+  ToolConfigDto,
+  ToolInfoDto,
+  ToolStatusDto,
+} from './components/skills/types'
+
+export const IS_TAURI =
+  typeof window !== 'undefined' &&
+  Boolean(
+    (window as { __TAURI__?: unknown }).__TAURI__ ||
+      (window as { __TAURI_INTERNALS__?: unknown }).__TAURI_INTERNALS__,
+  )
+
+export const BUILTIN_TOOLS: ToolInfoDto[] = [
+  {
+    key: 'cursor',
+    label: 'Cursor',
+    avatar: 'cursor',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.cursor/skills',
+    project_skills_dir: '.agents/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'claude_code',
+    label: 'Claude Code',
+    avatar: 'claude',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.claude/skills',
+    project_skills_dir: '.claude/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'codex',
+    label: 'Codex',
+    avatar: 'codex',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.codex/skills',
+    project_skills_dir: '.agents/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'opencode',
+    label: 'OpenCode',
+    avatar: 'opencode',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.config/opencode/skills',
+    project_skills_dir: '.agents/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'antigravity',
+    label: 'Antigravity',
+    avatar: 'antigravity',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.gemini/config/skills',
+    project_skills_dir: '.agents/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'amp',
+    label: 'Amp',
+    avatar: 'amp',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.config/agents/skills',
+    project_skills_dir: '.agents/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'kimi_cli',
+    label: 'Kimi Code CLI',
+    avatar: 'kimi',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.config/agents/skills',
+    project_skills_dir: '.agents/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'augment',
+    label: 'Augment',
+    avatar: 'augment',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.augment/skills',
+    project_skills_dir: '.augment/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'openclaw',
+    label: 'OpenClaw',
+    avatar: 'openclaw',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.openclaw/skills',
+    project_skills_dir: 'skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'copaw',
+    label: 'Copaw',
+    avatar: 'copaw',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.copaw/skill_pool',
+    project_skills_dir: '.copaw/skill_pool',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'cline',
+    label: 'Cline',
+    avatar: 'cline',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.agents/skills',
+    project_skills_dir: '.agents/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'codebuddy',
+    label: 'CodeBuddy',
+    avatar: 'codebuddy',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.codebuddy/skills',
+    project_skills_dir: '.codebuddy/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'codewhale',
+    label: 'CodeWhale',
+    avatar: 'codewhale',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.codewhale/skills',
+    project_skills_dir: '.codewhale/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'workbuddy',
+    label: 'WorkBuddy',
+    avatar: 'workbuddy',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.workbuddy/skills',
+    project_skills_dir: '.workbuddy/skills',
+    supports_project_scope: false,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'command_code',
+    label: 'Command Code',
+    avatar: 'command_code',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.commandcode/skills',
+    project_skills_dir: '.commandcode/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'continue',
+    label: 'Continue',
+    avatar: 'continue',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.continue/skills',
+    project_skills_dir: '.continue/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'crush',
+    label: 'Crush',
+    avatar: 'crush',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.config/crush/skills',
+    project_skills_dir: '.crush/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'junie',
+    label: 'Junie',
+    avatar: 'junie',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.junie/skills',
+    project_skills_dir: '.junie/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'iflow_cli',
+    label: 'iFlow CLI',
+    avatar: 'iflow',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.iflow/skills',
+    project_skills_dir: '.iflow/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'kiro_cli',
+    label: 'Kiro CLI',
+    avatar: 'kiro',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.kiro/skills',
+    project_skills_dir: '.kiro/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'kode',
+    label: 'Kode',
+    avatar: 'kode',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.kode/skills',
+    project_skills_dir: '.kode/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'mcpjam',
+    label: 'MCPJam',
+    avatar: 'mcpjam',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.mcpjam/skills',
+    project_skills_dir: '.mcpjam/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'mistral_vibe',
+    label: 'Mistral Vibe',
+    avatar: 'mistral',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.vibe/skills',
+    project_skills_dir: '.vibe/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'mux',
+    label: 'Mux',
+    avatar: 'mux',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.mux/skills',
+    project_skills_dir: '.mux/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'openclaude',
+    label: 'OpenClaude IDE',
+    avatar: 'openclaude',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.openclaude/skills',
+    project_skills_dir: '.openclaude/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'openhands',
+    label: 'OpenHands',
+    avatar: 'openhands',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.openhands/skills',
+    project_skills_dir: '.openhands/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'pi',
+    label: 'Pi',
+    avatar: 'pi',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.pi/agent/skills',
+    project_skills_dir: '.pi/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'qoder',
+    label: 'Qoder',
+    avatar: 'qoder',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.qoder/skills',
+    project_skills_dir: '.qoder/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'qoderwork',
+    label: 'QoderWork',
+    avatar: 'qoderwork',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.qoderwork/skills',
+    project_skills_dir: '.qoderwork/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'qwen_code',
+    label: 'Qwen Code',
+    avatar: 'qwen',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.qwen/skills',
+    project_skills_dir: '.qwen/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'trae',
+    label: 'Trae',
+    avatar: 'trae',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.trae/skills',
+    project_skills_dir: '.trae/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'trae_cn',
+    label: 'Trae CN',
+    avatar: 'trae',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.trae-cn/skills',
+    project_skills_dir: '.trae/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'zencoder',
+    label: 'Zencoder',
+    avatar: 'zencoder',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.zencoder/skills',
+    project_skills_dir: '.zencoder/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'neovate',
+    label: 'Neovate',
+    avatar: 'neovate',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.neovate/skills',
+    project_skills_dir: '.neovate/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'pochi',
+    label: 'Pochi',
+    avatar: 'pochi',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.pochi/skills',
+    project_skills_dir: '.pochi/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'adal',
+    label: 'AdaL',
+    avatar: 'adal',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.adal/skills',
+    project_skills_dir: '.adal/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'kilo_code',
+    label: 'Kilo Code',
+    avatar: 'kilo',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.kilocode/skills',
+    project_skills_dir: '.kilocode/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'roo_code',
+    label: 'Roo Code',
+    avatar: 'roo',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.roo/skills',
+    project_skills_dir: '.roo/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'goose',
+    label: 'Goose',
+    avatar: 'goose',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.config/goose/skills',
+    project_skills_dir: '.goose/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'gemini_cli',
+    label: 'Gemini CLI',
+    avatar: 'gemini',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.gemini/skills',
+    project_skills_dir: '.agents/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'github_copilot',
+    label: 'GitHub Copilot',
+    avatar: 'copilot',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.copilot/skills',
+    project_skills_dir: '.agents/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'clawdbot',
+    label: 'Clawdbot',
+    avatar: 'clawdbot',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.clawdbot/skills',
+    project_skills_dir: '.clawdbot/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'droid',
+    label: 'Droid',
+    avatar: 'droid',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.factory/skills',
+    project_skills_dir: '.factory/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'windsurf',
+    label: 'Windsurf',
+    avatar: 'windsurf',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.codeium/windsurf/skills',
+    project_skills_dir: '.windsurf/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'moltbot',
+    label: 'MoltBot',
+    avatar: 'moltbot',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.moltbot/skills',
+    project_skills_dir: '.moltbot/skills',
+    supports_project_scope: true,
+    sync_mode: 'auto',
+  },
+  {
+    key: 'hermes_agent',
+    label: 'Hermes Agent',
+    avatar: 'hermes',
+    installed: true,
+    enabled: true,
+    is_custom: false,
+    skills_dir: '.hermes/skills',
+    project_skills_dir: '.hermes/skills',
+    supports_project_scope: false,
+    sync_mode: 'auto',
+  },
+]
+
+const STORAGE_KEYS = {
+  SKILLS: 'skills-hub-web-managed-skills',
+  TAGS: 'skills-hub-web-tags',
+}
+
+const DEFAULT_INITIAL_TAGS: TagWithCountDto[] = [
+  { id: 1, name: 'agent-skills', skill_count: 0, updated_at: Date.now() },
+  { id: 2, name: 'frontend', skill_count: 0, updated_at: Date.now() },
+  { id: 3, name: 'code-review', skill_count: 0, updated_at: Date.now() },
+  { id: 4, name: 'multimedia', skill_count: 0, updated_at: Date.now() },
+]
+
+export function getWebFeaturedSkills(): FeaturedSkillDto[] {
+  const data = rawFeaturedSkills as { skills: FeaturedSkillDto[] }
+  return data.skills || []
+}
+
+export function getWebManagedSkills(): ManagedSkill[] {
+  if (typeof window === 'undefined') return []
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEYS.SKILLS)
+    if (raw) return JSON.parse(raw) as ManagedSkill[]
+  } catch {
+    // ignore
+  }
+  // Initialize with top 4 popular skills for showcase if empty
+  const featured = getWebFeaturedSkills()
+  const initial: ManagedSkill[] = featured.slice(0, 4).map((f, idx) => ({
+    id: `web-skill-${idx + 1}`,
+    name: f.name,
+    description: f.summary,
+    source_type: 'git',
+    source_ref: f.source_url,
+    central_path: `~/.skillshub/skills/${f.name}`,
+    created_at: Date.now() - idx * 86400000,
+    updated_at: Date.now() - idx * 3600000,
+    last_sync_at: Date.now(),
+    enabled: true,
+    status: 'healthy',
+    tags: [{ id: 1, name: 'agent-skills' }],
+    targets: [
+      {
+        tool: 'cursor',
+        scope: 'global',
+        mode: 'symlink',
+        status: 'synced',
+        target_path: `~/.cursor/skills/${f.name}`,
+        synced_at: Date.now(),
+      },
+      {
+        tool: 'claude_code',
+        scope: 'global',
+        mode: 'symlink',
+        status: 'synced',
+        target_path: `~/.claude/skills/${f.name}`,
+        synced_at: Date.now(),
+      },
+      {
+        tool: 'antigravity',
+        scope: 'global',
+        mode: 'symlink',
+        status: 'synced',
+        target_path: `~/.gemini/config/skills/${f.name}`,
+        synced_at: Date.now(),
+      },
+    ],
+  }))
+  saveWebManagedSkills(initial)
+  return initial
+}
+
+export function saveWebManagedSkills(skills: ManagedSkill[]): void {
+  if (typeof window === 'undefined') return
+  try {
+    window.localStorage.setItem(STORAGE_KEYS.SKILLS, JSON.stringify(skills))
+  } catch {
+    // ignore
+  }
+}
+
+export function getWebTags(): TagWithCountDto[] {
+  if (typeof window === 'undefined') return DEFAULT_INITIAL_TAGS
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEYS.TAGS)
+    if (raw) {
+      const parsed = JSON.parse(raw) as TagWithCountDto[]
+      const managed = getWebManagedSkills()
+      return parsed.map((t) => ({
+        ...t,
+        skill_count: managed.filter((s) => s.tags?.some((st) => st.id === t.id)).length,
+      }))
+    }
+  } catch {
+    // ignore
+  }
+  return DEFAULT_INITIAL_TAGS
+}
+
+export function saveWebTags(tags: TagWithCountDto[]): void {
+  if (typeof window === 'undefined') return
+  try {
+    window.localStorage.setItem(STORAGE_KEYS.TAGS, JSON.stringify(tags))
+  } catch {
+    // ignore
+  }
+}
+
+export function getWebToolStatus(): ToolStatusDto {
+  return {
+    tools: BUILTIN_TOOLS,
+    installed: BUILTIN_TOOLS.map((t) => t.key),
+    newly_installed: [],
+  }
+}
+
+export function getWebToolConfig(): ToolConfigDto {
+  return {
+    disabled_builtin_tools: [],
+    custom_tools: [],
+  }
+}
+
+export function getWebAutoUpdateConfig(): AutoUpdateConfigDto {
+  return {
+    enabled: false,
+    interval_hours: 24,
+    schedule_type: 'daily',
+    interval_value: 24,
+    interval_unit: 'hours',
+    daily_time: '03:00',
+    local_skill_count: 0,
+    protected_local_skill_count: 0,
+    task_registered: false,
+    task_status_detail: 'Web 在线体验模式 (自动同步可在桌面版运行)',
+    last_run_at: Date.now(),
+    last_started_at: Date.now(),
+    last_finished_at: Date.now(),
+    last_status: 'idle',
+    last_error: null,
+    last_checked: 0,
+    last_updated: 0,
+    last_failed: 0,
+    progress: {
+      total: 0,
+      succeeded: [],
+      failed: [],
+      running: null,
+      pending: [],
+    },
+  }
+}
+
+export async function searchWebSkills(query: string): Promise<OnlineSkillDto[]> {
+  const q = query.trim().toLowerCase()
+  if (!q) return []
+  const featured = getWebFeaturedSkills()
+  const matched = featured
+    .filter(
+      (s) =>
+        s.name.toLowerCase().includes(q) ||
+        s.summary.toLowerCase().includes(q),
+    )
+    .map((s) => ({
+      name: s.name,
+      installs: s.downloads || s.stars || 100,
+      source: s.source_url.replace('https://github.com/', ''),
+      source_url: s.source_url,
+    }))
+
+  return matched
+}
+
+function normalizeRawGithubUrl(url: string, file: string = 'SKILL.md'): string {
+  let clean = url.replace(/\.git$/, '').trim()
+  if (clean.includes('github.com')) {
+    clean = clean.replace('github.com', 'raw.githubusercontent.com')
+    clean = clean.replace('/tree/', '/')
+    clean = clean.replace('/blob/', '/')
+    return `${clean.replace(/\/+$/, '')}/${file}`
+  }
+  return ''
+}
+
+export async function fetchWebSkillFiles(_skill: ManagedSkill): Promise<SkillFileEntry[]> {
+  return [
+    { path: 'SKILL.md', size: 1024 },
+    { path: 'README.md', size: 512 },
+  ]
+}
+
+export async function fetchWebSkillContent(
+  skill: ManagedSkill,
+  filePath: string,
+): Promise<string> {
+  const sourceUrl = skill.source_ref || ''
+  if (sourceUrl) {
+    const rawUrl = normalizeRawGithubUrl(sourceUrl, filePath)
+    if (rawUrl) {
+      try {
+        const res = await fetch(rawUrl)
+        if (res.ok) {
+          return await res.text()
+        }
+      } catch {
+        // fallback
+      }
+    }
+  }
+
+  return `---
+name: ${skill.name}
+description: ${skill.description || 'AI Agent Skill'}
+---
+
+# ${skill.name}
+
+${skill.description || 'No description provided.'}
+
+## Overview
+
+This skill is managed in Skills Hub.
+
+### Source
+- Repository: [${skill.source_ref || skill.name}](${skill.source_ref || '#'})
+- Central Path: \`${skill.central_path}\`
+
+### Quick Install Commands
+
+\`\`\`bash
+# Antigravity / Gemini CLI
+npx -y skills add ${skill.source_ref || skill.name}
+
+# Claude Code
+claude skill add ${skill.source_ref || skill.name}
+
+# Cursor (.cursor/skills)
+git clone ${skill.source_ref || 'https://github.com/...'} ~/.cursor/skills/${skill.name}
+\`\`\`
+`
+}
+
+export function installWebSkill(
+  name: string,
+  sourceUrl: string,
+  tagIds: number[],
+  scope: 'global' | 'project',
+  syncTools: string[],
+): InstallResultDto {
+  const currentSkills = getWebManagedSkills()
+  const newId = `web-skill-${Date.now()}`
+  const allTags = getWebTags()
+  const skillTags = allTags.filter((t) => tagIds.includes(t.id))
+
+  const newSkill: ManagedSkill = {
+    id: newId,
+    name,
+    description: `Installed from ${sourceUrl}`,
+    source_type: 'git',
+    source_ref: sourceUrl,
+    central_path: `~/.skillshub/skills/${name}`,
+    created_at: Date.now(),
+    updated_at: Date.now(),
+    last_sync_at: Date.now(),
+    enabled: true,
+    status: 'healthy',
+    tags: skillTags,
+    targets: syncTools.map((t) => ({
+      tool: t,
+      scope,
+      mode: 'symlink',
+      status: 'synced',
+      target_path: `~/.${t}/skills/${name}`,
+      synced_at: Date.now(),
+    })),
+  }
+
+  saveWebManagedSkills([newSkill, ...currentSkills])
+  return {
+    skill_id: newId,
+    name,
+    central_path: newSkill.central_path,
+    content_hash: 'web-hash',
+  }
+}
+
+export async function handleWebInvoke<T>(
+  command: string,
+  args?: Record<string, unknown>,
+): Promise<T> {
+  switch (command) {
+    case 'get_featured_skills':
+      return getWebFeaturedSkills() as unknown as T
+    case 'get_managed_skills':
+      return getWebManagedSkills() as unknown as T
+    case 'get_tags':
+      return getWebTags() as unknown as T
+    case 'get_tool_status':
+      return getWebToolStatus() as unknown as T
+    case 'get_tool_config':
+      return getWebToolConfig() as unknown as T
+    case 'get_auto_update_config':
+      return getWebAutoUpdateConfig() as unknown as T
+    case 'get_central_repo_path':
+      return '~/.skillshub/skills (Web LocalStorage)' as unknown as T
+    case 'get_recent_projects':
+      return ['~/projects/my-agent-app', '~/projects/nextjs-demo'] as unknown as T
+    case 'get_git_cache_cleanup_days':
+      return 30 as unknown as T
+    case 'get_git_cache_ttl_secs':
+      return 60 as unknown as T
+    case 'get_github_token':
+      return '' as unknown as T
+    case 'get_github_proxy_config':
+      return { enabled: false, port: 7890, url: '', auto_detected: false } as unknown as T
+    case 'get_onboarding_plan':
+      return { total_tools_scanned: BUILTIN_TOOLS.length, total_skills_found: 0, groups: [] } as unknown as T
+    case 'get_github_release_notes':
+      return null as unknown as T
+    case 'search_skills_online':
+      return (await searchWebSkills((args?.query as string) || '')) as unknown as T
+    case 'list_skill_files': {
+      const skills = getWebManagedSkills()
+      const featured = getWebFeaturedSkills()
+      const targetSkill =
+        skills.find((s) => s.central_path === args?.centralPath) ||
+        featured.find((f) => f.name === (args?.centralPath as string)?.split('/')?.pop())
+      const skillObj: ManagedSkill = targetSkill && 'targets' in targetSkill
+        ? targetSkill
+        : {
+            id: 'temp',
+            name: (args?.centralPath as string)?.split('/')?.pop() || 'skill',
+            source_type: 'git',
+            source_ref: targetSkill ? (targetSkill as FeaturedSkillDto).source_url : '',
+            central_path: (args?.centralPath as string) || '',
+            created_at: Date.now(),
+            updated_at: Date.now(),
+            enabled: true,
+            status: 'healthy',
+            tags: [],
+            targets: [],
+          }
+      return (await fetchWebSkillFiles(skillObj)) as unknown as T
+    }
+    case 'read_skill_file': {
+      const skills = getWebManagedSkills()
+      const featured = getWebFeaturedSkills()
+      const skillName = (args?.centralPath as string)?.split('/')?.pop() || ''
+      const targetSkill =
+        skills.find((s) => s.central_path === args?.centralPath || s.name === skillName) ||
+        featured.find((f) => f.name === skillName)
+      const skillObj: ManagedSkill = targetSkill && 'targets' in targetSkill
+        ? targetSkill
+        : {
+            id: 'temp',
+            name: skillName || 'skill',
+            description: targetSkill ? (targetSkill as FeaturedSkillDto).summary : '',
+            source_type: 'git',
+            source_ref: targetSkill ? (targetSkill as FeaturedSkillDto).source_url : '',
+            central_path: (args?.centralPath as string) || '',
+            created_at: Date.now(),
+            updated_at: Date.now(),
+            enabled: true,
+            status: 'healthy',
+            tags: [],
+            targets: [],
+          }
+      return (await fetchWebSkillContent(
+        skillObj,
+        (args?.filePath as string) || 'SKILL.md',
+      )) as unknown as T
+    }
+    case 'list_git_skills_cmd': {
+      const url = (args?.repoUrl as string) || ''
+      const name = url.split('/').pop()?.replace(/\.git$/, '') || 'new-skill'
+      return [
+        {
+          name,
+          description: `Skill from ${url}`,
+          subpath: '',
+        },
+      ] as unknown as T
+    }
+    case 'install_git_selection': {
+      const url = (args?.repoUrl as string) || ''
+      const name = (args?.name as string) || url.split('/').pop()?.replace(/\.git$/, '') || 'new-skill'
+      return installWebSkill(name, url, [], 'global', ['cursor', 'claude_code', 'antigravity']) as unknown as T
+    }
+    case 'sync_skill_to_tool':
+    case 'unsync_skill_from_tool':
+    case 'set_central_repo_path':
+    case 'set_git_cache_cleanup_days':
+    case 'set_git_cache_ttl_secs':
+    case 'set_github_token':
+    case 'set_github_proxy_config':
+    case 'set_tool_config':
+    case 'set_auto_update_config':
+    case 'trigger_auto_update_task_now_cmd':
+    case 'clear_git_cache_now':
+    case 'save_recent_project':
+      return null as unknown as T
+    case 'delete_managed_skill': {
+      const skillId = args?.skillId as string
+      const current = getWebManagedSkills()
+      saveWebManagedSkills(current.filter((s) => s.id !== skillId))
+      return null as unknown as T
+    }
+    case 'set_skill_enabled': {
+      const skillId = args?.skillId as string
+      const enabled = Boolean(args?.enabled)
+      const current = getWebManagedSkills()
+      saveWebManagedSkills(
+        current.map((s) => (s.id === skillId ? { ...s, enabled } : s)),
+      )
+      return null as unknown as T
+    }
+    case 'create_tag': {
+      const name = (args?.name as string) || ''
+      const tags = getWebTags()
+      const newTag: TagWithCountDto = {
+        id: Date.now(),
+        name,
+        skill_count: 0,
+        updated_at: Date.now(),
+      }
+      saveWebTags([...tags, newTag])
+      return newTag as unknown as T
+    }
+    case 'rename_tag': {
+      const id = args?.id as number
+      const name = (args?.name as string) || ''
+      const tags = getWebTags()
+      const updated = tags.map((t) => (t.id === id ? { ...t, name, updated_at: Date.now() } : t))
+      saveWebTags(updated)
+      return null as unknown as T
+    }
+    case 'delete_tag': {
+      const id = args?.id as number
+      const tags = getWebTags()
+      saveWebTags(tags.filter((t) => t.id !== id))
+      return null as unknown as T
+    }
+    case 'set_skill_tags': {
+      const skillId = args?.skillId as string
+      const tagIds = (args?.tagIds as number[]) || []
+      const tags = getWebTags()
+      const skillTags = tags.filter((t) => tagIds.includes(t.id))
+      const current = getWebManagedSkills()
+      saveWebManagedSkills(
+        current.map((s) => (s.id === skillId ? { ...s, tags: skillTags } : s)),
+      )
+      return null as unknown as T
+    }
+    default:
+      console.warn(`[WebAdapter] Unhandled command: ${command}`, args)
+      return null as unknown as T
+  }
+}
+

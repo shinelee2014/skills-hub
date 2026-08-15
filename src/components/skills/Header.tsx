@@ -1,10 +1,10 @@
 import { memo, type PointerEvent } from 'react'
-import { getCurrentWindow } from '@tauri-apps/api/window'
 import {
   CircleCheck,
   ChevronLeft,
   Compass,
   Download,
+  Github,
   Layers3,
   LoaderCircle,
   RefreshCw,
@@ -37,12 +37,22 @@ type HeaderProps = {
   t: TFunction
 }
 
+const isTauri =
+  typeof window !== 'undefined' &&
+  Boolean(
+    (window as { __TAURI__?: unknown }).__TAURI__ ||
+      (window as { __TAURI_INTERNALS__?: unknown }).__TAURI_INTERNALS__,
+  )
+
 const startWindowDrag = (event: PointerEvent<HTMLElement>) => {
+  if (!isTauri) return
   if (event.button !== 0 || !event.isPrimary) return
   const target = event.target as HTMLElement
   if (target.closest('button, input, select, textarea, a, [role="button"]')) return
   event.preventDefault()
-  void getCurrentWindow().startDragging().catch(() => undefined)
+  void import('@tauri-apps/api/window')
+    .then(({ getCurrentWindow }) => getCurrentWindow().startDragging())
+    .catch(() => undefined)
 }
 
 const Header = ({
@@ -71,12 +81,19 @@ const Header = ({
       data-tauri-drag-region
       onPointerDown={startWindowDrag}
     >
-      <div className="traffic-lights" aria-hidden="true" data-tauri-drag-region>
-        <span className="traffic-light red" data-tauri-drag-region />
-        <span className="traffic-light yellow" data-tauri-drag-region />
-        <span className="traffic-light green" data-tauri-drag-region />
-      </div>
-      <strong data-tauri-drag-region>{t('appName')}</strong>
+      {isTauri ? (
+        <div className="traffic-lights" aria-hidden="true" data-tauri-drag-region>
+          <span className="traffic-light red" data-tauri-drag-region />
+          <span className="traffic-light yellow" data-tauri-drag-region />
+          <span className="traffic-light green" data-tauri-drag-region />
+        </div>
+      ) : (
+        <div className="web-status-badge" style={{ display: 'flex', alignItems: 'center', gap: 6, paddingLeft: 12 }}>
+          <span style={{ width: 8, height: 8, borderRadius: '50%', backgroundColor: '#10b981', display: 'inline-block' }} />
+          <span style={{ fontSize: 12, fontWeight: 500, opacity: 0.85 }}>Online Web</span>
+        </div>
+      )}
+      <strong data-tauri-drag-region style={{ marginLeft: isTauri ? undefined : 8 }}>{t('appName')}</strong>
       {appVersion ? (
         <div className="titlebar-version-status" data-tauri-drag-region>
           <span data-tauri-drag-region>v{appVersion}</span>
@@ -112,6 +129,31 @@ const Header = ({
           ) : null}
         </div>
       ) : null}
+      {!isTauri && (
+        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8, paddingRight: 16 }}>
+          <a
+            href="https://github.com/shinelee2014/skills-hub"
+            target="_blank"
+            rel="noreferrer"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+              fontSize: 12,
+              color: 'inherit',
+              textDecoration: 'none',
+              opacity: 0.85,
+              padding: '2px 8px',
+              borderRadius: 6,
+              background: 'var(--bg-tag, rgba(128,128,128,0.15))',
+              border: '1px solid var(--border-color, rgba(128,128,128,0.2))',
+            }}
+          >
+            <Github size={13} />
+            <span>GitHub 源码</span>
+          </a>
+        </div>
+      )}
     </div>
     <aside className={`skills-sidebar${collapsed ? ' collapsed' : ''}`}>
       <div
