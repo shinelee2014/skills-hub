@@ -1,4 +1,4 @@
-import type { CSSProperties } from 'react'
+import { useState, type CSSProperties } from 'react'
 import ampLogo from '@lobehub/icons-static-svg/icons/amp-color.svg'
 import antigravityLogo from '@lobehub/icons-static-svg/icons/antigravity-color.svg'
 import claudeCodeLogo from '@lobehub/icons-static-svg/icons/claudecode-color.svg'
@@ -94,19 +94,43 @@ const getInitials = (label: string) =>
     .slice(0, 2)
     .toUpperCase()
 
+const isCustomAvatarUrl = (avatar?: string | null): avatar is string => {
+  if (!avatar) return false
+  const trimmed = avatar.trim()
+  return (
+    trimmed.startsWith('data:image/') ||
+    trimmed.startsWith('http://') ||
+    trimmed.startsWith('https://') ||
+    trimmed.startsWith('/') ||
+    trimmed.startsWith('./')
+  )
+}
+
 const ToolIcon = ({ toolKey, label, avatar, className = '' }: ToolIconProps) => {
-  const logo = avatar || logoByToolKey[toolKey]
+  const [imgError, setImgError] = useState(false)
+  const isCustom = isCustomAvatarUrl(avatar)
+  const logo = isCustom ? avatar : (logoByToolKey[toolKey] || (avatar && logoByToolKey[avatar]))
+  const showLogo = Boolean(logo && !imgError)
   const style = {
     '--tool-brand': fallbackColorByToolKey[toolKey] ?? '#64748b',
   } as CSSProperties
 
   return (
     <span
-      className={`tool-brand-icon${logo ? ' has-logo' : ' fallback'}${avatar ? ' custom-avatar' : ''}${className ? ` ${className}` : ''}`}
+      className={`tool-brand-icon${showLogo ? ' has-logo' : ' fallback'}${isCustom ? ' custom-avatar' : ''}${className ? ` ${className}` : ''}`}
       style={style}
       aria-hidden="true"
     >
-      {logo ? <img src={logo} alt="" draggable={false} /> : getInitials(label)}
+      {showLogo ? (
+        <img
+          src={logo!}
+          alt=""
+          draggable={false}
+          onError={() => setImgError(true)}
+        />
+      ) : (
+        getInitials(label)
+      )}
     </span>
   )
 }

@@ -23,7 +23,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'cursor',
     label: 'Cursor',
-    avatar: 'cursor',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -35,7 +35,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'claude_code',
     label: 'Claude Code',
-    avatar: 'claude',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -47,7 +47,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'codex',
     label: 'Codex',
-    avatar: 'codex',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -59,7 +59,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'opencode',
     label: 'OpenCode',
-    avatar: 'opencode',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -71,7 +71,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'antigravity',
     label: 'Antigravity',
-    avatar: 'antigravity',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -83,7 +83,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'amp',
     label: 'Amp',
-    avatar: 'amp',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -95,7 +95,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'kimi_cli',
     label: 'Kimi Code CLI',
-    avatar: 'kimi',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -107,7 +107,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'augment',
     label: 'Augment',
-    avatar: 'augment',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -119,7 +119,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'openclaw',
     label: 'OpenClaw',
-    avatar: 'openclaw',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -131,7 +131,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'copaw',
     label: 'Copaw',
-    avatar: 'copaw',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -143,7 +143,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'cline',
     label: 'Cline',
-    avatar: 'cline',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -155,7 +155,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'codebuddy',
     label: 'CodeBuddy',
-    avatar: 'codebuddy',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -167,7 +167,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'codewhale',
     label: 'CodeWhale',
-    avatar: 'codewhale',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -179,7 +179,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'workbuddy',
     label: 'WorkBuddy',
-    avatar: 'workbuddy',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -191,7 +191,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'command_code',
     label: 'Command Code',
-    avatar: 'command_code',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -203,7 +203,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'continue',
     label: 'Continue',
-    avatar: 'continue',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -215,7 +215,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'crush',
     label: 'Crush',
-    avatar: 'crush',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -227,7 +227,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'junie',
     label: 'Junie',
-    avatar: 'junie',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -239,7 +239,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'iflow_cli',
     label: 'iFlow CLI',
-    avatar: 'iflow',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -251,7 +251,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'kiro_cli',
     label: 'Kiro CLI',
-    avatar: 'kiro',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -263,7 +263,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'kode',
     label: 'Kode',
-    avatar: 'kode',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -275,7 +275,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'mcpjam',
     label: 'MCPJam',
-    avatar: 'mcpjam',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -287,7 +287,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'mistral_vibe',
     label: 'Mistral Vibe',
-    avatar: 'mistral',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -299,7 +299,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'mux',
     label: 'Mux',
-    avatar: 'mux',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -311,7 +311,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'openclaude',
     label: 'OpenClaude IDE',
-    avatar: 'openclaude',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -323,7 +323,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'openhands',
     label: 'OpenHands',
-    avatar: 'openhands',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -335,7 +335,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'pi',
     label: 'Pi',
-    avatar: 'pi',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -347,7 +347,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'qoder',
     label: 'Qoder',
-    avatar: 'qoder',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -359,7 +359,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'qoderwork',
     label: 'QoderWork',
-    avatar: 'qoderwork',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -371,7 +371,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'qwen_code',
     label: 'Qwen Code',
-    avatar: 'qwen',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -383,7 +383,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'trae',
     label: 'Trae',
-    avatar: 'trae',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -395,7 +395,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'trae_cn',
     label: 'Trae CN',
-    avatar: 'trae',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -407,7 +407,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'zencoder',
     label: 'Zencoder',
-    avatar: 'zencoder',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -419,7 +419,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'neovate',
     label: 'Neovate',
-    avatar: 'neovate',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -431,7 +431,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'pochi',
     label: 'Pochi',
-    avatar: 'pochi',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -443,7 +443,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'adal',
     label: 'AdaL',
-    avatar: 'adal',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -455,7 +455,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'kilo_code',
     label: 'Kilo Code',
-    avatar: 'kilo',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -467,7 +467,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'roo_code',
     label: 'Roo Code',
-    avatar: 'roo',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -479,7 +479,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'goose',
     label: 'Goose',
-    avatar: 'goose',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -491,7 +491,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'gemini_cli',
     label: 'Gemini CLI',
-    avatar: 'gemini',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -503,7 +503,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'github_copilot',
     label: 'GitHub Copilot',
-    avatar: 'copilot',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -515,7 +515,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'clawdbot',
     label: 'Clawdbot',
-    avatar: 'clawdbot',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -527,7 +527,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'droid',
     label: 'Droid',
-    avatar: 'droid',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -539,7 +539,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'windsurf',
     label: 'Windsurf',
-    avatar: 'windsurf',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -551,7 +551,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'moltbot',
     label: 'MoltBot',
-    avatar: 'moltbot',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
@@ -563,7 +563,7 @@ export const BUILTIN_TOOLS: ToolInfoDto[] = [
   {
     key: 'hermes_agent',
     label: 'Hermes Agent',
-    avatar: 'hermes',
+    avatar: null,
     installed: true,
     enabled: true,
     is_custom: false,
