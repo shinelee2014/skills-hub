@@ -1083,14 +1083,13 @@ function App() {
   const handleGithubTokenChange = useCallback(
     async (nextToken: string) => {
       setGithubToken(nextToken)
-      if (!isTauri) return
       try {
         await invokeTauri('set_github_token', { token: nextToken })
       } catch (err) {
         setError(err instanceof Error ? err.message : String(err))
       }
     },
-    [invokeTauri, isTauri],
+    [invokeTauri],
   )
   const handleGithubProxyConfigChange = useCallback(
     async (enabled: boolean, port: number) => {

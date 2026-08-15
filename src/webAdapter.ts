@@ -885,7 +885,7 @@ export async function handleWebInvoke<T>(
     case 'get_git_cache_ttl_secs':
       return 60 as unknown as T
     case 'get_github_token':
-      return '' as unknown as T
+      return getWebGithubToken() as unknown as T
     case 'get_github_proxy_config':
       return { enabled: false, port: 7890, url: '', auto_detected: false } as unknown as T
     case 'get_onboarding_plan':
@@ -961,18 +961,23 @@ export async function handleWebInvoke<T>(
       const name = (args?.name as string) || url.split('/').pop()?.replace(/\.git$/, '') || 'new-skill'
       return installWebSkill(name, url, [], 'global', ['cursor', 'claude_code', 'antigravity']) as unknown as T
     }
+    case 'set_github_token': {
+      const token = (args?.token as string) || ''
+      saveWebGithubToken(token)
+      return null as unknown as T
+    }
     case 'sync_skill_to_tool':
     case 'unsync_skill_from_tool':
     case 'set_central_repo_path':
     case 'set_git_cache_cleanup_days':
     case 'set_git_cache_ttl_secs':
-    case 'set_github_token':
     case 'set_github_proxy_config':
     case 'set_tool_config':
     case 'set_auto_update_config':
     case 'trigger_auto_update_task_now_cmd':
     case 'clear_git_cache_now':
     case 'save_recent_project':
+      return null as unknown as T
       return null as unknown as T
     case 'delete_managed_skill': {
       const skillId = args?.skillId as string
@@ -1029,6 +1034,32 @@ export async function handleWebInvoke<T>(
     default:
       console.warn(`[WebAdapter] Unhandled command: ${command}`, args)
       return null as unknown as T
+  }
+}
+
+const GITHUB_TOKEN_STORAGE_KEY = 'skills_hub_github_token'
+
+export const getWebGithubToken = (): string => {
+  if (typeof window === 'undefined') return ''
+  try {
+    const direct = window.localStorage.getItem(GITHUB_TOKEN_STORAGE_KEY)
+    if (direct && direct.trim()) return direct.trim()
+    const gist = getGistSyncMeta()
+    if (gist.token && gist.token.trim()) return gist.token.trim()
+  } catch {
+    // ignore
+  }
+  return ''
+}
+
+export const saveWebGithubToken = (token: string) => {
+  if (typeof window === 'undefined') return
+  try {
+    const clean = token ? token.trim() : ''
+    window.localStorage.setItem(GITHUB_TOKEN_STORAGE_KEY, clean)
+    saveGistSyncMeta({ token: clean })
+  } catch {
+    // ignore
   }
 }
 

@@ -84,12 +84,28 @@ const SettingsPage = ({
   onBack,
   t,
 }: SettingsPageProps) => {
-  const [localToken, setLocalToken] = useState(githubToken)
+  const [localToken, setLocalToken] = useState(() => githubToken || getGistSyncMeta().token)
+  const [gistMeta, setGistMeta] = useState<GistSyncMeta>(getGistSyncMeta)
+
   useEffect(() => {
-    setLocalToken(githubToken)
+    if (githubToken) {
+      setLocalToken(githubToken)
+    } else {
+      const stored = getGistSyncMeta().token
+      if (stored) setLocalToken(stored)
+    }
   }, [githubToken])
 
-  const [gistMeta, setGistMeta] = useState<GistSyncMeta>(getGistSyncMeta)
+  const handleTokenChange = useCallback(
+    (val: string) => {
+      setLocalToken(val)
+      onGithubTokenChange(val)
+      const updated = saveGistSyncMeta({ token: val })
+      setGistMeta(updated)
+    },
+    [onGithubTokenChange],
+  )
+
   const [pushingGist, setPushingGist] = useState(false)
   const [pullingGist, setPullingGist] = useState(false)
   const [localGithubProxyPort, setLocalGithubProxyPort] = useState(
@@ -496,15 +512,7 @@ const SettingsPage = ({
                       type="password"
                       placeholder={t('gistSync.tokenPlaceholder')}
                       value={localToken}
-                      onChange={(e) => {
-                        setLocalToken(e.target.value)
-                        setGistMeta(saveGistSyncMeta({ token: e.target.value }))
-                      }}
-                      onBlur={() => {
-                        if (localToken !== githubToken) {
-                          onGithubTokenChange(localToken)
-                        }
-                      }}
+                      onChange={(e) => handleTokenChange(e.target.value)}
                     />
                   </div>
                   <div className="settings-helper">{t('gistSync.tokenHint')}</div>
@@ -611,12 +619,7 @@ const SettingsPage = ({
                     type="password"
                     placeholder={t('githubTokenPlaceholder')}
                     value={localToken}
-                    onChange={(e) => setLocalToken(e.target.value)}
-                    onBlur={() => {
-                      if (localToken !== githubToken) {
-                        onGithubTokenChange(localToken)
-                      }
-                    }}
+                    onChange={(e) => handleTokenChange(e.target.value)}
                   />
                 </div>
                 <div className="settings-helper">{t('githubTokenHint')}</div>
