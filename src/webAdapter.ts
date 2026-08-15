@@ -1261,7 +1261,16 @@ export async function pullFromGist(token: string): Promise<{
       const data = await getRes.json()
       gistUrl = data.html_url
       if (data.files && data.files[GIST_FILENAME]) {
-        rawContent = data.files[GIST_FILENAME].content
+        const fileObj = data.files[GIST_FILENAME]
+        if (fileObj.truncated && fileObj.raw_url) {
+          const rawRes = await fetch(fileObj.raw_url, { headers }).catch(() => null)
+          if (rawRes && rawRes.ok) rawContent = await rawRes.text()
+        } else if (fileObj.content) {
+          rawContent = fileObj.content
+        } else if (fileObj.raw_url) {
+          const rawRes = await fetch(fileObj.raw_url, { headers }).catch(() => null)
+          if (rawRes && rawRes.ok) rawContent = await rawRes.text()
+        }
       }
     }
   }
@@ -1272,7 +1281,7 @@ export async function pullFromGist(token: string): Promise<{
       if (listRes.status === 401) throw new Error('GitHub Token 无效或未勾选 gist 权限')
       throw new Error(`GitHub API 请求失败: ${listRes.status}`)
     }
-    const gists: Array<{ id: string; html_url: string; files: Record<string, { content?: string; raw_url?: string }> }> =
+    const gists: Array<{ id: string; html_url: string; files: Record<string, { content?: string; raw_url?: string; truncated?: boolean }> }> =
       await listRes.json()
     const found = gists.find((g) => Boolean(g.files && g.files[GIST_FILENAME]))
     if (!found) {
@@ -1281,11 +1290,14 @@ export async function pullFromGist(token: string): Promise<{
     gistUrl = found.html_url
     saveGistSyncMeta({ gistId: found.id, gistUrl: found.html_url })
     const fileObj = found.files[GIST_FILENAME]
-    if (fileObj.content) {
+    if (fileObj.truncated && fileObj.raw_url) {
+      const rawRes = await fetch(fileObj.raw_url, { headers }).catch(() => null)
+      if (rawRes && rawRes.ok) rawContent = await rawRes.text()
+    } else if (fileObj.content) {
       rawContent = fileObj.content
     } else if (fileObj.raw_url) {
-      const rawRes = await fetch(fileObj.raw_url)
-      rawContent = await rawRes.text()
+      const rawRes = await fetch(fileObj.raw_url, { headers }).catch(() => null)
+      if (rawRes && rawRes.ok) rawContent = await rawRes.text()
     }
   }
 
