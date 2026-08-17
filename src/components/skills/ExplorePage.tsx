@@ -1,7 +1,9 @@
-import { memo, useMemo } from 'react'
+import { memo, useMemo, useState, useEffect, useCallback } from 'react'
 import { Plus, Search, Star } from 'lucide-react'
 import type { TFunction } from 'i18next'
 import type { FeaturedSkillDto, ManagedSkill, OnlineSkillDto } from './types'
+
+const PAGE_SIZE = 36
 
 type ExplorePageProps = {
   featuredSkills: FeaturedSkillDto[]
@@ -36,6 +38,8 @@ const ExplorePage = ({
   onOpenManualAdd,
   t,
 }: ExplorePageProps) => {
+  const [displayCount, setDisplayCount] = useState(PAGE_SIZE)
+
   const filteredSkills = useMemo(() => {
     if (!exploreFilter.trim()) return featuredSkills
     const lower = exploreFilter.toLowerCase()
@@ -45,6 +49,20 @@ const ExplorePage = ({
         s.summary.toLowerCase().includes(lower),
     )
   }, [featuredSkills, exploreFilter])
+
+  useEffect(() => {
+    setDisplayCount(PAGE_SIZE)
+  }, [exploreFilter])
+
+  const handleScroll = useCallback(
+    (event: React.UIEvent<HTMLDivElement>) => {
+      const target = event.currentTarget
+      if (target.scrollTop + target.clientHeight >= target.scrollHeight - 350) {
+        setDisplayCount((prev) => (prev < filteredSkills.length ? prev + PAGE_SIZE : prev))
+      }
+    },
+    [filteredSkills.length],
+  )
 
   const deduplicatedResults = useMemo(() => {
     const featuredNames = new Set(filteredSkills.map((s) => s.name.toLowerCase()))
@@ -75,6 +93,8 @@ const ExplorePage = ({
       .toLowerCase()
     return installedSkillKeys.has(`${skillName.toLowerCase()}|${normalizedSource}`)
   }
+
+  const renderedFeatured = filteredSkills.slice(0, displayCount)
 
   return (
     <div className="explore-page">
@@ -115,7 +135,7 @@ const ExplorePage = ({
         </div>
       </div>
 
-      <div className="explore-scroll">
+      <div className="explore-scroll" onScroll={handleScroll}>
         {/* Featured section */}
         {featuredLoading ? (
           <div className="explore-loading">{t('exploreLoading')}</div>
@@ -125,48 +145,62 @@ const ExplorePage = ({
               <div className="explore-section-title">{t('exploreFeaturedTitle')}</div>
             )}
             {filteredSkills.length > 0 ? (
-              <div className="explore-grid">
-                {filteredSkills.map((skill) => {
-                  const installed = isInstalled(skill.name, skill.source_url)
-                  return (
-                    <div key={skill.slug} className="explore-card">
-                      <div className="explore-card-top">
-                        <div className="explore-card-info">
-                          <div className="explore-card-name">{skill.name}</div>
-                          <div className="explore-card-author">
-                            {skill.source_url
-                              .replace('https://github.com/', '')
-                              .split('/tree/')[0]}
+              <>
+                <div className="explore-grid">
+                  {renderedFeatured.map((skill) => {
+                    const installed = isInstalled(skill.name, skill.source_url)
+                    return (
+                      <div key={skill.slug} className="explore-card">
+                        <div className="explore-card-top">
+                          <div className="explore-card-info">
+                            <div className="explore-card-name">{skill.name}</div>
+                            <div className="explore-card-author">
+                              {skill.source_url
+                                .replace('https://github.com/', '')
+                                .split('/tree/')[0]}
+                            </div>
+                          </div>
+                          {installed ? (
+                            <span className="explore-btn-installed">
+                              {t('status.installed')}
+                            </span>
+                          ) : (
+                            <button
+                              className="explore-btn-install"
+                              type="button"
+                              disabled={loading}
+                              onClick={() => onInstallSkill(skill.source_url)}
+                            >
+                              {t('install')}
+                            </button>
+                          )}
+                        </div>
+                        <div className="explore-card-desc">{skill.summary}</div>
+                        <div className="explore-card-bottom">
+                          <div className="explore-card-stats">
+                            <span className="explore-stat">
+                              <Star size={12} />
+                              {formatCount(skill.stars)}
+                            </span>
                           </div>
                         </div>
-                        {installed ? (
-                          <span className="explore-btn-installed">
-                            {t('status.installed')}
-                          </span>
-                        ) : (
-                          <button
-                            className="explore-btn-install"
-                            type="button"
-                            disabled={loading}
-                            onClick={() => onInstallSkill(skill.source_url)}
-                          >
-                            {t('install')}
-                          </button>
-                        )}
                       </div>
-                      <div className="explore-card-desc">{skill.summary}</div>
-                      <div className="explore-card-bottom">
-                        <div className="explore-card-stats">
-                          <span className="explore-stat">
-                            <Star size={12} />
-                            {formatCount(skill.stars)}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
+                    )
+                  })}
+                </div>
+
+                {displayCount < filteredSkills.length && (
+                  <div style={{ textAlign: 'center', padding: '16px 0 24px' }}>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      onClick={() => setDisplayCount((prev) => prev + PAGE_SIZE)}
+                    >
+                      {t('showMore') || '加载更多...'} ({displayCount} / {filteredSkills.length})
+                    </button>
+                  </div>
+                )}
+              </>
             ) : !isSearchActive ? (
               <div className="explore-empty">{t('exploreEmpty')}</div>
             ) : null}

@@ -75,6 +75,10 @@ const SkillCard = ({
     }
   }
 
+  const syncedTools = installedTools.filter((t) => isToolSynced(t.id))
+  const displayTools = syncedTools.length > 0 ? syncedTools.slice(0, 6) : installedTools.slice(0, 3)
+  const remainingCount = syncedTools.length > 6 ? syncedTools.length - 6 : 0
+
   return (
     <div
       className={`skill-card${bulkMode ? ' bulk-mode' : ''}${bulkSelected ? ' bulk-selected' : ''}${enabled ? '' : ' disabled-skill'}`}
@@ -145,7 +149,7 @@ const SkillCard = ({
         <div className="skill-tools-block">
           <span>{t('syncTargets')}</span>
           <div className="skill-tool-avatars">
-            {installedTools.map((tool) => {
+            {displayTools.map((tool) => {
               const synced = isToolSynced(tool.id)
               const stateLabel = synced ? t('toolManagement.synced') : t('toolManagement.notSynced')
               return (
@@ -167,6 +171,17 @@ const SkillCard = ({
                 </button>
               )
             })}
+            {remainingCount > 0 && (
+              <button
+                className="scope-badge"
+                style={{ padding: '2px 6px', fontSize: '11px', fontWeight: 600, height: '22px' }}
+                type="button"
+                onClick={() => onOpenScope(skill)}
+                title={t('syncTargets')}
+              >
+                +{remainingCount}
+              </button>
+            )}
           </div>
         </div>
 

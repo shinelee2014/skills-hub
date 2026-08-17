@@ -77,6 +77,21 @@ const FilterBar = ({
     return () => document.removeEventListener('mousedown', handlePointerDown)
   }, [tagMenuOpen])
 
+  const [localSearch, setLocalSearch] = useState(searchQuery)
+
+  useEffect(() => {
+    setLocalSearch(searchQuery)
+  }, [searchQuery])
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (localSearch !== searchQuery) {
+        onSearchChange(localSearch)
+      }
+    }, 150)
+    return () => clearTimeout(timer)
+  }, [localSearch, onSearchChange, searchQuery])
+
   return (
     <div className="filter-bar">
       <div className="filter-title">
@@ -101,32 +116,34 @@ const FilterBar = ({
           </select>
         </button>
         <button className="btn btn-secondary sort-btn" type="button">
-          {sortBy === 'updated' ? t('sortUpdated') : t('sortName')}
-          <ArrowUpDown size={12} />
+          <ArrowUpDown size={14} />
+          {sortBy === 'updated' ? t('sort.updated') : t('sort.name')}
           <select
-            aria-label={t('filterSort')}
+            aria-label={t('sort.label')}
             value={sortBy}
             onChange={(event) => onSortChange(event.target.value as 'updated' | 'name')}
           >
-            <option value="updated">{t('sortUpdated')}</option>
-            <option value="name">{t('sortName')}</option>
+            <option value="updated">{t('sort.updated')}</option>
+            <option value="name">{t('sort.name')}</option>
           </select>
         </button>
         <button
-          className={`btn btn-secondary bulk-mode-btn${bulkMode ? ' active' : ''}`}
+          className={`btn btn-secondary bulk-btn${bulkMode ? ' active' : ''}`}
           type="button"
           onClick={onToggleBulkMode}
+          aria-pressed={bulkMode}
         >
           <CheckSquare size={14} />
-          {bulkMode
-            ? t('bulk.selectedShort', { count: bulkSelectedCount })
-            : t('bulk.manage')}
+          {bulkMode && bulkSelectedCount > 0
+            ? t('bulk.selectedCount', { count: bulkSelectedCount })
+            : t('bulk.toggleMode')}
         </button>
-        <div className="tag-filter-wrap" ref={tagMenuRef}>
+        <div className="tag-filter-container" ref={tagMenuRef}>
           <button
             className={`btn btn-secondary tag-filter-btn${selectedCount > 0 ? ' active' : ''}`}
             type="button"
-            onClick={() => setTagMenuOpen((open) => !open)}
+            onClick={() => setTagMenuOpen((prev) => !prev)}
+            aria-expanded={tagMenuOpen}
           >
             <Tags size={14} />
             {selectedCount > 0
@@ -211,8 +228,8 @@ const FilterBar = ({
           <Search size={16} className="search-icon-abs" />
           <input
             className="search-input"
-            value={searchQuery}
-            onChange={(event) => onSearchChange(event.target.value)}
+            value={localSearch}
+            onChange={(event) => setLocalSearch(event.target.value)}
             placeholder={t('searchPlaceholder')}
           />
         </div>

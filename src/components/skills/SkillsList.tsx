@@ -1,8 +1,10 @@
-import { memo } from 'react'
+import { memo, useState, useEffect, useCallback } from 'react'
 import { MessageCircle } from 'lucide-react'
 import type { TFunction } from 'i18next'
 import type { ManagedSkill, OnboardingPlan, ToolOption } from './types'
 import SkillCard from './SkillCard'
+
+const PAGE_SIZE = 40
 
 type GithubInfo = {
   label: string
@@ -59,6 +61,23 @@ const SkillsList = ({
   t,
 }: SkillsListProps) => {
   const selectedSkillSet = new Set(selectedSkillIds)
+  const [displayCount, setDisplayCount] = useState(PAGE_SIZE)
+
+  useEffect(() => {
+    setDisplayCount(PAGE_SIZE)
+  }, [visibleSkills])
+
+  const handleScroll = useCallback(
+    (event: React.UIEvent<HTMLDivElement>) => {
+      const target = event.currentTarget
+      if (target.scrollTop + target.clientHeight >= target.scrollHeight - 350) {
+        setDisplayCount((prev) => (prev < visibleSkills.length ? prev + PAGE_SIZE : prev))
+      }
+    },
+    [visibleSkills.length],
+  )
+
+  const renderedSkills = visibleSkills.slice(0, displayCount)
 
   return (
     <div
@@ -66,13 +85,7 @@ const SkillsList = ({
       role="region"
       tabIndex={0}
       aria-label={t('navMySkills')}
-      onWheel={(event) => {
-        if (event.deltaY === 0) return
-        const list = event.currentTarget
-        const previousScrollTop = list.scrollTop
-        list.scrollTop += event.deltaY
-        if (list.scrollTop !== previousScrollTop) event.preventDefault()
-      }}
+      onScroll={handleScroll}
     >
       {plan && plan.total_skills_found > 0 ? (
         <div className="discovered-banner">
@@ -101,32 +114,46 @@ const SkillsList = ({
       {visibleSkills.length === 0 ? (
         <div className="empty">{t('skillsEmpty')}</div>
       ) : (
-        <div className={`skills-table ${viewMode}-view`}>
-          {visibleSkills.map((skill) => (
-            <SkillCard
-              key={skill.id}
-              skill={skill}
-              installedTools={installedTools}
-              loading={loading}
-              bulkMode={bulkMode}
-              bulkSelected={selectedSkillSet.has(skill.id)}
-              getGithubInfo={getGithubInfo}
-              getSkillSourceLabel={getSkillSourceLabel}
-              formatRelative={formatRelative}
-              onUpdate={onUpdateSkill}
-              onDelete={onDeleteSkill}
-              onToggleEnabled={onToggleSkillEnabled}
-              onToggleTool={onToggleTool}
-              onOpenScope={onOpenScope}
-              onOpenDetail={onOpenDetail}
-              onEditTags={onEditTags}
-              onToggleBulkSelection={onToggleBulkSelection}
-              getSkillScope={getSkillScope}
-              getSkillProjects={getSkillProjects}
-              t={t}
-            />
-          ))}
-        </div>
+        <>
+          <div className={`skills-table ${viewMode}-view`}>
+            {renderedSkills.map((skill) => (
+              <SkillCard
+                key={skill.id}
+                skill={skill}
+                installedTools={installedTools}
+                loading={loading}
+                bulkMode={bulkMode}
+                bulkSelected={selectedSkillSet.has(skill.id)}
+                getGithubInfo={getGithubInfo}
+                getSkillSourceLabel={getSkillSourceLabel}
+                formatRelative={formatRelative}
+                onUpdate={onUpdateSkill}
+                onDelete={onDeleteSkill}
+                onToggleEnabled={onToggleSkillEnabled}
+                onToggleTool={onToggleTool}
+                onOpenScope={onOpenScope}
+                onOpenDetail={onOpenDetail}
+                onEditTags={onEditTags}
+                onToggleBulkSelection={onToggleBulkSelection}
+                getSkillScope={getSkillScope}
+                getSkillProjects={getSkillProjects}
+                t={t}
+              />
+            ))}
+          </div>
+
+          {displayCount < visibleSkills.length && (
+            <div style={{ textAlign: 'center', padding: '16px 0 24px' }}>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={() => setDisplayCount((prev) => prev + PAGE_SIZE)}
+              >
+                {t('showMore') || '加载更多...'} ({displayCount} / {visibleSkills.length})
+              </button>
+            </div>
+          )}
+        </>
       )}
     </div>
   )
