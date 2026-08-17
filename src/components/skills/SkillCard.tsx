@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { Copy, Folder, Github, RefreshCw, Tag, Trash2 } from 'lucide-react'
+import { Copy, Folder, Github, RefreshCw, Star, Tag, Trash2 } from 'lucide-react'
 import type { TFunction } from 'i18next'
 import { toast } from 'sonner'
 import type { ManagedSkill, ToolOption } from './types'
@@ -20,6 +20,7 @@ type SkillCardProps = {
   onDelete: (skillId: string) => void
   onToggleEnabled: (skill: ManagedSkill) => void
   onToggleTool: (skill: ManagedSkill, toolId: string) => void
+  onToggleStar?: (skill: ManagedSkill) => void
   onOpenScope: (skill: ManagedSkill) => void
   onOpenDetail: (skill: ManagedSkill) => void
   onEditTags: (skill: ManagedSkill) => void
@@ -42,6 +43,7 @@ const SkillCard = ({
   onDelete,
   onToggleEnabled,
   onToggleTool,
+  onToggleStar,
   onOpenScope,
   onOpenDetail,
   onEditTags,
@@ -102,6 +104,15 @@ const SkillCard = ({
             <div className="skill-title-line">
               <button className="skill-name clickable" type="button" onClick={() => onOpenDetail(skill)}>
                 {skill.name}
+              </button>
+              <button
+                className={`skill-star-btn${skill.starred ? ' starred' : ''}`}
+                type="button"
+                onClick={() => onToggleStar?.(skill)}
+                title={skill.starred ? '已设为常用' : '设为常用'}
+                aria-label={skill.starred ? '已设为常用' : '设为常用'}
+              >
+                <Star size={13} fill={skill.starred ? '#f59e0b' : 'none'} color={skill.starred ? '#f59e0b' : 'currentColor'} />
               </button>
               <button
                 className="skill-source-copy"

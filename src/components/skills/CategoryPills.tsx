@@ -3,6 +3,7 @@ import type { SkillCategory } from './types'
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   { id: 'all', name: '全部', icon: '✨' },
+  { id: 'starred', name: '常用', icon: '⭐️' },
   { id: 'design', name: '视觉设计', icon: '🎨' },
   { id: 'agent', name: 'Agent系统', icon: '🤖' },
   { id: 'dev', name: '编程开发', icon: '💻' },

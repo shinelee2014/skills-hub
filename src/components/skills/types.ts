@@ -60,6 +60,7 @@ export type ManagedSkill = {
   last_sync_at?: number | null
   enabled: boolean
   status: string
+  starred?: boolean
   category?: string
   category_name?: string
   category_icon?: string

@@ -23,6 +23,7 @@ import LoadingOverlay from './components/skills/LoadingOverlay'
 import SkillsList from './components/skills/SkillsList'
 import TagsPage from './components/skills/TagsPage'
 import AddSkillModal from './components/skills/modals/AddSkillModal'
+import SkillBundlesModal from './components/skills/modals/SkillBundlesModal'
 import BulkDeleteModal from './components/skills/modals/BulkDeleteModal'
 import BulkSyncModal from './components/skills/modals/BulkSyncModal'
 import BulkTagsModal from './components/skills/modals/BulkTagsModal'
@@ -53,7 +54,7 @@ import {
   selectInstallToolIds,
   type InstallScope,
 } from './components/skills/installScope'
-import { getGistSyncMeta, handleWebInvoke, pushToGist } from './webAdapter'
+import { getGistSyncMeta, getWebGithubToken, handleWebInvoke, pushToGist, saveWebManagedSkills } from './webAdapter'
 import type {
   AutoUpdateConfigDto,
   FeaturedSkillDto,
@@ -200,6 +201,7 @@ function App() {
   const [showBulkDeleteModal, setShowBulkDeleteModal] = useState(false)
   const [showBulkTagsModal, setShowBulkTagsModal] = useState(false)
   const [bulkSyncToolIds, setBulkSyncToolIds] = useState<string[]>([])
+  const [showBundlesModal, setShowBundlesModal] = useState(false)
 
   const isTauri =
     typeof window !== 'undefined' &&
@@ -847,8 +849,13 @@ function App() {
   )
 
   const categoryCounts = useMemo(() => {
-    const counts: Record<string, number> = {}
+    const counts: Record<string, number> = {
+      starred: 0,
+    }
     for (const s of managedSkills) {
+      if (s.starred) {
+        counts.starred = (counts.starred || 0) + 1
+      }
       if (s.category) {
         counts[s.category] = (counts[s.category] || 0) + 1
       }
@@ -861,7 +868,11 @@ function App() {
     const selectedTagSet = new Set(selectedTagIds)
     const hasTagFilter = selectedTagIds.length > 0 || includeUntagged
     const filtered = managedSkills.filter((skill) => {
-      if (categoryFilter !== 'all' && skill.category !== categoryFilter) return false
+      if (categoryFilter === 'starred') {
+        if (!skill.starred) return false
+      } else if (categoryFilter !== 'all') {
+        if (skill.category !== categoryFilter) return false
+      }
       if (scopeFilter !== 'all' && getSkillScope(skill) !== scopeFilter) return false
       if (hasTagFilter) {
         const matchesSelectedTag = skill.tags.some((tag) => selectedTagSet.has(tag.id))
@@ -1857,6 +1868,34 @@ function App() {
     showActionErrors,
     t,
   ])
+
+  const handleToggleStarSkill = useCallback(
+    (skill: ManagedSkill) => {
+      const updated = managedSkills.map((s) =>
+        s.id === skill.id ? { ...s, starred: !s.starred } : s,
+      )
+      setManagedSkills(updated)
+      saveWebManagedSkills(updated)
+      toast.success(
+        skill.starred
+          ? `已从常用中移除 ${skill.name}`
+          : `已将 ${skill.name} 设为常用 ⭐️`,
+        { duration: 1400 },
+      )
+    },
+    [managedSkills],
+  )
+
+  const handleApplyBundleFilter = useCallback((skillNames: string[]) => {
+    setCategoryFilter('all')
+    setSelectedTagIds([])
+    setIncludeUntagged(false)
+    setScopeFilter('all')
+    if (skillNames.length > 0) {
+      setSearchQuery(skillNames[0])
+    }
+    setActiveView('myskills')
+  }, [])
 
   const handleConfirmBulkSync = useCallback(async () => {
     if (bulkSelectedSkills.length === 0) return
@@ -3417,8 +3456,11 @@ function App() {
         updateInstalling={updateInstalling}
         updateDone={updateDone}
         collapsed={sidebarCollapsed}
+        gistConnected={Boolean(getGistSyncMeta().token || getWebGithubToken())}
+        gistLastSyncedAt={getGistSyncMeta().lastSyncedAt}
         onToggleCollapsed={() => setSidebarCollapsed((collapsed) => !collapsed)}
         onOpenSettings={handleOpenSettings}
+        onOpenBundles={() => setShowBundlesModal(true)}
         onOpenUpdate={handleOpenUpdate}
         onViewChange={handleViewChange}
         onManagementTabChange={handleManagementTabChange}
@@ -3502,6 +3544,7 @@ function App() {
               onDeleteSkill={handleDeletePrompt}
               onToggleSkillEnabled={handleToggleSkillEnabled}
               onToggleTool={handleToggleToolForSkill}
+              onToggleStar={handleToggleStarSkill}
               onOpenScope={handleOpenScope}
               onOpenDetail={handleOpenDetail}
               onEditTags={handleOpenEditTags}
@@ -3812,6 +3855,13 @@ function App() {
         toolsLabelText={newlyInstalledToolsText}
         onLater={handleCloseNewTools}
         onSyncAll={handleSyncAllNewTools}
+        t={t}
+      />
+
+      <SkillBundlesModal
+        open={showBundlesModal}
+        onClose={() => setShowBundlesModal(false)}
+        onApplyBundleFilter={handleApplyBundleFilter}
         t={t}
       />
 

@@ -2,6 +2,7 @@ import { memo, type PointerEvent } from 'react'
 import {
   CircleCheck,
   ChevronLeft,
+  Cloud,
   Compass,
   Download,
   Github,
@@ -9,6 +10,7 @@ import {
   LoaderCircle,
   RefreshCw,
   Settings,
+  Sparkles,
   Tag,
   Wrench,
 } from 'lucide-react'
@@ -29,8 +31,11 @@ type HeaderProps = {
   updateInstalling: boolean
   updateDone: boolean
   collapsed: boolean
+  gistConnected?: boolean
+  gistLastSyncedAt?: string | null
   onToggleCollapsed: () => void
   onOpenSettings: () => void
+  onOpenBundles?: () => void
   onOpenUpdate: () => void
   onViewChange: (view: 'myskills' | 'explore' | 'manage') => void
   onManagementTabChange: (tab: ManagementTab) => void
@@ -68,8 +73,11 @@ const Header = ({
   updateInstalling,
   updateDone,
   collapsed,
+  gistConnected,
+  gistLastSyncedAt,
   onToggleCollapsed,
   onOpenSettings,
+  onOpenBundles,
   onOpenUpdate,
   onViewChange,
   onManagementTabChange,
@@ -129,8 +137,53 @@ const Header = ({
           ) : null}
         </div>
       ) : null}
-      {!isTauri && (
-        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8, paddingRight: 16 }}>
+
+      <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8, paddingRight: 16 }}>
+        {onOpenBundles && (
+          <button
+            type="button"
+            onClick={onOpenBundles}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 5,
+              fontSize: 12,
+              fontWeight: 500,
+              color: 'var(--accent-primary, #2563eb)',
+              background: 'rgba(37, 99, 235, 0.08)',
+              border: '1px solid rgba(37, 99, 235, 0.25)',
+              borderRadius: 6,
+              padding: '3px 10px',
+              cursor: 'pointer',
+            }}
+          >
+            <Sparkles size={13} className="text-amber-500" />
+            <span>场景套件</span>
+          </button>
+        )}
+
+        <button
+          type="button"
+          onClick={onOpenSettings}
+          title={gistConnected ? `私有 Gist 已连接 (上次同步: ${gistLastSyncedAt ? new Date(gistLastSyncedAt).toLocaleTimeString() : '刚刚'})` : '点击配置 Gist 云端同步'}
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 5,
+            fontSize: 12,
+            color: gistConnected ? 'var(--text-secondary)' : 'var(--text-tertiary)',
+            background: 'var(--bg-tag, rgba(128,128,128,0.12))',
+            border: '1px solid var(--border-color, rgba(128,128,128,0.2))',
+            borderRadius: 6,
+            padding: '3px 8px',
+            cursor: 'pointer',
+          }}
+        >
+          <Cloud size={13} color={gistConnected ? '#10b981' : 'currentColor'} />
+          <span>{gistConnected ? '云端已同步' : '未连接云端'}</span>
+        </button>
+
+        {!isTauri && (
           <a
             href="https://github.com/shinelee2014/skills-hub"
             target="_blank"
@@ -138,22 +191,22 @@ const Header = ({
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 6,
+              gap: 5,
               fontSize: 12,
               color: 'inherit',
               textDecoration: 'none',
               opacity: 0.85,
-              padding: '2px 8px',
+              padding: '3px 8px',
               borderRadius: 6,
-              background: 'var(--bg-tag, rgba(128,128,128,0.15))',
+              background: 'var(--bg-tag, rgba(128,128,128,0.12))',
               border: '1px solid var(--border-color, rgba(128,128,128,0.2))',
             }}
           >
             <Github size={13} />
             <span>GitHub 源码</span>
           </a>
-        </div>
-      )}
+        )}
+      </div>
     </div>
     <aside className={`skills-sidebar${collapsed ? ' collapsed' : ''}`}>
       <div

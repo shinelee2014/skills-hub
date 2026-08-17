@@ -773,49 +773,82 @@ export async function fetchWebSkillContent(
   skill: ManagedSkill,
   filePath: string,
 ): Promise<string> {
+  const file = filePath.split('/').pop() || 'SKILL.md'
+  const candidateUrls: string[] = []
+
+  // 1. Try our own repo
+  candidateUrls.push(
+    `https://raw.githubusercontent.com/shinelee2014/skills-hub/main/skills/${encodeURIComponent(skill.name)}/${file}`,
+    `https://raw.githubusercontent.com/shinelee2014/skills-hub/main/skills/${encodeURIComponent(skill.name)}/SKILL.md`
+  )
+
+  // 2. Try upstream source URL
   const sourceUrl = skill.source_ref || ''
-  if (sourceUrl) {
-    const rawUrl = normalizeRawGithubUrl(sourceUrl, filePath)
-    if (rawUrl) {
-      try {
-        const res = await fetch(rawUrl)
-        if (res.ok) {
-          return await res.text()
-        }
-      } catch {
-        // fallback
-      }
+  if (sourceUrl && sourceUrl.includes('github.com')) {
+    const rawMain = normalizeRawGithubUrl(sourceUrl, file)
+    if (rawMain) {
+      candidateUrls.push(rawMain)
+      candidateUrls.push(rawMain.replace('/main/', '/master/'))
     }
   }
+
+  for (const url of candidateUrls) {
+    try {
+      const res = await fetch(url)
+      if (res.ok) {
+        const text = await res.text()
+        if (text && text.trim().length > 0) {
+          return text
+        }
+      }
+    } catch {
+      // try next
+    }
+  }
+
+  const categoryBadge = skill.category_name ? `${skill.category_icon || '🏷️'} ${skill.category_name}` : '通用'
+  const tagList = skill.tags?.map((t) => `\`${t.name}\``).join(' ') || ''
 
   return `---
 name: ${skill.name}
 description: ${skill.description || 'AI Agent Skill'}
+category: ${skill.category || 'general'}
 ---
 
-# ${skill.name}
+# ${skill.category_icon || '⚡'} ${skill.name}
 
-${skill.description || 'No description provided.'}
+> ${skill.description || 'AI 智能体专属技能，提供自动化指令与工作流支持。'}
 
-## Overview
+### 📌 技能属性
+- **所属分类**：${categoryBadge}
+- **标签属性**：${tagList || '无'}
+- **仓库来源**：[${skill.source_ref || skill.name}](${skill.source_ref || '#'})
+- **存储路径**：\`${skill.central_path}\`
 
-This skill is managed in Skills Hub.
+---
 
-### Source
-- Repository: [${skill.source_ref || skill.name}](${skill.source_ref || '#'})
-- Central Path: \`${skill.central_path}\`
+### 🚀 Agent 提示词调用规范
 
-### Quick Install Commands
+在与 AI 助理对话时，可直接通过以下方式调用本技能规范：
+
+\`\`\`markdown
+请加载并严格遵循 @${skill.name} 的核心规范与检查清单，为我执行以下任务：
+[在此输入您的具体需求或输入材料]
+\`\`\`
+
+---
+
+### 💻 客户端安装与同步命令
 
 \`\`\`bash
-# Antigravity / Gemini CLI
+# 1. Antigravity / Gemini CLI 一键安装
 npx -y skills add ${skill.source_ref || skill.name}
 
-# Claude Code
+# 2. Claude Code CLI 安装
 claude skill add ${skill.source_ref || skill.name}
 
-# Cursor (.cursor/skills)
-git clone ${skill.source_ref || 'https://github.com/...'} ~/.cursor/skills/${skill.name}
+# 3. 本地 Git 源码克隆
+git clone ${skill.source_ref || 'https://github.com/shinelee2014/skills-hub'}
 \`\`\`
 `
 }
