@@ -619,11 +619,35 @@ export function getWebManagedSkills(): ManagedSkill[] {
   return initial
 }
 
-export function saveWebManagedSkills(skills: ManagedSkill[]): void {
+let autoGistSyncTimer: number | null = null
+
+export function triggerAutoGistSync(): void {
+  if (typeof window === 'undefined') return
+  const token = getWebGithubToken()
+  if (!token) return
+
+  if (autoGistSyncTimer) {
+    window.clearTimeout(autoGistSyncTimer)
+  }
+  autoGistSyncTimer = window.setTimeout(() => {
+    pushToGist(token)
+      .then((res) => {
+        console.log('✅ Auto-synced skills to private Gist:', res.gistUrl)
+      })
+      .catch((err) => {
+        console.warn('⚠️ Auto-sync to Gist error:', err)
+      })
+  }, 600)
+}
+
+export function saveWebManagedSkills(skills: ManagedSkill[], skipAutoSync = false): void {
   if (typeof window === 'undefined') return
   try {
     window.localStorage.setItem(STORAGE_KEYS.SKILLS, JSON.stringify(skills))
     window.localStorage.setItem(VERSION_KEY, CURRENT_DATA_VERSION)
+    if (!skipAutoSync) {
+      triggerAutoGistSync()
+    }
   } catch {
     // ignore
   }
@@ -808,10 +832,16 @@ export function installWebSkill(
   const allTags = getWebTags()
   const skillTags = allTags.filter((t) => tagIds.includes(t.id))
 
+  // Find summary from featured skills if available
+  const featured = getWebFeaturedSkills().find(
+    (f) => f.name.toLowerCase() === name.toLowerCase(),
+  )
+  const description = featured?.summary || `Installed from ${sourceUrl}`
+
   const newSkill: ManagedSkill = {
     id: newId,
     name,
-    description: `Installed from ${sourceUrl}`,
+    description,
     source_type: 'git',
     source_ref: sourceUrl,
     central_path: `~/.skillshub/skills/${name}`,
@@ -820,7 +850,7 @@ export function installWebSkill(
     last_sync_at: Date.now(),
     enabled: true,
     status: 'healthy',
-    tags: skillTags,
+    tags: skillTags.length > 0 ? skillTags : [{ id: 1, name: 'Antigravity' }],
     targets: syncTools.map((t) => ({
       tool: t,
       scope,
@@ -831,7 +861,8 @@ export function installWebSkill(
     })),
   }
 
-  saveWebManagedSkills([newSkill, ...currentSkills])
+  const filtered = currentSkills.filter((s) => s.name.toLowerCase() !== name.toLowerCase())
+  saveWebManagedSkills([newSkill, ...filtered])
   return {
     skill_id: newId,
     name,
