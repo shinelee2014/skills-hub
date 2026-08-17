@@ -1,5 +1,8 @@
 import rawFeaturedSkills from '../featured-skills.json'
 import rawInitialSkills from './initial-managed-skills.json'
+import rawLocalSkillsCache from './local_skills_cache.json'
+
+const LOCAL_SKILLS_CACHE: Record<string, string> = rawLocalSkillsCache as Record<string, string>
 import type {
   AutoUpdateConfigDto,
   FeaturedSkillDto,
@@ -840,6 +843,12 @@ export async function fetchWebSkillContent(
   filePath: string,
 ): Promise<string> {
   const file = filePath.split('/').pop() || 'SKILL.md'
+
+  // 0. Instant offline cache for local / bundled skills
+  if (file === 'SKILL.md' && LOCAL_SKILLS_CACHE[skill.name]) {
+    return LOCAL_SKILLS_CACHE[skill.name]
+  }
+
   const candidateUrls: string[] = []
 
   // 1. Upstream source URL candidates (Raw + jsDelivr CDN)
