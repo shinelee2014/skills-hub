@@ -795,7 +795,7 @@ export async function searchWebSkills(query: string): Promise<OnlineSkillDto[]> 
   return matched
 }
 
-function getGithubRawAndCdnCandidates(sourceUrl: string, file: string = 'SKILL.md'): string[] {
+function getGithubRawAndCdnCandidates(sourceUrl: string, file: string = 'SKILL.md', skillName: string = ''): string[] {
   const candidates: string[] = []
   if (!sourceUrl || !sourceUrl.includes('github.com')) return candidates
 
@@ -821,10 +821,19 @@ function getGithubRawAndCdnCandidates(sourceUrl: string, file: string = 'SKILL.m
     const owner = repoMatch[1]
     const repo = repoMatch[2]
     for (const b of ['main', 'master']) {
+      // 1. Direct root
       candidates.push(`https://raw.githubusercontent.com/${owner}/${repo}/${b}/${file}`)
       candidates.push(`https://cdn.jsdelivr.net/gh/${owner}/${repo}@${b}/${file}`)
-      candidates.push(`https://raw.githubusercontent.com/${owner}/${repo}/${b}/skills/${file}`)
-      candidates.push(`https://cdn.jsdelivr.net/gh/${owner}/${repo}@${b}/skills/${file}`)
+
+      // 2. Monorepo subfolders (e.g. skills/writing-plans/SKILL.md or writing-plans/SKILL.md)
+      if (skillName) {
+        candidates.push(`https://raw.githubusercontent.com/${owner}/${repo}/${b}/skills/${skillName}/${file}`)
+        candidates.push(`https://cdn.jsdelivr.net/gh/${owner}/${repo}@${b}/skills/${skillName}/${file}`)
+        candidates.push(`https://raw.githubusercontent.com/${owner}/${repo}/${b}/${skillName}/${file}`)
+        candidates.push(`https://cdn.jsdelivr.net/gh/${owner}/${repo}@${b}/${skillName}/${file}`)
+        candidates.push(`https://raw.githubusercontent.com/${owner}/${repo}/${b}/.agents/skills/${skillName}/${file}`)
+        candidates.push(`https://cdn.jsdelivr.net/gh/${owner}/${repo}@${b}/.agents/skills/${skillName}/${file}`)
+      }
     }
   }
 
@@ -854,7 +863,7 @@ export async function fetchWebSkillContent(
   // 1. Upstream source URL candidates (Raw + jsDelivr CDN)
   const sourceUrl = skill.source_ref || ''
   if (sourceUrl && sourceUrl.includes('github.com')) {
-    candidateUrls.push(...getGithubRawAndCdnCandidates(sourceUrl, file))
+    candidateUrls.push(...getGithubRawAndCdnCandidates(sourceUrl, file, skill.name))
   }
 
   // 2. Personal repository candidates for custom / local skills
