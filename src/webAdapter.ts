@@ -655,25 +655,65 @@ export function saveWebManagedSkills(skills: ManagedSkill[], skipAutoSync = fals
 
 export function getWebTags(): TagWithCountDto[] {
   const managed = getWebManagedSkills()
-  const tagMap = new Map<string, number>()
+
+  // 1. Count live usage of tag names across all skills
+  const skillCountMap = new Map<string, number>()
   for (const s of managed) {
     if (Array.isArray(s.tags)) {
       for (const t of s.tags) {
-        const tagName = typeof t === 'string' ? t : (t as { name: string }).name
-        if (tagName) {
-          tagMap.set(tagName, (tagMap.get(tagName) || 0) + 1)
+        const tagName = typeof t === 'string' ? t : (t as { name?: string })?.name
+        if (tagName && tagName.trim()) {
+          skillCountMap.set(tagName.trim(), (skillCountMap.get(tagName.trim()) || 0) + 1)
         }
       }
     }
   }
-  if (tagMap.size === 0) {
+
+  // 2. Read stored custom tags from localStorage
+  let storedTags: TagWithCountDto[] = []
+  if (typeof window !== 'undefined') {
+    try {
+      const raw = window.localStorage.getItem(STORAGE_KEYS.TAGS)
+      if (raw) {
+        const parsed = JSON.parse(raw)
+        if (Array.isArray(parsed)) {
+          storedTags = parsed.map((item, idx) => ({
+            id: Number(item.id) || Date.now() + idx,
+            name: String(item.name || '').trim(),
+            skill_count: skillCountMap.get(String(item.name || '').trim()) || 0,
+            updated_at: item.updated_at || Date.now(),
+          })).filter((t) => t.name.length > 0)
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  // 3. Merge with any tags currently attached to skills
+  const existingNames = new Set(storedTags.map((t) => t.name.toLowerCase()))
+  const mergedTags = [...storedTags]
+  let nextId = storedTags.reduce((max, t) => Math.max(max, t.id || 0), 100) + 1
+
+  for (const [tagName, count] of skillCountMap.entries()) {
+    if (!existingNames.has(tagName.toLowerCase())) {
+      mergedTags.push({
+        id: nextId++,
+        name: tagName,
+        skill_count: count,
+        updated_at: Date.now(),
+      })
+      existingNames.add(tagName.toLowerCase())
+    }
+  }
+
+  if (mergedTags.length === 0) {
     return DEFAULT_INITIAL_TAGS
   }
-  return Array.from(tagMap.entries()).map(([name, count], idx) => ({
-    id: idx + 1,
-    name,
-    skill_count: count,
-    updated_at: Date.now(),
+
+  return mergedTags.map((t) => ({
+    ...t,
+    skill_count: skillCountMap.get(t.name) || 0,
   }))
 }
 
@@ -681,6 +721,7 @@ export function saveWebTags(tags: TagWithCountDto[]): void {
   if (typeof window === 'undefined') return
   try {
     window.localStorage.setItem(STORAGE_KEYS.TAGS, JSON.stringify(tags))
+    triggerAutoGistSync()
   } catch {
     // ignore
   }
@@ -914,6 +955,7 @@ export async function handleWebInvoke<T>(
     case 'get_managed_skills':
       return getWebManagedSkills() as unknown as T
     case 'get_tags':
+    case 'get_all_tags':
       return getWebTags() as unknown as T
     case 'get_tool_status':
       return getWebToolStatus() as unknown as T
@@ -1040,29 +1082,66 @@ export async function handleWebInvoke<T>(
       return null as unknown as T
     }
     case 'create_tag': {
-      const name = (args?.name as string) || ''
+      const name = ((args?.name as string) || '').trim()
+      if (!name) return null as unknown as T
       const tags = getWebTags()
+      const existing = tags.find((t) => t.name.toLowerCase() === name.toLowerCase())
+      if (existing) {
+        return existing as unknown as T
+      }
       const newTag: TagWithCountDto = {
         id: Date.now(),
         name,
         skill_count: 0,
         updated_at: Date.now(),
       }
-      saveWebTags([...tags, newTag])
+      const updated = [...tags, newTag]
+      saveWebTags(updated)
       return newTag as unknown as T
     }
     case 'rename_tag': {
-      const id = args?.id as number
-      const name = (args?.name as string) || ''
+      const tagId = Number(args?.tagId ?? args?.id)
+      const name = ((args?.name as string) || '').trim()
       const tags = getWebTags()
-      const updated = tags.map((t) => (t.id === id ? { ...t, name, updated_at: Date.now() } : t))
-      saveWebTags(updated)
-      return null as unknown as T
+      const targetTag = tags.find((t) => t.id === tagId)
+      const oldName = targetTag?.name || ''
+      const updatedTags = tags.map((t) =>
+        t.id === tagId ? { ...t, name, updated_at: Date.now() } : t,
+      )
+      saveWebTags(updatedTags)
+
+      if (oldName && name) {
+        const skills = getWebManagedSkills()
+        const updatedSkills = skills.map((s) => {
+          if (Array.isArray(s.tags) && s.tags.some((t) => t.id === tagId || t.name === oldName)) {
+            return {
+              ...s,
+              tags: s.tags.map((t) =>
+                t.id === tagId || t.name === oldName ? { ...t, id: tagId, name } : t,
+              ),
+            }
+          }
+          return s
+        })
+        saveWebManagedSkills(updatedSkills)
+      }
+      return { id: tagId, name } as unknown as T
     }
     case 'delete_tag': {
-      const id = args?.id as number
+      const tagId = Number(args?.tagId ?? args?.id)
       const tags = getWebTags()
-      saveWebTags(tags.filter((t) => t.id !== id))
+      const targetTag = tags.find((t) => t.id === tagId)
+      const tagName = targetTag?.name || ''
+      saveWebTags(tags.filter((t) => t.id !== tagId))
+
+      const skills = getWebManagedSkills()
+      const updatedSkills = skills.map((s) => ({
+        ...s,
+        tags: Array.isArray(s.tags)
+          ? s.tags.filter((t) => t.id !== tagId && t.name !== tagName)
+          : [],
+      }))
+      saveWebManagedSkills(updatedSkills)
       return null as unknown as T
     }
     case 'set_skill_tags': {
