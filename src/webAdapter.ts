@@ -587,6 +587,9 @@ const DEFAULT_INITIAL_TAGS: TagWithCountDto[] = [
   { id: 4, name: 'multimedia', skill_count: 0, updated_at: Date.now() },
 ]
 
+const CURRENT_DATA_VERSION = 'v2_285_skills'
+const VERSION_KEY = 'skills_hub_web_data_version'
+
 export function getWebFeaturedSkills(): FeaturedSkillDto[] {
   const data = rawFeaturedSkills as { skills: FeaturedSkillDto[] }
   return data.skills || []
@@ -595,10 +598,11 @@ export function getWebFeaturedSkills(): FeaturedSkillDto[] {
 export function getWebManagedSkills(): ManagedSkill[] {
   if (typeof window === 'undefined') return []
   try {
+    const version = window.localStorage.getItem(VERSION_KEY)
     const raw = window.localStorage.getItem(STORAGE_KEYS.SKILLS)
-    if (raw) {
+    if (version === CURRENT_DATA_VERSION && raw) {
       const parsed = JSON.parse(raw) as ManagedSkill[]
-      if (Array.isArray(parsed) && parsed.length > 0) {
+      if (Array.isArray(parsed) && parsed.length >= 285) {
         return parsed
       }
     }
@@ -607,6 +611,11 @@ export function getWebManagedSkills(): ManagedSkill[] {
   }
   const initial = (rawInitialSkills as unknown as ManagedSkill[]) || []
   saveWebManagedSkills(initial)
+  try {
+    window.localStorage.setItem(VERSION_KEY, CURRENT_DATA_VERSION)
+  } catch {
+    // ignore
+  }
   return initial
 }
 
@@ -614,27 +623,34 @@ export function saveWebManagedSkills(skills: ManagedSkill[]): void {
   if (typeof window === 'undefined') return
   try {
     window.localStorage.setItem(STORAGE_KEYS.SKILLS, JSON.stringify(skills))
+    window.localStorage.setItem(VERSION_KEY, CURRENT_DATA_VERSION)
   } catch {
     // ignore
   }
 }
 
 export function getWebTags(): TagWithCountDto[] {
-  if (typeof window === 'undefined') return DEFAULT_INITIAL_TAGS
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEYS.TAGS)
-    if (raw) {
-      const parsed = JSON.parse(raw) as TagWithCountDto[]
-      const managed = getWebManagedSkills()
-      return parsed.map((t) => ({
-        ...t,
-        skill_count: managed.filter((s) => s.tags?.some((st) => st.id === t.id)).length,
-      }))
+  const managed = getWebManagedSkills()
+  const tagMap = new Map<string, number>()
+  for (const s of managed) {
+    if (Array.isArray(s.tags)) {
+      for (const t of s.tags) {
+        const tagName = typeof t === 'string' ? t : (t as { name: string }).name
+        if (tagName) {
+          tagMap.set(tagName, (tagMap.get(tagName) || 0) + 1)
+        }
+      }
     }
-  } catch {
-    // ignore
   }
-  return DEFAULT_INITIAL_TAGS
+  if (tagMap.size === 0) {
+    return DEFAULT_INITIAL_TAGS
+  }
+  return Array.from(tagMap.entries()).map(([name, count], idx) => ({
+    id: idx + 1,
+    name,
+    skill_count: count,
+    updated_at: Date.now(),
+  }))
 }
 
 export function saveWebTags(tags: TagWithCountDto[]): void {
