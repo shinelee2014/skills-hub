@@ -1,4 +1,5 @@
 import rawFeaturedSkills from '../featured-skills.json'
+import rawInitialSkills from './initial-managed-skills.json'
 import type {
   AutoUpdateConfigDto,
   FeaturedSkillDto,
@@ -595,52 +596,16 @@ export function getWebManagedSkills(): ManagedSkill[] {
   if (typeof window === 'undefined') return []
   try {
     const raw = window.localStorage.getItem(STORAGE_KEYS.SKILLS)
-    if (raw) return JSON.parse(raw) as ManagedSkill[]
+    if (raw) {
+      const parsed = JSON.parse(raw) as ManagedSkill[]
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed
+      }
+    }
   } catch {
     // ignore
   }
-  // Initialize with top 4 popular skills for showcase if empty
-  const featured = getWebFeaturedSkills()
-  const initial: ManagedSkill[] = featured.slice(0, 4).map((f, idx) => ({
-    id: `web-skill-${idx + 1}`,
-    name: f.name,
-    description: f.summary,
-    source_type: 'git',
-    source_ref: f.source_url,
-    central_path: `~/.skillshub/skills/${f.name}`,
-    created_at: Date.now() - idx * 86400000,
-    updated_at: Date.now() - idx * 3600000,
-    last_sync_at: Date.now(),
-    enabled: true,
-    status: 'healthy',
-    tags: [{ id: 1, name: 'agent-skills' }],
-    targets: [
-      {
-        tool: 'cursor',
-        scope: 'global',
-        mode: 'symlink',
-        status: 'synced',
-        target_path: `~/.cursor/skills/${f.name}`,
-        synced_at: Date.now(),
-      },
-      {
-        tool: 'claude_code',
-        scope: 'global',
-        mode: 'symlink',
-        status: 'synced',
-        target_path: `~/.claude/skills/${f.name}`,
-        synced_at: Date.now(),
-      },
-      {
-        tool: 'antigravity',
-        scope: 'global',
-        mode: 'symlink',
-        status: 'synced',
-        target_path: `~/.gemini/config/skills/${f.name}`,
-        synced_at: Date.now(),
-      },
-    ],
-  }))
+  const initial = (rawInitialSkills as unknown as ManagedSkill[]) || []
   saveWebManagedSkills(initial)
   return initial
 }
@@ -1256,19 +1221,19 @@ export async function pullFromGist(token: string): Promise<{
   let gistUrl = meta.gistUrl || ''
 
   if (meta.gistId) {
-    const getRes = await fetch(`https://api.github.com/gists/${meta.gistId}`, { headers }).catch(() => null)
+    const getRes = await fetch(`https://api.github.com/gists/${meta.gistId}?_t=${Date.now()}`, { headers }).catch(() => null)
     if (getRes && getRes.ok) {
       const data = await getRes.json()
       gistUrl = data.html_url
       if (data.files && data.files[GIST_FILENAME]) {
         const fileObj = data.files[GIST_FILENAME]
         if (fileObj.truncated && fileObj.raw_url) {
-          const rawRes = await fetch(fileObj.raw_url, { headers }).catch(() => null)
+          const rawRes = await fetch(fileObj.raw_url).catch(() => null)
           if (rawRes && rawRes.ok) rawContent = await rawRes.text()
         } else if (fileObj.content) {
           rawContent = fileObj.content
         } else if (fileObj.raw_url) {
-          const rawRes = await fetch(fileObj.raw_url, { headers }).catch(() => null)
+          const rawRes = await fetch(fileObj.raw_url).catch(() => null)
           if (rawRes && rawRes.ok) rawContent = await rawRes.text()
         }
       }
@@ -1276,7 +1241,7 @@ export async function pullFromGist(token: string): Promise<{
   }
 
   if (!rawContent) {
-    const listRes = await fetch('https://api.github.com/gists?per_page=100', { headers })
+    const listRes = await fetch(`https://api.github.com/gists?per_page=100&_t=${Date.now()}`, { headers })
     if (!listRes.ok) {
       if (listRes.status === 401) throw new Error('GitHub Token 无效或未勾选 gist 权限')
       throw new Error(`GitHub API 请求失败: ${listRes.status}`)
@@ -1291,12 +1256,12 @@ export async function pullFromGist(token: string): Promise<{
     saveGistSyncMeta({ gistId: found.id, gistUrl: found.html_url })
     const fileObj = found.files[GIST_FILENAME]
     if (fileObj.truncated && fileObj.raw_url) {
-      const rawRes = await fetch(fileObj.raw_url, { headers }).catch(() => null)
+      const rawRes = await fetch(fileObj.raw_url).catch(() => null)
       if (rawRes && rawRes.ok) rawContent = await rawRes.text()
     } else if (fileObj.content) {
       rawContent = fileObj.content
     } else if (fileObj.raw_url) {
-      const rawRes = await fetch(fileObj.raw_url, { headers }).catch(() => null)
+      const rawRes = await fetch(fileObj.raw_url).catch(() => null)
       if (rawRes && rawRes.ok) rawContent = await rawRes.text()
     }
   }
