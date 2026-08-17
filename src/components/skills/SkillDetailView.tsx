@@ -4,10 +4,13 @@ import {
   ChevronDown,
   ChevronRight,
   Clock,
+  Copy,
+  ExternalLink,
   File,
   Folder,
   FolderOpen,
   GitBranch,
+  Github,
 } from 'lucide-react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import {
@@ -496,10 +499,60 @@ const SkillDetailView = ({
   return (
     <div className="detail-view">
       <div className="detail-header">
-        <button className="detail-back-btn" type="button" onClick={onBack}>
-          <ArrowLeft size={16} />
-          {t('detail.back')}
-        </button>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
+          <button className="detail-back-btn" type="button" onClick={onBack}>
+            <ArrowLeft size={16} />
+            {t('detail.back')}
+          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            {skill.source_ref && (
+              <a
+                href={skill.source_ref.startsWith('http') ? skill.source_ref : `https://github.com/${skill.source_ref}`}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  fontSize: 12,
+                  fontWeight: 500,
+                  padding: '5px 12px',
+                  borderRadius: 6,
+                  textDecoration: 'none',
+                  color: 'var(--text-primary)',
+                  background: 'var(--bg-element, rgba(128,128,128,0.1))',
+                  border: '1px solid var(--border-color, rgba(128,128,128,0.2))',
+                }}
+              >
+                <Github size={13} />
+                <span>在 GitHub 打开</span>
+                <ExternalLink size={11} style={{ opacity: 0.7 }} />
+              </a>
+            )}
+            <button
+              type="button"
+              className="btn btn-primary"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 5,
+                fontSize: 12,
+                padding: '5px 12px',
+                borderRadius: 6,
+                cursor: 'pointer',
+              }}
+              onClick={() => {
+                const prompt = `请加载并严格遵循 @${skill.name} 的核心规范与检查清单，为我执行以下任务：\n[在此输入您的具体需求或输入材料]`
+                void navigator.clipboard.writeText(prompt)
+                toast.success(`已复制 @${skill.name} 调用 Prompt 指令`)
+              }}
+            >
+              <Copy size={13} />
+              <span>复制 Prompt</span>
+            </button>
+          </div>
+        </div>
+
         <div className="detail-skill-name">{skill.name}</div>
         {skill.description ? (
           <div className="detail-desc">{skill.description}</div>

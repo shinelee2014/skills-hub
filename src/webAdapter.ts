@@ -792,15 +792,40 @@ export async function searchWebSkills(query: string): Promise<OnlineSkillDto[]> 
   return matched
 }
 
-function normalizeRawGithubUrl(url: string, file: string = 'SKILL.md'): string {
-  let clean = url.replace(/\.git$/, '').trim()
-  if (clean.includes('github.com')) {
-    clean = clean.replace('github.com', 'raw.githubusercontent.com')
-    clean = clean.replace('/tree/', '/')
-    clean = clean.replace('/blob/', '/')
-    return `${clean.replace(/\/+$/, '')}/${file}`
+function getGithubRawAndCdnCandidates(sourceUrl: string, file: string = 'SKILL.md'): string[] {
+  const candidates: string[] = []
+  if (!sourceUrl || !sourceUrl.includes('github.com')) return candidates
+
+  const clean = sourceUrl.replace(/\.git$/, '').trim()
+
+  // Pattern 1: https://github.com/owner/repo/blob/branch/path or /tree/branch/path
+  const branchPathMatch = clean.match(/^https?:\/\/(?:www\.)?github\.com\/([^/]+)\/([^/]+)\/(?:blob|tree)\/([^/]+)(?:\/(.*))?$/)
+  if (branchPathMatch) {
+    const owner = branchPathMatch[1]
+    const repo = branchPathMatch[2]
+    const branch = branchPathMatch[3]
+    const subpath = branchPathMatch[4] ? branchPathMatch[4].replace(/\/+$/, '') : ''
+    const fullPath = subpath ? `${subpath}/${file}` : file
+
+    candidates.push(`https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${fullPath}`)
+    candidates.push(`https://cdn.jsdelivr.net/gh/${owner}/${repo}@${branch}/${fullPath}`)
+    return candidates
   }
-  return ''
+
+  // Pattern 2: https://github.com/owner/repo
+  const repoMatch = clean.match(/^https?:\/\/(?:www\.)?github\.com\/([^/]+)\/([^/]+)(?:\/.*)?$/)
+  if (repoMatch) {
+    const owner = repoMatch[1]
+    const repo = repoMatch[2]
+    for (const b of ['main', 'master']) {
+      candidates.push(`https://raw.githubusercontent.com/${owner}/${repo}/${b}/${file}`)
+      candidates.push(`https://cdn.jsdelivr.net/gh/${owner}/${repo}@${b}/${file}`)
+      candidates.push(`https://raw.githubusercontent.com/${owner}/${repo}/${b}/skills/${file}`)
+      candidates.push(`https://cdn.jsdelivr.net/gh/${owner}/${repo}@${b}/skills/${file}`)
+    }
+  }
+
+  return candidates
 }
 
 export async function fetchWebSkillFiles(_skill: ManagedSkill): Promise<SkillFileEntry[]> {
@@ -817,33 +842,31 @@ export async function fetchWebSkillContent(
   const file = filePath.split('/').pop() || 'SKILL.md'
   const candidateUrls: string[] = []
 
-  // 1. Try our own repo
-  candidateUrls.push(
-    `https://raw.githubusercontent.com/shinelee2014/skills-hub/main/skills/${encodeURIComponent(skill.name)}/${file}`,
-    `https://raw.githubusercontent.com/shinelee2014/skills-hub/main/skills/${encodeURIComponent(skill.name)}/SKILL.md`
-  )
-
-  // 2. Try upstream source URL
+  // 1. Upstream source URL candidates (Raw + jsDelivr CDN)
   const sourceUrl = skill.source_ref || ''
   if (sourceUrl && sourceUrl.includes('github.com')) {
-    const rawMain = normalizeRawGithubUrl(sourceUrl, file)
-    if (rawMain) {
-      candidateUrls.push(rawMain)
-      candidateUrls.push(rawMain.replace('/main/', '/master/'))
-    }
+    candidateUrls.push(...getGithubRawAndCdnCandidates(sourceUrl, file))
   }
+
+  // 2. Personal repository candidates for custom / local skills
+  candidateUrls.push(
+    `https://raw.githubusercontent.com/shinelee2014/skills-hub/main/skills/${encodeURIComponent(skill.name)}/${file}`,
+    `https://cdn.jsdelivr.net/gh/shinelee2014/skills-hub@main/skills/${encodeURIComponent(skill.name)}/${file}`,
+    `https://raw.githubusercontent.com/shinelee2014/skills-hub/main/skills/${encodeURIComponent(skill.name)}/SKILL.md`,
+    `https://cdn.jsdelivr.net/gh/shinelee2014/skills-hub@main/skills/${encodeURIComponent(skill.name)}/SKILL.md`
+  )
 
   for (const url of candidateUrls) {
     try {
       const res = await fetch(url)
       if (res.ok) {
         const text = await res.text()
-        if (text && text.trim().length > 0) {
+        if (text && text.trim().length > 0 && !text.includes('<!DOCTYPE html>')) {
           return text
         }
       }
     } catch {
-      // try next
+      // try next candidate
     }
   }
 
