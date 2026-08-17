@@ -54,7 +54,7 @@ import {
   selectInstallToolIds,
   type InstallScope,
 } from './components/skills/installScope'
-import { getGistSyncMeta, getWebGithubToken, handleWebInvoke, pushToGist, saveWebManagedSkills } from './webAdapter'
+import { getGistSyncMeta, getWebGithubToken, handleWebInvoke, pullFromGist, pushToGist, saveWebManagedSkills } from './webAdapter'
 import type {
   AutoUpdateConfigDto,
   FeaturedSkillDto,
@@ -394,10 +394,13 @@ function App() {
     }
   }, [invokeTauri])
 
+  const [cloudSyncing, setCloudSyncing] = useState(false)
+
   const triggerGistAutoSyncIfEnabled = useCallback(() => {
     const meta = getGistSyncMeta()
-    if (meta.autoSync && meta.token) {
-      void pushToGist(meta.token).catch(() => undefined)
+    const token = meta.token || getWebGithubToken()
+    if (token && !isTauri) {
+      void pushToGist(token).catch(() => undefined)
     }
   }, [])
 
@@ -420,6 +423,26 @@ function App() {
     }
   }, [invokeTauri])
 
+  const syncWithCloudOnStartup = useCallback(async () => {
+    if (isTauri) return
+    const meta = getGistSyncMeta()
+    const token = meta.token || getWebGithubToken()
+    if (!token) return
+
+    setCloudSyncing(true)
+    try {
+      // 1. Prioritize pulling latest single source of truth from GitHub Gist
+      await pullFromGist(token)
+      // 2. Re-read into memory
+      await loadManagedSkills()
+      await loadTags()
+    } catch (err) {
+      console.warn('Cloud sync on startup:', err)
+    } finally {
+      setCloudSyncing(false)
+    }
+  }, [loadManagedSkills, loadTags])
+
   const loadFeaturedSkills = useCallback(async () => {
     if (featuredSkills.length > 0) return
     setFeaturedLoading(true)
@@ -437,7 +460,8 @@ function App() {
     loadManagedSkills()
     loadTags()
     loadFeaturedSkills()
-  }, [loadManagedSkills, loadTags, loadFeaturedSkills])
+    void syncWithCloudOnStartup()
+  }, [loadManagedSkills, loadTags, loadFeaturedSkills, syncWithCloudOnStartup])
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -3458,6 +3482,7 @@ function App() {
         collapsed={sidebarCollapsed}
         gistConnected={Boolean(getGistSyncMeta().token || getWebGithubToken())}
         gistLastSyncedAt={getGistSyncMeta().lastSyncedAt}
+        cloudSyncing={cloudSyncing}
         onToggleCollapsed={() => setSidebarCollapsed((collapsed) => !collapsed)}
         onOpenSettings={handleOpenSettings}
         onOpenBundles={() => setShowBundlesModal(true)}

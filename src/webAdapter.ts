@@ -678,7 +678,7 @@ let autoGistSyncTimer: number | null = null
 
 export function triggerAutoGistSync(): void {
   if (typeof window === 'undefined') return
-  const token = getWebGithubToken()
+  const token = getWebGithubToken() || getGistSyncMeta().token
   if (!token) return
 
   if (autoGistSyncTimer) {
@@ -1336,6 +1336,7 @@ export async function pushToGist(token: string): Promise<{ gistId: string; gistU
     version: '1.0',
     synced_at: new Date().toISOString(),
     skills,
+    managed_skills: skills,
     tags,
     skill_scope_state: skillScopeState,
   }
@@ -1523,11 +1524,17 @@ export async function pullFromGist(token: string): Promise<{
   }
 
   const parsed = JSON.parse(rawContent)
-  const skills = Array.isArray(parsed.skills) ? parsed.skills : []
+  const skills = Array.isArray(parsed.skills)
+    ? parsed.skills
+    : (Array.isArray(parsed.managed_skills) ? parsed.managed_skills : [])
   const tags = Array.isArray(parsed.tags) ? parsed.tags : []
 
-  saveWebManagedSkills(skills)
-  saveWebTags(tags)
+  if (skills.length > 0) {
+    saveWebManagedSkills(skills, true)
+  }
+  if (tags.length > 0) {
+    saveWebTags(tags)
+  }
   if (parsed.skill_scope_state && typeof window !== 'undefined') {
     window.localStorage.setItem('skills_hub_skill_scope_state_v1', JSON.stringify(parsed.skill_scope_state))
   }

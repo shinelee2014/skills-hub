@@ -33,6 +33,7 @@ type HeaderProps = {
   collapsed: boolean
   gistConnected?: boolean
   gistLastSyncedAt?: string | null
+  cloudSyncing?: boolean
   onToggleCollapsed: () => void
   onOpenSettings: () => void
   onOpenBundles?: () => void
@@ -75,6 +76,7 @@ const Header = ({
   collapsed,
   gistConnected,
   gistLastSyncedAt,
+  cloudSyncing,
   onToggleCollapsed,
   onOpenSettings,
   onOpenBundles,
@@ -179,8 +181,17 @@ const Header = ({
             cursor: 'pointer',
           }}
         >
-          <Cloud size={13} color={gistConnected ? '#10b981' : 'currentColor'} />
-          <span>{gistConnected ? '云端已同步' : '未连接云端'}</span>
+          {cloudSyncing ? (
+            <>
+              <RefreshCw size={13} className="animate-spin text-blue-500" style={{ animation: 'spin 1s linear infinite' }} />
+              <span>云端同步中...</span>
+            </>
+          ) : (
+            <>
+              <Cloud size={13} color={gistConnected ? '#10b981' : 'currentColor'} />
+              <span>{gistConnected ? '云端已同步' : '未连接云端'}</span>
+            </>
+          )}
         </button>
 
         {!isTauri && (
