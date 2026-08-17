@@ -890,6 +890,11 @@ function App() {
   const visibleSkills = useMemo(() => {
     const query = searchQuery.trim().toLowerCase()
     const selectedTagSet = new Set(selectedTagIds)
+    const selectedTagNames = new Set(
+      tags
+        .filter((t) => selectedTagSet.has(t.id))
+        .map((t) => t.name.trim().toLowerCase())
+    )
     const hasTagFilter = selectedTagIds.length > 0 || includeUntagged
     const filtered = managedSkills.filter((skill) => {
       if (categoryFilter === 'starred') {
@@ -899,8 +904,19 @@ function App() {
       }
       if (scopeFilter !== 'all' && getSkillScope(skill) !== scopeFilter) return false
       if (hasTagFilter) {
-        const matchesSelectedTag = skill.tags.some((tag) => selectedTagSet.has(tag.id))
-        const matchesUntagged = includeUntagged && skill.tags.length === 0
+        const matchesSelectedTag = (skill.tags || []).some((rawTag) => {
+          const tag = rawTag as unknown as { id?: number; name?: string } | string
+          if (typeof tag === 'string') {
+            return selectedTagNames.has(tag.trim().toLowerCase())
+          }
+          const tid = Number(tag?.id)
+          const tname = String(tag?.name || '').trim().toLowerCase()
+          return (
+            (Number.isFinite(tid) && selectedTagSet.has(tid)) ||
+            (tname.length > 0 && selectedTagNames.has(tname))
+          )
+        })
+        const matchesUntagged = includeUntagged && (!skill.tags || skill.tags.length === 0)
         if (!matchesSelectedTag && !matchesUntagged) return false
       }
       if (!query) return true
@@ -908,7 +924,11 @@ function App() {
         skill.name.toLowerCase().includes(query) ||
         skill.central_path.toLowerCase().includes(query) ||
         skill.source_type.toLowerCase().includes(query) ||
-        skill.tags.some((tag) => tag.name.toLowerCase().includes(query))
+        (skill.tags || []).some((rawTag) => {
+          const tag = rawTag as unknown as { name?: string } | string
+          const tname = typeof tag === 'string' ? tag : tag?.name
+          return String(tname || '').toLowerCase().includes(query)
+        })
       )
     })
     const sorted = [...filtered].sort((a, b) => {
@@ -927,6 +947,7 @@ function App() {
     searchQuery,
     selectedTagIds,
     sortBy,
+    tags,
   ])
   const untaggedCount = useMemo(
     () => managedSkills.filter((skill) => skill.tags.length === 0).length,

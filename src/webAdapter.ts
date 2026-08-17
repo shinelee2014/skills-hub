@@ -711,14 +711,20 @@ export function saveWebManagedSkills(skills: ManagedSkill[], skipAutoSync = fals
 export function getWebTags(): TagWithCountDto[] {
   const managed = getWebManagedSkills()
 
-  // 1. Count live usage of tag names across all skills
+  // 1. Count live usage of tag names across all skills & index explicit IDs
   const skillCountMap = new Map<string, number>()
+  const tagIdMap = new Map<string, number>()
   for (const s of managed) {
     if (Array.isArray(s.tags)) {
       for (const t of s.tags) {
         const tagName = typeof t === 'string' ? t : (t as { name?: string })?.name
+        const tagId = typeof t === 'object' && t?.id ? Number(t.id) : undefined
         if (tagName && tagName.trim()) {
-          skillCountMap.set(tagName.trim(), (skillCountMap.get(tagName.trim()) || 0) + 1)
+          const clean = tagName.trim()
+          skillCountMap.set(clean, (skillCountMap.get(clean) || 0) + 1)
+          if (tagId && !tagIdMap.has(clean)) {
+            tagIdMap.set(clean, tagId)
+          }
         }
       }
     }
@@ -732,12 +738,19 @@ export function getWebTags(): TagWithCountDto[] {
       if (raw) {
         const parsed = JSON.parse(raw)
         if (Array.isArray(parsed)) {
-          storedTags = parsed.map((item, idx) => ({
-            id: Number(item.id) || Date.now() + idx,
-            name: String(item.name || '').trim(),
-            skill_count: skillCountMap.get(String(item.name || '').trim()) || 0,
-            updated_at: item.updated_at || Date.now(),
-          })).filter((t) => t.name.length > 0)
+          storedTags = parsed
+            .map((item, idx) => {
+              const name = String(item.name || '').trim()
+              const explicitId = tagIdMap.get(name)
+              const id = explicitId || Number(item.id) || Date.now() + idx
+              return {
+                id,
+                name,
+                skill_count: skillCountMap.get(name) || 0,
+                updated_at: item.updated_at || Date.now(),
+              }
+            })
+            .filter((t) => t.name.length > 0)
         }
       }
     } catch {
@@ -752,8 +765,9 @@ export function getWebTags(): TagWithCountDto[] {
 
   for (const [tagName, count] of skillCountMap.entries()) {
     if (!existingNames.has(tagName.toLowerCase())) {
+      const explicitId = tagIdMap.get(tagName)
       mergedTags.push({
-        id: nextId++,
+        id: explicitId || nextId++,
         name: tagName,
         skill_count: count,
         updated_at: Date.now(),
