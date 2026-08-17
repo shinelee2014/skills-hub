@@ -1,5 +1,5 @@
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
-import { ArrowUpDown, Check, CheckSquare, ChevronDown, LayoutGrid, List, Search, Tags } from 'lucide-react'
+import { ArrowUpDown, Check, CheckSquare, ChevronDown, LayoutGrid, List, RotateCcw, Search, Tags, X } from 'lucide-react'
 import type { TFunction } from 'i18next'
 import type { TagWithCountDto } from './types'
 
@@ -139,18 +139,55 @@ const FilterBar = ({
             : t('bulk.toggleMode')}
         </button>
         <div className="tag-filter-container" ref={tagMenuRef}>
-          <button
-            className={`btn btn-secondary tag-filter-btn${selectedCount > 0 ? ' active' : ''}`}
-            type="button"
-            onClick={() => setTagMenuOpen((prev) => !prev)}
-            aria-expanded={tagMenuOpen}
-          >
-            <Tags size={14} />
-            {selectedCount > 0
-              ? t('tagsSelected', { count: selectedCount })
-              : t('tags')}
-            <ChevronDown size={12} />
-          </button>
+          <div className="tag-filter-btn-group" style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
+            <button
+              className={`btn btn-secondary tag-filter-btn${selectedCount > 0 ? ' active' : ''}`}
+              type="button"
+              onClick={() => setTagMenuOpen((prev) => !prev)}
+              aria-expanded={tagMenuOpen}
+              style={selectedCount > 0 ? { paddingRight: 28 } : undefined}
+            >
+              <Tags size={14} />
+              <span>
+                {selectedCount > 0
+                  ? t('tagsSelected', { count: selectedCount })
+                  : t('tags')}
+              </span>
+              <ChevronDown size={12} />
+            </button>
+            {selectedCount > 0 && (
+              <button
+                type="button"
+                className="tag-filter-clear-pill"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onClearTags()
+                  setTagMenuOpen(false)
+                }}
+                title={t('clearAll') || '清除筛选，恢复默认状态'}
+                aria-label="Clear tag filter"
+                style={{
+                  position: 'absolute',
+                  right: 8,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'rgba(128,128,128,0.25)',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: 16,
+                  height: 16,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  padding: 0,
+                  color: 'inherit',
+                }}
+              >
+                <X size={11} />
+              </button>
+            )}
+          </div>
           {tagMenuOpen ? (
             <div className="tag-filter-menu">
               <div className="tag-filter-head">
@@ -166,6 +203,30 @@ const FilterBar = ({
                 />
               </div>
               <div className="tag-filter-options">
+                {selectedCount > 0 && (
+                  <button
+                    className="tag-filter-option reset-option"
+                    type="button"
+                    onClick={() => {
+                      onClearTags()
+                      setTagMenuOpen(false)
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 8,
+                      color: 'var(--accent-primary, #3b82f6)',
+                      fontWeight: 600,
+                      padding: '8px 12px',
+                      borderBottom: '1px solid var(--border-subtle, rgba(128,128,128,0.15))',
+                      cursor: 'pointer',
+                      width: '100%',
+                    }}
+                  >
+                    <RotateCcw size={13} />
+                    <span>恢复默认（清除所有标签筛选）</span>
+                  </button>
+                )}
                 <button
                   className={`tag-filter-option${includeUntagged ? ' selected' : ''}`}
                   type="button"

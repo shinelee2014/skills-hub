@@ -1590,6 +1590,14 @@ function App() {
     setIncludeUntagged((current) => !current)
   }, [])
 
+  const handleSelectCategory = useCallback((cat: string) => {
+    setCategoryFilter(cat)
+    if (selectedTagIds.length > 0 || includeUntagged) {
+      setSelectedTagIds([])
+      setIncludeUntagged(false)
+    }
+  }, [includeUntagged, selectedTagIds.length])
+
   const handleClearTagFilters = useCallback(() => {
     setSelectedTagIds([])
     setIncludeUntagged(false)
@@ -3547,7 +3555,7 @@ function App() {
             </section>
             <CategoryPills
               selectedCategory={categoryFilter}
-              onSelectCategory={setCategoryFilter}
+              onSelectCategory={handleSelectCategory}
               categoryCounts={categoryCounts}
               totalCount={managedSkills.length}
             />
