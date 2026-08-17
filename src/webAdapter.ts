@@ -590,7 +590,7 @@ const DEFAULT_INITIAL_TAGS: TagWithCountDto[] = [
   { id: 4, name: 'multimedia', skill_count: 0, updated_at: Date.now() },
 ]
 
-const CURRENT_DATA_VERSION = 'v3_categorized_skills'
+const CURRENT_DATA_VERSION = 'v4_flowchart_tagged_skills'
 const VERSION_KEY = 'skills_hub_web_data_version'
 
 export function getWebFeaturedSkills(): FeaturedSkillDto[] {
@@ -600,19 +600,71 @@ export function getWebFeaturedSkills(): FeaturedSkillDto[] {
 
 export function getWebManagedSkills(): ManagedSkill[] {
   if (typeof window === 'undefined') return []
+  const initial = (rawInitialSkills as unknown as ManagedSkill[]) || []
+
   try {
     const version = window.localStorage.getItem(VERSION_KEY)
     const raw = window.localStorage.getItem(STORAGE_KEYS.SKILLS)
-    if (version === CURRENT_DATA_VERSION && raw) {
+
+    // Version migration: merge latest tags (including '流程图') and categories from initial dataset
+    if (version !== CURRENT_DATA_VERSION) {
+      let currentSkills: ManagedSkill[] = []
+      if (raw) {
+        try {
+          const parsed = JSON.parse(raw)
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            currentSkills = parsed
+          }
+        } catch {
+          // ignore
+        }
+      }
+
+      if (currentSkills.length > 0) {
+        const initialMap = new Map(initial.map((s) => [s.name, s]))
+        const merged = currentSkills.map((s) => {
+          const init = initialMap.get(s.name)
+          if (!init) return s
+
+          // Merge tags: ensure initial tags (e.g. 流程图) are included
+          const existingTagNames = new Set((s.tags || []).map((t) => (typeof t === 'string' ? t : t.name)))
+          const mergedTags = [...(s.tags || [])]
+          for (const initTag of init.tags || []) {
+            const initTagName = typeof initTag === 'string' ? initTag : initTag.name
+            if (initTagName && !existingTagNames.has(initTagName)) {
+              mergedTags.push(initTag)
+              existingTagNames.add(initTagName)
+            }
+          }
+
+          return {
+            ...s,
+            category: init.category || s.category,
+            category_name: init.category_name || s.category_name,
+            category_icon: init.category_icon || s.category_icon,
+            tags: mergedTags,
+          }
+        })
+        saveWebManagedSkills(merged)
+        window.localStorage.setItem(VERSION_KEY, CURRENT_DATA_VERSION)
+        return merged
+      } else {
+        saveWebManagedSkills(initial)
+        window.localStorage.setItem(VERSION_KEY, CURRENT_DATA_VERSION)
+        return initial
+      }
+    }
+
+    if (raw) {
       const parsed = JSON.parse(raw) as ManagedSkill[]
-      if (Array.isArray(parsed) && parsed.length >= 285 && parsed[0]?.category) {
+      if (Array.isArray(parsed) && parsed.length >= 285) {
         return parsed
       }
     }
   } catch {
     // ignore
   }
-  const initial = (rawInitialSkills as unknown as ManagedSkill[]) || []
+
   saveWebManagedSkills(initial)
   try {
     window.localStorage.setItem(VERSION_KEY, CURRENT_DATA_VERSION)
