@@ -11,7 +11,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 1,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -38,7 +41,10 @@
         "target_path": "~/.claude/skills/CyberPPT",
         "synced_at": 1786928211749
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-a-share-analyzer",
@@ -52,7 +58,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 2,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -79,7 +88,10 @@
         "target_path": "~/.claude/skills/a-share-analyzer",
         "synced_at": 1786928211749
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-academic-diagram-expert",
@@ -93,7 +105,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 3,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -120,7 +135,10 @@
         "target_path": "~/.claude/skills/academic-diagram-expert",
         "synced_at": 1786928211750
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-accidental-data-loss-prevention",
@@ -134,7 +152,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 4,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -161,7 +182,10 @@
         "target_path": "~/.claude/skills/accidental-data-loss-prevention",
         "synced_at": 1786928211751
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-actionbook",
@@ -175,7 +199,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 5,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -202,7 +229,10 @@
         "target_path": "~/.claude/skills/actionbook",
         "synced_at": 1786928211754
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-aetherviz-master",
@@ -216,7 +246,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 6,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -243,7 +276,10 @@
         "target_path": "~/.claude/skills/aetherviz-master",
         "synced_at": 1786928211755
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-agent-browser",
@@ -257,7 +293,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 7,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -284,7 +323,10 @@
         "target_path": "~/.claude/skills/agent-browser",
         "synced_at": 1786928211755
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-agnxi-search-skill",
@@ -298,7 +340,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 8,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -325,7 +370,10 @@
         "target_path": "~/.claude/skills/agnxi-search-skill",
         "synced_at": 1786928211756
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-ai-jian-koubo",
@@ -339,8 +387,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 9,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -367,7 +417,10 @@
         "target_path": "~/.claude/skills/ai-jian-koubo",
         "synced_at": 1786928211756
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-ai-mobile-designer-local",
@@ -381,8 +434,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 10,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -409,7 +464,10 @@
         "target_path": "~/.claude/skills/ai-mobile-designer-local",
         "synced_at": 1786928211758
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-ai-ppt-toolkit",
@@ -423,8 +481,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "PPT"
+      {
+        "id": 11,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -451,7 +511,10 @@
         "target_path": "~/.claude/skills/ai-ppt-toolkit",
         "synced_at": 1786928211761
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-ak-rss-digest",
@@ -465,7 +528,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 12,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -492,7 +558,10 @@
         "target_path": "~/.claude/skills/ak-rss-digest",
         "synced_at": 1786928211762
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-algorithmic-art",
@@ -506,8 +575,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 13,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -534,7 +605,10 @@
         "target_path": "~/.claude/skills/algorithmic-art",
         "synced_at": 1786928211763
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-anime-to-life",
@@ -548,7 +622,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 14,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -575,7 +652,10 @@
         "target_path": "~/.claude/skills/anime-to-life",
         "synced_at": 1786928211780
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-antv-infographic",
@@ -589,7 +669,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 15,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -616,7 +699,10 @@
         "target_path": "~/.claude/skills/antv-infographic",
         "synced_at": 1786928211780
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-antv-infographic-syntax",
@@ -630,7 +716,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 16,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -657,7 +746,10 @@
         "target_path": "~/.claude/skills/antv-infographic-syntax",
         "synced_at": 1786928211781
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-any2card",
@@ -671,8 +763,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 17,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -699,7 +793,10 @@
         "target_path": "~/.claude/skills/any2card",
         "synced_at": 1786928211783
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-archify",
@@ -713,7 +810,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 18,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -740,7 +840,10 @@
         "target_path": "~/.claude/skills/archify",
         "synced_at": 1786928211783
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-baoyu-article-illustrator",
@@ -754,8 +857,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 19,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -782,7 +887,10 @@
         "target_path": "~/.claude/skills/baoyu-article-illustrator",
         "synced_at": 1786928211784
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-baoyu-comic",
@@ -796,7 +904,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 20,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -823,7 +934,10 @@
         "target_path": "~/.claude/skills/baoyu-comic",
         "synced_at": 1786928211784
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-baoyu-compress-image",
@@ -837,8 +951,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 21,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -865,7 +981,10 @@
         "target_path": "~/.claude/skills/baoyu-compress-image",
         "synced_at": 1786928211785
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-baoyu-cover-image",
@@ -879,8 +998,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 22,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -907,7 +1028,10 @@
         "target_path": "~/.claude/skills/baoyu-cover-image",
         "synced_at": 1786928211786
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-baoyu-danger-gemini-web",
@@ -921,8 +1045,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 23,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -949,7 +1075,10 @@
         "target_path": "~/.claude/skills/baoyu-danger-gemini-web",
         "synced_at": 1786928211786
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-baoyu-danger-x-to-markdown",
@@ -963,7 +1092,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 24,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -990,7 +1122,10 @@
         "target_path": "~/.claude/skills/baoyu-danger-x-to-markdown",
         "synced_at": 1786928211787
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-baoyu-design",
@@ -1004,8 +1139,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 25,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -1032,7 +1169,10 @@
         "target_path": "~/.claude/skills/baoyu-design",
         "synced_at": 1786928211787
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-baoyu-diagram",
@@ -1046,7 +1186,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 26,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -1073,7 +1216,10 @@
         "target_path": "~/.claude/skills/baoyu-diagram",
         "synced_at": 1786928211788
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-baoyu-format-markdown",
@@ -1087,7 +1233,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 27,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -1114,7 +1263,10 @@
         "target_path": "~/.claude/skills/baoyu-format-markdown",
         "synced_at": 1786928211789
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-baoyu-image-cards",
@@ -1128,9 +1280,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design",
-      "Thinking"
+      {
+        "id": 28,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -1157,7 +1310,10 @@
         "target_path": "~/.claude/skills/baoyu-image-cards",
         "synced_at": 1786928211790
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-baoyu-image-gen",
@@ -1171,8 +1327,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 29,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -1199,7 +1357,10 @@
         "target_path": "~/.claude/skills/baoyu-image-gen",
         "synced_at": 1786928211791
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-baoyu-imagine",
@@ -1213,7 +1374,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 30,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -1240,7 +1404,10 @@
         "target_path": "~/.claude/skills/baoyu-imagine",
         "synced_at": 1786928211791
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-baoyu-infographic",
@@ -1254,7 +1421,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 31,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -1281,7 +1451,10 @@
         "target_path": "~/.claude/skills/baoyu-infographic",
         "synced_at": 1786928211792
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-baoyu-markdown-to-html",
@@ -1295,7 +1468,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 32,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -1322,7 +1498,10 @@
         "target_path": "~/.claude/skills/baoyu-markdown-to-html",
         "synced_at": 1786928211792
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-baoyu-post-to-wechat",
@@ -1336,7 +1515,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 33,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -1363,7 +1545,10 @@
         "target_path": "~/.claude/skills/baoyu-post-to-wechat",
         "synced_at": 1786928211793
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-baoyu-post-to-weibo",
@@ -1377,7 +1562,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 34,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -1404,7 +1592,10 @@
         "target_path": "~/.claude/skills/baoyu-post-to-weibo",
         "synced_at": 1786928211793
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-baoyu-post-to-x",
@@ -1418,7 +1609,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 35,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -1445,7 +1639,10 @@
         "target_path": "~/.claude/skills/baoyu-post-to-x",
         "synced_at": 1786928211794
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-baoyu-slide-deck",
@@ -1459,8 +1656,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "PPT"
+      {
+        "id": 36,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -1487,7 +1686,10 @@
         "target_path": "~/.claude/skills/baoyu-slide-deck",
         "synced_at": 1786928211794
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-baoyu-translate",
@@ -1501,7 +1703,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 37,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -1528,7 +1733,10 @@
         "target_path": "~/.claude/skills/baoyu-translate",
         "synced_at": 1786928211796
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-baoyu-url-to-markdown",
@@ -1542,7 +1750,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 38,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -1569,7 +1780,10 @@
         "target_path": "~/.claude/skills/baoyu-url-to-markdown",
         "synced_at": 1786928211796
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-baoyu-xhs-images",
@@ -1583,8 +1797,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 39,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -1611,7 +1827,10 @@
         "target_path": "~/.claude/skills/baoyu-xhs-images",
         "synced_at": 1786928211797
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-baoyu-youtube-transcript",
@@ -1625,7 +1844,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 40,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -1652,7 +1874,10 @@
         "target_path": "~/.claude/skills/baoyu-youtube-transcript",
         "synced_at": 1786928211797
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-bb-sites",
@@ -1666,7 +1891,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 41,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -1693,7 +1921,10 @@
         "target_path": "~/.claude/skills/bb-sites",
         "synced_at": 1786928211798
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-beautiful-mermaid",
@@ -1707,7 +1938,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 42,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -1734,7 +1968,10 @@
         "target_path": "~/.claude/skills/beautiful-mermaid",
         "synced_at": 1786928211798
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-bigquery-data-transfer-service",
@@ -1748,7 +1985,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 43,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -1775,7 +2015,10 @@
         "target_path": "~/.claude/skills/bigquery-data-transfer-service",
         "synced_at": 1786928211799
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-blogwatcher",
@@ -1789,7 +2032,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 44,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -1816,7 +2062,10 @@
         "target_path": "~/.claude/skills/blogwatcher",
         "synced_at": 1786928211800
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-brainstorming",
@@ -1830,7 +2079,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 45,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -1857,7 +2109,10 @@
         "target_path": "~/.claude/skills/brainstorming",
         "synced_at": 1786928211800
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-brand-guidelines",
@@ -1871,8 +2126,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 46,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -1899,7 +2156,10 @@
         "target_path": "~/.claude/skills/brand-guidelines",
         "synced_at": 1786928211801
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-building-data-apps",
@@ -1913,8 +2173,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 47,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -1941,7 +2203,10 @@
         "target_path": "~/.claude/skills/building-data-apps",
         "synced_at": 1786928211802
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-canvas-design",
@@ -1955,8 +2220,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 48,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -1983,7 +2250,10 @@
         "target_path": "~/.claude/skills/canvas-design",
         "synced_at": 1786928211804
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-character-reference-sheet",
@@ -1997,7 +2267,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 49,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -2024,7 +2297,10 @@
         "target_path": "~/.claude/skills/character-reference-sheet",
         "synced_at": 1786928211806
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-chat-compactor",
@@ -2038,7 +2314,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 50,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2065,7 +2344,10 @@
         "target_path": "~/.claude/skills/chat-compactor",
         "synced_at": 1786928211807
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-chengfeng-videocut-skills",
@@ -2079,8 +2361,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 51,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -2107,7 +2391,10 @@
         "target_path": "~/.claude/skills/chengfeng-videocut-skills",
         "synced_at": 1786928211807
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-chinese-copywriting-formatter",
@@ -2121,7 +2408,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 52,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -2148,7 +2438,10 @@
         "target_path": "~/.claude/skills/chinese-copywriting-formatter",
         "synced_at": 1786928211808
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-chrome-cdp",
@@ -2162,7 +2455,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 53,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -2189,7 +2485,10 @@
         "target_path": "~/.claude/skills/chrome-cdp",
         "synced_at": 1786928211809
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-clawddocs",
@@ -2203,7 +2502,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 54,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2230,7 +2532,10 @@
         "target_path": "~/.claude/skills/clawddocs",
         "synced_at": 1786928211810
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-clawdhub",
@@ -2244,7 +2549,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 55,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2271,7 +2579,10 @@
         "target_path": "~/.claude/skills/clawdhub",
         "synced_at": 1786928211810
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-clawfeed",
@@ -2285,7 +2596,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 56,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -2312,7 +2626,10 @@
         "target_path": "~/.claude/skills/clawfeed",
         "synced_at": 1786928211811
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-codebase-to-course",
@@ -2326,8 +2643,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 57,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -2354,7 +2673,10 @@
         "target_path": "~/.claude/skills/codebase-to-course",
         "synced_at": 1786928211811
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-daily-news-report",
@@ -2368,7 +2690,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 58,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -2395,7 +2720,10 @@
         "target_path": "~/.claude/skills/daily-news-report",
         "synced_at": 1786928211814
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-dashiai-ppt",
@@ -2409,8 +2737,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "PPT"
+      {
+        "id": 59,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -2437,7 +2767,10 @@
         "target_path": "~/.claude/skills/dashiai-ppt",
         "synced_at": 1786928211814
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-data-autocleaning",
@@ -2451,7 +2784,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 60,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -2478,7 +2814,10 @@
         "target_path": "~/.claude/skills/data-autocleaning",
         "synced_at": 1786928211814
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-dataform-bigquery",
@@ -2492,7 +2831,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 61,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -2519,7 +2861,10 @@
         "target_path": "~/.claude/skills/dataform-bigquery",
         "synced_at": 1786928211815
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-dbs",
@@ -2533,8 +2878,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 62,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2561,7 +2908,10 @@
         "target_path": "~/.claude/skills/dbs",
         "synced_at": 1786928211815
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-action",
@@ -2575,8 +2925,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 63,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2603,7 +2955,10 @@
         "target_path": "~/.claude/skills/dbs-action",
         "synced_at": 1786928211816
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-agent-migration",
@@ -2617,8 +2972,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 64,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2645,7 +3002,10 @@
         "target_path": "~/.claude/skills/dbs-agent-migration",
         "synced_at": 1786928211816
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-ai-check",
@@ -2659,8 +3019,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 65,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2687,7 +3049,10 @@
         "target_path": "~/.claude/skills/dbs-ai-check",
         "synced_at": 1786928211816
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-benchmark",
@@ -2701,8 +3066,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 66,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2729,7 +3096,10 @@
         "target_path": "~/.claude/skills/dbs-benchmark",
         "synced_at": 1786928211816
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-chatroom",
@@ -2743,8 +3113,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 67,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2771,7 +3143,10 @@
         "target_path": "~/.claude/skills/dbs-chatroom",
         "synced_at": 1786928211817
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-chatroom-austrian",
@@ -2785,8 +3160,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 68,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2813,7 +3190,10 @@
         "target_path": "~/.claude/skills/dbs-chatroom-austrian",
         "synced_at": 1786928211817
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-content",
@@ -2827,8 +3207,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 69,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2855,7 +3237,10 @@
         "target_path": "~/.claude/skills/dbs-content",
         "synced_at": 1786928211817
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-content-system",
@@ -2869,8 +3254,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 70,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2897,7 +3284,10 @@
         "target_path": "~/.claude/skills/dbs-content-system",
         "synced_at": 1786928211817
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-decision",
@@ -2911,8 +3301,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 71,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2939,7 +3331,10 @@
         "target_path": "~/.claude/skills/dbs-decision",
         "synced_at": 1786928211818
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-deconstruct",
@@ -2953,8 +3348,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 72,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -2981,7 +3378,10 @@
         "target_path": "~/.claude/skills/dbs-deconstruct",
         "synced_at": 1786928211818
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-diagnosis",
@@ -2995,8 +3395,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 73,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -3023,7 +3425,10 @@
         "target_path": "~/.claude/skills/dbs-diagnosis",
         "synced_at": 1786928211818
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-goal",
@@ -3037,8 +3442,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 74,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -3065,7 +3472,10 @@
         "target_path": "~/.claude/skills/dbs-goal",
         "synced_at": 1786928211819
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-good-question",
@@ -3079,8 +3489,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 75,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -3107,7 +3519,10 @@
         "target_path": "~/.claude/skills/dbs-good-question",
         "synced_at": 1786928211819
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-hook",
@@ -3121,8 +3536,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 76,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -3149,7 +3566,10 @@
         "target_path": "~/.claude/skills/dbs-hook",
         "synced_at": 1786928211819
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-learning",
@@ -3163,8 +3583,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 77,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -3191,7 +3613,10 @@
         "target_path": "~/.claude/skills/dbs-learning",
         "synced_at": 1786928211820
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-report",
@@ -3205,8 +3630,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 78,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -3233,7 +3660,10 @@
         "target_path": "~/.claude/skills/dbs-report",
         "synced_at": 1786928211821
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-resonate",
@@ -3247,8 +3677,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 79,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -3275,7 +3707,10 @@
         "target_path": "~/.claude/skills/dbs-resonate",
         "synced_at": 1786928211821
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-restore",
@@ -3289,8 +3724,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 80,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -3317,7 +3754,10 @@
         "target_path": "~/.claude/skills/dbs-restore",
         "synced_at": 1786928211821
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-save",
@@ -3331,8 +3771,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 81,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -3359,7 +3801,10 @@
         "target_path": "~/.claude/skills/dbs-save",
         "synced_at": 1786928211822
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-slowisfast",
@@ -3373,8 +3818,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 82,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -3401,7 +3848,10 @@
         "target_path": "~/.claude/skills/dbs-slowisfast",
         "synced_at": 1786928211822
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-spread",
@@ -3415,8 +3865,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 83,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -3443,7 +3895,10 @@
         "target_path": "~/.claude/skills/dbs-spread",
         "synced_at": 1786928211822
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-dbs-xhs-title",
@@ -3457,8 +3912,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 84,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -3485,7 +3942,10 @@
         "target_path": "~/.claude/skills/dbs-xhs-title",
         "synced_at": 1786928211823
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-dbt-bigquery",
@@ -3499,7 +3959,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 85,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -3526,7 +3989,10 @@
         "target_path": "~/.claude/skills/dbt-bigquery",
         "synced_at": 1786928211824
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-deploying-to-production",
@@ -3540,7 +4006,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 86,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -3567,7 +4036,10 @@
         "target_path": "~/.claude/skills/deploying-to-production",
         "synced_at": 1786928211824
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-dev-browser",
@@ -3581,8 +4053,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 87,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -3609,7 +4083,10 @@
         "target_path": "~/.claude/skills/dev-browser",
         "synced_at": 1786928211826
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-dev-session",
@@ -3623,8 +4100,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 88,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -3651,7 +4130,10 @@
         "target_path": "~/.claude/skills/dev-session",
         "synced_at": 1786928211827
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-developing-with-bigquery",
@@ -3665,8 +4147,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 89,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -3693,7 +4177,10 @@
         "target_path": "~/.claude/skills/developing-with-bigquery",
         "synced_at": 1786928211827
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-diagram",
@@ -3707,7 +4194,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 90,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -3734,7 +4224,10 @@
         "target_path": "~/.claude/skills/diagram",
         "synced_at": 1786928211829
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-discovering-gcp-data-assets",
@@ -3748,7 +4241,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 91,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -3775,7 +4271,10 @@
         "target_path": "~/.claude/skills/discovering-gcp-data-assets",
         "synced_at": 1786928211829
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-dispatching-parallel-agents",
@@ -3789,7 +4288,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 92,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -3816,7 +4318,10 @@
         "target_path": "~/.claude/skills/dispatching-parallel-agents",
         "synced_at": 1786928211830
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-doc-coauthoring",
@@ -3830,7 +4335,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 93,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -3857,7 +4365,10 @@
         "target_path": "~/.claude/skills/doc-coauthoring",
         "synced_at": 1786928211830
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-doc-sync-tool",
@@ -3871,7 +4382,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 94,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -3898,7 +4412,10 @@
         "target_path": "~/.claude/skills/doc-sync-tool",
         "synced_at": 1786928211831
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-docx",
@@ -3912,7 +4429,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 95,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -3939,7 +4459,10 @@
         "target_path": "~/.claude/skills/docx",
         "synced_at": 1786928211832
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-edge-tts",
@@ -3953,7 +4476,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 96,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -3980,7 +4506,10 @@
         "target_path": "~/.claude/skills/edge-tts",
         "synced_at": 1786928211833
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-editorial-collage-motion",
@@ -3994,8 +4523,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 97,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -4022,7 +4553,10 @@
         "target_path": "~/.claude/skills/editorial-collage-motion",
         "synced_at": 1786928211834
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-editorial-dot-cover",
@@ -4036,7 +4570,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 98,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -4063,7 +4600,10 @@
         "target_path": "~/.claude/skills/editorial-dot-cover",
         "synced_at": 1786928211836
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-exa-web-search-free",
@@ -4077,8 +4617,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 99,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -4105,7 +4647,10 @@
         "target_path": "~/.claude/skills/exa-web-search-free",
         "synced_at": 1786928211837
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-executing-plans",
@@ -4119,8 +4664,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 100,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -4147,7 +4694,10 @@
         "target_path": "~/.claude/skills/executing-plans",
         "synced_at": 1786928211837
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-exploratory-data-analysis",
@@ -4161,7 +4711,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 101,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -4188,7 +4741,10 @@
         "target_path": "~/.claude/skills/exploratory-data-analysis",
         "synced_at": 1786928211838
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-figure-to-life",
@@ -4202,7 +4758,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 102,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -4229,7 +4788,10 @@
         "target_path": "~/.claude/skills/figure-to-life",
         "synced_at": 1786928211840
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-file-organizer",
@@ -4243,7 +4805,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 103,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -4270,7 +4835,10 @@
         "target_path": "~/.claude/skills/file-organizer",
         "synced_at": 1786928211841
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-find-skills",
@@ -4284,7 +4852,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 104,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -4311,7 +4882,10 @@
         "target_path": "~/.claude/skills/find-skills",
         "synced_at": 1786928211842
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-finishing-a-development-branch",
@@ -4325,8 +4899,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 105,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -4353,7 +4929,10 @@
         "target_path": "~/.claude/skills/finishing-a-development-branch",
         "synced_at": 1786928211843
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-fireworks-tech-graph",
@@ -4367,7 +4946,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 106,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -4394,7 +4976,10 @@
         "target_path": "~/.claude/skills/fireworks-tech-graph",
         "synced_at": 1786928211843
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-frontend-design",
@@ -4408,8 +4993,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 107,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -4436,7 +5023,10 @@
         "target_path": "~/.claude/skills/frontend-design",
         "synced_at": 1786928211844
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-frontend-slides",
@@ -4450,8 +5040,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "PPT"
+      {
+        "id": 108,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -4478,7 +5070,10 @@
         "target_path": "~/.claude/skills/frontend-slides",
         "synced_at": 1786928211845
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-gcloud-auth-verification",
@@ -4492,7 +5087,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 109,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -4519,7 +5117,10 @@
         "target_path": "~/.claude/skills/gcloud-auth-verification",
         "synced_at": 1786928211845
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-gcp-composer-troubleshooting",
@@ -4533,7 +5134,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 110,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -4560,7 +5164,10 @@
         "target_path": "~/.claude/skills/gcp-composer-troubleshooting",
         "synced_at": 1786928211846
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-gcp-data-pipelines",
@@ -4574,7 +5181,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 111,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -4601,7 +5211,10 @@
         "target_path": "~/.claude/skills/gcp-data-pipelines",
         "synced_at": 1786928211846
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-gcp-dataflow",
@@ -4615,7 +5228,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 112,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -4642,7 +5258,10 @@
         "target_path": "~/.claude/skills/gcp-dataflow",
         "synced_at": 1786928211847
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-gcp-pipeline-orchestration",
@@ -4656,7 +5275,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 113,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -4683,7 +5305,10 @@
         "target_path": "~/.claude/skills/gcp-pipeline-orchestration",
         "synced_at": 1786928211847
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-gcp-pipeline-resource-provisioning",
@@ -4697,7 +5322,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 114,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -4724,7 +5352,10 @@
         "target_path": "~/.claude/skills/gcp-pipeline-resource-provisioning",
         "synced_at": 1786928211848
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-gcp-spark",
@@ -4738,7 +5369,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 115,
+        "name": "☁️ 数据与云"
+      }
     ],
     "targets": [
       {
@@ -4765,7 +5399,10 @@
         "target_path": "~/.claude/skills/gcp-spark",
         "synced_at": 1786928211848
       }
-    ]
+    ],
+    "category": "data",
+    "category_name": "数据与云",
+    "category_icon": "☁️"
   },
   {
     "id": "skill-gemini-watermark-remover",
@@ -4779,7 +5416,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 116,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -4806,7 +5446,10 @@
         "target_path": "~/.claude/skills/gemini-watermark-remover",
         "synced_at": 1786928211849
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-github-release-assistant",
@@ -4820,8 +5463,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 117,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -4848,7 +5493,10 @@
         "target_path": "~/.claude/skills/github-release-assistant",
         "synced_at": 1786928211851
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-github-to-skills",
@@ -4862,8 +5510,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 118,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -4890,7 +5540,10 @@
         "target_path": "~/.claude/skills/github-to-skills",
         "synced_at": 1786928211851
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-google-official-seo-guide",
@@ -4904,8 +5557,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 119,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -4932,7 +5587,10 @@
         "target_path": "~/.claude/skills/google-official-seo-guide",
         "synced_at": 1786928211852
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-graphify",
@@ -4946,7 +5604,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 120,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -4973,7 +5634,10 @@
         "target_path": "~/.claude/skills/graphify",
         "synced_at": 1786928211853
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-guizang-material-illustration",
@@ -4987,8 +5651,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 121,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5015,7 +5681,10 @@
         "target_path": "~/.claude/skills/guizang-material-illustration",
         "synced_at": 1786928211854
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-heygen-digital-avatar",
@@ -5029,8 +5698,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 122,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -5057,7 +5728,10 @@
         "target_path": "~/.claude/skills/heygen-digital-avatar",
         "synced_at": 1786928211855
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-html-anything",
@@ -5071,7 +5745,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 123,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -5098,7 +5775,10 @@
         "target_path": "~/.claude/skills/html-anything",
         "synced_at": 1786928211855
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-html-ppt-skill",
@@ -5112,8 +5792,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "PPT"
+      {
+        "id": 124,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -5140,7 +5822,10 @@
         "target_path": "~/.claude/skills/html-ppt-skill",
         "synced_at": 1786928211856
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-huashu-design",
@@ -5154,8 +5839,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 125,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5182,7 +5869,10 @@
         "target_path": "~/.claude/skills/huashu-design",
         "synced_at": 1786928211857
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-hyperframes",
@@ -5196,7 +5886,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 126,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -5223,7 +5916,10 @@
         "target_path": "~/.claude/skills/hyperframes",
         "synced_at": 1786928211857
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-ian-xiaohei-illustrations",
@@ -5237,7 +5933,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 127,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5264,7 +5963,10 @@
         "target_path": "~/.claude/skills/ian-xiaohei-illustrations",
         "synced_at": 1786928211858
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-image-enhancer",
@@ -5278,8 +5980,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 128,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5306,7 +6010,10 @@
         "target_path": "~/.claude/skills/image-enhancer",
         "synced_at": 1786928211861
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-imax-portrait",
@@ -5320,7 +6027,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 129,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5347,7 +6057,10 @@
         "target_path": "~/.claude/skills/imax-portrait",
         "synced_at": 1786928211862
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-img2threejs",
@@ -5361,7 +6074,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 130,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5388,7 +6104,10 @@
         "target_path": "~/.claude/skills/img2threejs",
         "synced_at": 1786928211885
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-info-card-designer",
@@ -5402,9 +6121,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design",
-      "Thinking"
+      {
+        "id": 131,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5431,7 +6151,10 @@
         "target_path": "~/.claude/skills/info-card-designer",
         "synced_at": 1786928211888
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-infographic-generator",
@@ -5445,7 +6168,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 132,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5472,7 +6198,10 @@
         "target_path": "~/.claude/skills/infographic-generator",
         "synced_at": 1786928211889
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-ink-theater-engine",
@@ -5486,7 +6215,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 133,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5513,7 +6245,10 @@
         "target_path": "~/.claude/skills/ink-theater-engine",
         "synced_at": 1786928211890
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-intelligent-prompt-generator",
@@ -5527,7 +6262,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 134,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -5554,7 +6292,10 @@
         "target_path": "~/.claude/skills/intelligent-prompt-generator",
         "synced_at": 1786928211890
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-internal-comms",
@@ -5568,7 +6309,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 135,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -5595,7 +6339,10 @@
         "target_path": "~/.claude/skills/internal-comms",
         "synced_at": 1786928211891
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-internationalizing-websites",
@@ -5609,8 +6356,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 136,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -5637,7 +6386,10 @@
         "target_path": "~/.claude/skills/internationalizing-websites",
         "synced_at": 1786928211892
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-j-cover",
@@ -5651,7 +6403,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 137,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5678,7 +6433,10 @@
         "target_path": "~/.claude/skills/j-cover",
         "synced_at": 1786928211893
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-j-idol",
@@ -5692,7 +6450,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 138,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5719,7 +6480,10 @@
         "target_path": "~/.claude/skills/j-idol",
         "synced_at": 1786928211894
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-j-poses",
@@ -5733,7 +6497,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 139,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5760,7 +6527,10 @@
         "target_path": "~/.claude/skills/j-poses",
         "synced_at": 1786928211897
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-jakub-better-accessibility",
@@ -5774,7 +6544,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 140,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -5801,7 +6574,10 @@
         "target_path": "~/.claude/skills/jakub-better-accessibility",
         "synced_at": 1786928211897
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-jakub-better-colors",
@@ -5815,8 +6591,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 141,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5843,7 +6621,10 @@
         "target_path": "~/.claude/skills/jakub-better-colors",
         "synced_at": 1786928211897
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-jakub-better-interface",
@@ -5857,7 +6638,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 142,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5884,7 +6668,10 @@
         "target_path": "~/.claude/skills/jakub-better-interface",
         "synced_at": 1786928211897
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-jakub-better-layout",
@@ -5898,7 +6685,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 143,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5925,7 +6715,10 @@
         "target_path": "~/.claude/skills/jakub-better-layout",
         "synced_at": 1786928211898
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-jakub-better-typography",
@@ -5939,7 +6732,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 144,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -5966,7 +6762,10 @@
         "target_path": "~/.claude/skills/jakub-better-typography",
         "synced_at": 1786928211898
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-jakub-better-ui",
@@ -5980,8 +6779,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 145,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -6008,7 +6809,10 @@
         "target_path": "~/.claude/skills/jakub-better-ui",
         "synced_at": 1786928211898
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-jakub-better-writing",
@@ -6022,7 +6826,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 146,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -6049,7 +6856,10 @@
         "target_path": "~/.claude/skills/jakub-better-writing",
         "synced_at": 1786928211898
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-json-canvas",
@@ -6063,7 +6873,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 147,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -6090,7 +6903,10 @@
         "target_path": "~/.claude/skills/json-canvas",
         "synced_at": 1786928211899
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-karpathy-guidelines",
@@ -6104,8 +6920,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 148,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -6132,7 +6950,10 @@
         "target_path": "~/.claude/skills/karpathy-guidelines",
         "synced_at": 1786928211900
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-kids-english-chat",
@@ -6146,7 +6967,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 149,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -6173,7 +6997,10 @@
         "target_path": "~/.claude/skills/kids-english-chat",
         "synced_at": 1786928211901
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-last30days",
@@ -6187,7 +7014,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 150,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -6214,7 +7044,10 @@
         "target_path": "~/.claude/skills/last30days",
         "synced_at": 1786928211903
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-ljg-card",
@@ -6228,8 +7061,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 151,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -6256,7 +7091,10 @@
         "target_path": "~/.claude/skills/ljg-card",
         "synced_at": 1786928211904
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-ljg-invest",
@@ -6270,8 +7108,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 152,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -6298,7 +7138,10 @@
         "target_path": "~/.claude/skills/ljg-invest",
         "synced_at": 1786928211905
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-ljg-learn",
@@ -6312,8 +7155,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 153,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -6340,7 +7185,10 @@
         "target_path": "~/.claude/skills/ljg-learn",
         "synced_at": 1786928211905
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-ljg-paper",
@@ -6354,8 +7202,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 154,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -6382,7 +7232,10 @@
         "target_path": "~/.claude/skills/ljg-paper",
         "synced_at": 1786928211906
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-ljg-paper-flow",
@@ -6396,8 +7249,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 155,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -6424,7 +7279,10 @@
         "target_path": "~/.claude/skills/ljg-paper-flow",
         "synced_at": 1786928211906
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-ljg-plain",
@@ -6438,8 +7296,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 156,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -6466,7 +7326,10 @@
         "target_path": "~/.claude/skills/ljg-plain",
         "synced_at": 1786928211907
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-ljg-rank",
@@ -6480,8 +7343,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 157,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -6508,7 +7373,10 @@
         "target_path": "~/.claude/skills/ljg-rank",
         "synced_at": 1786928211907
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-ljg-skill-map",
@@ -6522,8 +7390,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 158,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -6550,7 +7420,10 @@
         "target_path": "~/.claude/skills/ljg-skill-map",
         "synced_at": 1786928211908
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-ljg-travel",
@@ -6564,8 +7437,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 159,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -6592,7 +7467,10 @@
         "target_path": "~/.claude/skills/ljg-travel",
         "synced_at": 1786928211908
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-ljg-word",
@@ -6606,8 +7484,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 160,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -6634,7 +7514,10 @@
         "target_path": "~/.claude/skills/ljg-word",
         "synced_at": 1786928211909
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-ljg-word-flow",
@@ -6648,8 +7531,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 161,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -6676,7 +7561,10 @@
         "target_path": "~/.claude/skills/ljg-word-flow",
         "synced_at": 1786928211909
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-ljg-writes",
@@ -6690,8 +7578,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 162,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -6718,7 +7608,10 @@
         "target_path": "~/.claude/skills/ljg-writes",
         "synced_at": 1786928211910
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-ljg-x-download",
@@ -6732,8 +7625,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Thinking"
+      {
+        "id": 163,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -6760,7 +7655,10 @@
         "target_path": "~/.claude/skills/ljg-x-download",
         "synced_at": 1786928211911
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-ljg-xray-article",
@@ -6774,9 +7672,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design",
-      "Thinking"
+      {
+        "id": 164,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -6803,7 +7702,10 @@
         "target_path": "~/.claude/skills/ljg-xray-article",
         "synced_at": 1786928211912
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-managing-python-dependencies",
@@ -6817,8 +7719,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 165,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -6845,7 +7749,10 @@
         "target_path": "~/.claude/skills/managing-python-dependencies",
         "synced_at": 1786928211912
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-manimate",
@@ -6859,7 +7766,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 166,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -6886,7 +7796,10 @@
         "target_path": "~/.claude/skills/manimate",
         "synced_at": 1786928211912
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-markdown-convert",
@@ -6900,7 +7813,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 167,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -6927,7 +7843,10 @@
         "target_path": "~/.claude/skills/markdown-convert",
         "synced_at": 1786928211914
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-markdown-converter",
@@ -6941,7 +7860,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 168,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -6968,7 +7890,10 @@
         "target_path": "~/.claude/skills/markdown-converter",
         "synced_at": 1786928211915
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-mcp-builder",
@@ -6982,8 +7907,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 169,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -7010,7 +7937,10 @@
         "target_path": "~/.claude/skills/mcp-builder",
         "synced_at": 1786928211915
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-md2wechat",
@@ -7024,7 +7954,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 170,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -7051,7 +7984,10 @@
         "target_path": "~/.claude/skills/md2wechat",
         "synced_at": 1786928211917
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-media-downloader",
@@ -7065,7 +8001,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 171,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -7092,7 +8031,10 @@
         "target_path": "~/.claude/skills/media-downloader",
         "synced_at": 1786928211917
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-ml-best-practices",
@@ -7106,7 +8048,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 172,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -7133,7 +8078,10 @@
         "target_path": "~/.claude/skills/ml-best-practices",
         "synced_at": 1786928211920
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-moltbook-interact",
@@ -7147,7 +8095,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 173,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -7174,7 +8125,10 @@
         "target_path": "~/.claude/skills/moltbook-interact",
         "synced_at": 1786928211921
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-multi-search-engine",
@@ -7188,7 +8142,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 174,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -7215,7 +8172,10 @@
         "target_path": "~/.claude/skills/multi-search-engine",
         "synced_at": 1786928211922
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-nano-banana-2",
@@ -7229,7 +8189,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 175,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -7256,7 +8219,10 @@
         "target_path": "~/.claude/skills/nano-banana-2",
         "synced_at": 1786928211923
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-nano-banana-pro-prompts-recommend-skill",
@@ -7270,7 +8236,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 176,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -7297,7 +8266,10 @@
         "target_path": "~/.claude/skills/nano-banana-pro-prompts-recommend-skill",
         "synced_at": 1786928211924
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-news-aggregator-skill",
@@ -7311,7 +8283,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 177,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -7338,7 +8313,10 @@
         "target_path": "~/.claude/skills/news-aggregator-skill",
         "synced_at": 1786928211924
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-news-summary",
@@ -7352,7 +8330,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 178,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -7379,7 +8360,10 @@
         "target_path": "~/.claude/skills/news-summary",
         "synced_at": 1786928211926
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-notebook-guidance",
@@ -7393,8 +8377,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 179,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -7421,7 +8407,10 @@
         "target_path": "~/.claude/skills/notebook-guidance",
         "synced_at": 1786928211927
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-notebooklm",
@@ -7435,7 +8424,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 180,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -7462,7 +8454,10 @@
         "target_path": "~/.claude/skills/notebooklm",
         "synced_at": 1786928211928
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-notebooklm-plugin",
@@ -7476,7 +8471,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 181,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -7503,7 +8501,10 @@
         "target_path": "~/.claude/skills/notebooklm-plugin",
         "synced_at": 1786928211929
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-notebooklm-py",
@@ -7517,7 +8518,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 182,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -7544,7 +8548,10 @@
         "target_path": "~/.claude/skills/notebooklm-py",
         "synced_at": 1786928211929
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-obsidian-bases",
@@ -7558,7 +8565,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 183,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -7585,7 +8595,10 @@
         "target_path": "~/.claude/skills/obsidian-bases",
         "synced_at": 1786928211931
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-obsidian-helper",
@@ -7599,7 +8612,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 184,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -7626,7 +8642,10 @@
         "target_path": "~/.claude/skills/obsidian-helper",
         "synced_at": 1786928211931
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-obsidian-markdown",
@@ -7640,7 +8659,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 185,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -7667,7 +8689,10 @@
         "target_path": "~/.claude/skills/obsidian-markdown",
         "synced_at": 1786928211933
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-openclaw-backup-1.0.0",
@@ -7681,7 +8706,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 186,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -7708,7 +8736,10 @@
         "target_path": "~/.claude/skills/openclaw-backup-1.0.0",
         "synced_at": 1786928211933
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-opencli-skill",
@@ -7722,7 +8753,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 187,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -7749,7 +8783,10 @@
         "target_path": "~/.claude/skills/opencli-skill",
         "synced_at": 1786928211934
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-openmontage-cinematography",
@@ -7763,7 +8800,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 188,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -7790,7 +8830,10 @@
         "target_path": "~/.claude/skills/openmontage-cinematography",
         "synced_at": 1786928211935
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-paddleocr-skill",
@@ -7804,7 +8847,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 189,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -7831,7 +8877,10 @@
         "target_path": "~/.claude/skills/paddleocr-skill",
         "synced_at": 1786928211936
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-pdf",
@@ -7845,7 +8894,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 190,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -7872,7 +8924,10 @@
         "target_path": "~/.claude/skills/pdf",
         "synced_at": 1786928211936
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-photo-abstract-editorial",
@@ -7886,8 +8941,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 191,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -7914,7 +8971,10 @@
         "target_path": "~/.claude/skills/photo-abstract-editorial",
         "synced_at": 1786928211938
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-photo-restoration",
@@ -7928,8 +8988,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 192,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -7956,7 +9018,10 @@
         "target_path": "~/.claude/skills/photo-restoration",
         "synced_at": 1786928211939
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-planning-with-files",
@@ -7970,7 +9035,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 193,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -7997,7 +9065,10 @@
         "target_path": "~/.claude/skills/planning-with-files",
         "synced_at": 1786928211941
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-playwright-skill",
@@ -8011,7 +9082,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 194,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -8038,7 +9112,10 @@
         "target_path": "~/.claude/skills/playwright-skill",
         "synced_at": 1786928211942
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-ppt-agent",
@@ -8052,8 +9129,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "PPT"
+      {
+        "id": 195,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -8080,7 +9159,10 @@
         "target_path": "~/.claude/skills/ppt-agent",
         "synced_at": 1786928211943
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-ppt-agent-skills",
@@ -8094,8 +9176,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "PPT"
+      {
+        "id": 196,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -8122,7 +9206,10 @@
         "target_path": "~/.claude/skills/ppt-agent-skills",
         "synced_at": 1786928211943
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-ppt-agent-workflow-san",
@@ -8136,8 +9223,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "PPT"
+      {
+        "id": 197,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -8164,7 +9253,10 @@
         "target_path": "~/.claude/skills/ppt-agent-workflow-san",
         "synced_at": 1786928211946
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-ppt-as-code",
@@ -8178,9 +9270,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "PPT",
-      "Engineering"
+      {
+        "id": 198,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -8207,7 +9300,10 @@
         "target_path": "~/.claude/skills/ppt-as-code",
         "synced_at": 1786928211946
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-ppt-master",
@@ -8221,8 +9317,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "PPT"
+      {
+        "id": 199,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -8249,7 +9347,10 @@
         "target_path": "~/.claude/skills/ppt-master",
         "synced_at": 1786928211947
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-pptx",
@@ -8263,8 +9364,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "PPT"
+      {
+        "id": 200,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -8291,7 +9394,10 @@
         "target_path": "~/.claude/skills/pptx",
         "synced_at": 1786928211947
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-pretty-mermaid-skills",
@@ -8305,7 +9411,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 201,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -8332,7 +9441,10 @@
         "target_path": "~/.claude/skills/pretty-mermaid-skills",
         "synced_at": 1786928211948
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-proactive-agent-1-2-4",
@@ -8346,7 +9458,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 202,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -8373,7 +9488,10 @@
         "target_path": "~/.claude/skills/proactive-agent-1-2-4",
         "synced_at": 1786928211949
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-project-health",
@@ -8387,7 +9505,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 203,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -8414,7 +9535,10 @@
         "target_path": "~/.claude/skills/project-health",
         "synced_at": 1786928211949
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-project-to-obsidian",
@@ -8428,7 +9552,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 204,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -8455,7 +9582,10 @@
         "target_path": "~/.claude/skills/project-to-obsidian",
         "synced_at": 1786928211951
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-python-performance-optimization",
@@ -8469,8 +9599,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 205,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -8497,7 +9629,10 @@
         "target_path": "~/.claude/skills/python-performance-optimization",
         "synced_at": 1786928211951
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-qiaomu-anything-to-notebooklm",
@@ -8511,7 +9646,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 206,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -8538,7 +9676,10 @@
         "target_path": "~/.claude/skills/qiaomu-anything-to-notebooklm",
         "synced_at": 1786928211952
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-qiaomu-design-advisor",
@@ -8552,8 +9693,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 207,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -8580,7 +9723,10 @@
         "target_path": "~/.claude/skills/qiaomu-design-advisor",
         "synced_at": 1786928211953
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-qiaomu-meta-skill",
@@ -8594,7 +9740,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 208,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -8621,7 +9770,10 @@
         "target_path": "~/.claude/skills/qiaomu-meta-skill",
         "synced_at": 1786928211953
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-qiaomu-mondo-poster-design",
@@ -8635,8 +9787,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 209,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -8663,7 +9817,10 @@
         "target_path": "~/.claude/skills/qiaomu-mondo-poster-design",
         "synced_at": 1786928211954
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-ra-audio-to-subtitles",
@@ -8677,8 +9834,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 210,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -8705,7 +9864,10 @@
         "target_path": "~/.claude/skills/ra-audio-to-subtitles",
         "synced_at": 1786928211954
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-ra-hook",
@@ -8719,7 +9881,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 211,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -8746,7 +9911,10 @@
         "target_path": "~/.claude/skills/ra-hook",
         "synced_at": 1786928211954
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-ra-local-talking-head-cut",
@@ -8760,8 +9928,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 212,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -8788,7 +9958,10 @@
         "target_path": "~/.claude/skills/ra-local-talking-head-cut",
         "synced_at": 1786928211954
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-ra-video-download",
@@ -8802,8 +9975,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 213,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -8830,7 +10005,10 @@
         "target_path": "~/.claude/skills/ra-video-download",
         "synced_at": 1786928211955
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-ra-video-production-director",
@@ -8844,8 +10022,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 214,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -8872,7 +10052,10 @@
         "target_path": "~/.claude/skills/ra-video-production-director",
         "synced_at": 1786928211955
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-ra-video-title",
@@ -8886,8 +10069,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 215,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -8914,7 +10099,10 @@
         "target_path": "~/.claude/skills/ra-video-title",
         "synced_at": 1786928211955
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-ra-video-wash-pipeline",
@@ -8928,8 +10116,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 216,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -8956,7 +10146,10 @@
         "target_path": "~/.claude/skills/ra-video-wash-pipeline",
         "synced_at": 1786928211955
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-ra-人话",
@@ -8970,7 +10163,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 217,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -8997,7 +10193,10 @@
         "target_path": "~/.claude/skills/ra-人话",
         "synced_at": 1786928211955
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-ra-公众号提取",
@@ -9011,7 +10210,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 218,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -9038,7 +10240,10 @@
         "target_path": "~/.claude/skills/ra-公众号提取",
         "synced_at": 1786928211956
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-ra-复盘",
@@ -9052,7 +10257,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 219,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -9079,7 +10287,10 @@
         "target_path": "~/.claude/skills/ra-复盘",
         "synced_at": 1786928211956
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-ra-实操策划",
@@ -9093,7 +10304,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 220,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -9120,7 +10334,10 @@
         "target_path": "~/.claude/skills/ra-实操策划",
         "synced_at": 1786928211957
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-ra-洗稿",
@@ -9134,7 +10351,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 221,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -9161,7 +10381,10 @@
         "target_path": "~/.claude/skills/ra-洗稿",
         "synced_at": 1786928211957
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-ra-选题",
@@ -9175,7 +10398,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 222,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -9202,7 +10428,10 @@
         "target_path": "~/.claude/skills/ra-选题",
         "synced_at": 1786928211957
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-ra-逐字稿提取skill",
@@ -9216,7 +10445,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 223,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -9243,7 +10475,10 @@
         "target_path": "~/.claude/skills/ra-逐字稿提取skill",
         "synced_at": 1786928211957
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-real-mecha",
@@ -9257,7 +10492,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 224,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -9284,7 +10522,10 @@
         "target_path": "~/.claude/skills/real-mecha",
         "synced_at": 1786928211959
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-receiving-code-review",
@@ -9298,8 +10539,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 225,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -9326,7 +10569,10 @@
         "target_path": "~/.claude/skills/receiving-code-review",
         "synced_at": 1786928211959
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-remotion",
@@ -9340,8 +10586,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 226,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -9368,7 +10616,10 @@
         "target_path": "~/.claude/skills/remotion",
         "synced_at": 1786928211960
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-remotion-official",
@@ -9382,8 +10633,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 227,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -9410,7 +10663,10 @@
         "target_path": "~/.claude/skills/remotion-official",
         "synced_at": 1786928211960
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-requesting-code-review",
@@ -9424,8 +10680,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 228,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -9452,7 +10710,10 @@
         "target_path": "~/.claude/skills/requesting-code-review",
         "synced_at": 1786928211961
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-rn-bw-text-opener",
@@ -9466,7 +10727,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 229,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -9493,7 +10757,10 @@
         "target_path": "~/.claude/skills/rn-bw-text-opener",
         "synced_at": 1786928211961
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-rn-cover-skill",
@@ -9507,7 +10774,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 230,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -9534,7 +10804,10 @@
         "target_path": "~/.claude/skills/rn-cover-skill",
         "synced_at": 1786928211961
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-rn-dark-saas-video",
@@ -9548,8 +10821,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 231,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -9576,7 +10851,10 @@
         "target_path": "~/.claude/skills/rn-dark-saas-video",
         "synced_at": 1786928211961
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-rn-motion-director",
@@ -9590,8 +10868,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 232,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -9618,7 +10898,10 @@
         "target_path": "~/.claude/skills/rn-motion-director",
         "synced_at": 1786928211962
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-rn-motion-replica",
@@ -9632,8 +10915,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 233,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -9660,7 +10945,10 @@
         "target_path": "~/.claude/skills/rn-motion-replica",
         "synced_at": 1786928211962
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-rn-replica-qc",
@@ -9674,7 +10962,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 234,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -9701,7 +10992,10 @@
         "target_path": "~/.claude/skills/rn-replica-qc",
         "synced_at": 1786928211962
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-search-skill",
@@ -9715,7 +11009,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 235,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -9742,7 +11039,10 @@
         "target_path": "~/.claude/skills/search-skill",
         "synced_at": 1786928211964
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-second-brain-maintainer",
@@ -9756,7 +11056,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 236,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -9783,7 +11086,10 @@
         "target_path": "~/.claude/skills/second-brain-maintainer",
         "synced_at": 1786928211964
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-self-improving-agent",
@@ -9797,7 +11103,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 237,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -9824,7 +11133,10 @@
         "target_path": "~/.claude/skills/self-improving-agent",
         "synced_at": 1786928211965
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-skill-captions",
@@ -9838,7 +11150,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 238,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -9865,7 +11180,10 @@
         "target_path": "~/.claude/skills/skill-captions",
         "synced_at": 1786928211966
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-skill-cover",
@@ -9879,7 +11197,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 239,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -9906,7 +11227,10 @@
         "target_path": "~/.claude/skills/skill-cover",
         "synced_at": 1786928211967
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-skill-creator",
@@ -9920,7 +11244,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 240,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -9947,7 +11274,10 @@
         "target_path": "~/.claude/skills/skill-creator",
         "synced_at": 1786928211968
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-skill-evolution-manager",
@@ -9961,7 +11291,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 241,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -9988,7 +11321,10 @@
         "target_path": "~/.claude/skills/skill-evolution-manager",
         "synced_at": 1786928211969
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-skill-from-github",
@@ -10002,8 +11338,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 242,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -10030,7 +11368,10 @@
         "target_path": "~/.claude/skills/skill-from-github",
         "synced_at": 1786928211972
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-skill-from-masters",
@@ -10044,7 +11385,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 243,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -10071,7 +11415,10 @@
         "target_path": "~/.claude/skills/skill-from-masters",
         "synced_at": 1786928211973
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-skill-manager",
@@ -10085,7 +11432,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 244,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -10112,7 +11462,10 @@
         "target_path": "~/.claude/skills/skill-manager",
         "synced_at": 1786928211974
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-skill-repair",
@@ -10126,7 +11479,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 245,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -10153,7 +11509,10 @@
         "target_path": "~/.claude/skills/skill-repair",
         "synced_at": 1786928211975
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-skills-updater",
@@ -10167,7 +11526,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 246,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -10194,7 +11556,10 @@
         "target_path": "~/.claude/skills/skills-updater",
         "synced_at": 1786928211976
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-slack-gif-creator",
@@ -10208,7 +11573,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 247,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -10235,7 +11603,10 @@
         "target_path": "~/.claude/skills/slack-gif-creator",
         "synced_at": 1786928211977
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-sleek-design-mobile-apps",
@@ -10249,8 +11620,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 248,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -10277,7 +11650,10 @@
         "target_path": "~/.claude/skills/sleek-design-mobile-apps",
         "synced_at": 1786928211978
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-slides",
@@ -10291,8 +11667,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "PPT"
+      {
+        "id": 249,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -10319,7 +11697,10 @@
         "target_path": "~/.claude/skills/slides",
         "synced_at": 1786928211979
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-smart-illustrator",
@@ -10333,8 +11714,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 250,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -10361,7 +11744,10 @@
         "target_path": "~/.claude/skills/smart-illustrator",
         "synced_at": 1786928211979
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-subagent-driven-development",
@@ -10375,8 +11761,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 251,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -10403,7 +11791,10 @@
         "target_path": "~/.claude/skills/subagent-driven-development",
         "synced_at": 1786928211979
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-superdesign",
@@ -10417,8 +11808,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 252,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -10445,7 +11838,10 @@
         "target_path": "~/.claude/skills/superdesign",
         "synced_at": 1786928211981
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-systematic-debugging",
@@ -10459,8 +11855,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 253,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -10487,7 +11885,10 @@
         "target_path": "~/.claude/skills/systematic-debugging",
         "synced_at": 1786928211981
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-tavily-search",
@@ -10501,7 +11902,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 254,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -10528,7 +11932,10 @@
         "target_path": "~/.claude/skills/tavily-search",
         "synced_at": 1786928211981
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-test-driven-development",
@@ -10542,8 +11949,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 255,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -10570,7 +11979,10 @@
         "target_path": "~/.claude/skills/test-driven-development",
         "synced_at": 1786928211983
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-theme-factory",
@@ -10584,7 +11996,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 256,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -10611,7 +12026,10 @@
         "target_path": "~/.claude/skills/theme-factory",
         "synced_at": 1786928211984
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-transcript-polisher",
@@ -10625,7 +12043,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 257,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -10652,7 +12073,10 @@
         "target_path": "~/.claude/skills/transcript-polisher",
         "synced_at": 1786928211984
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-translate-polisher",
@@ -10666,7 +12090,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 258,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -10693,7 +12120,10 @@
         "target_path": "~/.claude/skills/translate-polisher",
         "synced_at": 1786928211985
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-tts-skill",
@@ -10707,7 +12137,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 259,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -10734,7 +12167,10 @@
         "target_path": "~/.claude/skills/tts-skill",
         "synced_at": 1786928211986
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-ui-ux-pro-max",
@@ -10748,8 +12184,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 260,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -10776,7 +12214,10 @@
         "target_path": "~/.claude/skills/ui-ux-pro-max",
         "synced_at": 1786928211987
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-ultimate-ppt-master-skill",
@@ -10790,8 +12231,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "PPT"
+      {
+        "id": 261,
+        "name": "📊 PPT演示"
+      }
     ],
     "targets": [
       {
@@ -10818,7 +12261,10 @@
         "target_path": "~/.claude/skills/ultimate-ppt-master-skill",
         "synced_at": 1786928211989
       }
-    ]
+    ],
+    "category": "ppt",
+    "category_name": "PPT演示",
+    "category_icon": "📊"
   },
   {
     "id": "skill-universal-converter",
@@ -10832,7 +12278,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 262,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -10859,7 +12308,10 @@
         "target_path": "~/.claude/skills/universal-converter",
         "synced_at": 1786928211990
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-using-git-worktrees",
@@ -10873,8 +12325,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 263,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -10901,7 +12355,10 @@
         "target_path": "~/.claude/skills/using-git-worktrees",
         "synced_at": 1786928211991
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-using-superpowers",
@@ -10915,7 +12372,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 264,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -10942,7 +12402,10 @@
         "target_path": "~/.claude/skills/using-superpowers",
         "synced_at": 1786928211991
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-vercel-deploy",
@@ -10956,7 +12419,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 265,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -10983,7 +12449,10 @@
         "target_path": "~/.claude/skills/vercel-deploy",
         "synced_at": 1786928211993
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-vercel-react-best-practices",
@@ -10997,7 +12466,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 266,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -11024,7 +12496,10 @@
         "target_path": "~/.claude/skills/vercel-react-best-practices",
         "synced_at": 1786928211994
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-vercel-web-design-guidelines",
@@ -11038,9 +12513,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design",
-      "Engineering"
+      {
+        "id": 267,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -11067,7 +12543,10 @@
         "target_path": "~/.claude/skills/vercel-web-design-guidelines",
         "synced_at": 1786928211996
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-verification-before-completion",
@@ -11081,7 +12560,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 268,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -11108,7 +12590,10 @@
         "target_path": "~/.claude/skills/verification-before-completion",
         "synced_at": 1786928211996
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-video-use",
@@ -11122,8 +12607,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 269,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -11150,7 +12637,10 @@
         "target_path": "~/.claude/skills/video-use",
         "synced_at": 1786928211997
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-visual-explainer",
@@ -11164,7 +12654,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 270,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -11191,7 +12684,10 @@
         "target_path": "~/.claude/skills/visual-explainer",
         "synced_at": 1786928211997
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-web-artifacts-builder",
@@ -11205,9 +12701,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design",
-      "Engineering"
+      {
+        "id": 271,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -11234,7 +12731,10 @@
         "target_path": "~/.claude/skills/web-artifacts-builder",
         "synced_at": 1786928211998
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-web-performance-seo",
@@ -11248,8 +12748,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 272,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -11276,7 +12778,10 @@
         "target_path": "~/.claude/skills/web-performance-seo",
         "synced_at": 1786928211999
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-web-scraper",
@@ -11290,8 +12795,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 273,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -11318,7 +12825,10 @@
         "target_path": "~/.claude/skills/web-scraper",
         "synced_at": 1786928212001
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-webapp-testing",
@@ -11332,8 +12842,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Engineering"
+      {
+        "id": 274,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -11360,7 +12872,10 @@
         "target_path": "~/.claude/skills/webapp-testing",
         "synced_at": 1786928212001
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-website-to-design-md",
@@ -11374,9 +12889,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design",
-      "Engineering"
+      {
+        "id": 275,
+        "name": "🎨 视觉设计"
+      }
     ],
     "targets": [
       {
@@ -11403,7 +12919,10 @@
         "target_path": "~/.claude/skills/website-to-design-md",
         "synced_at": 1786928212002
       }
-    ]
+    ],
+    "category": "design",
+    "category_name": "视觉设计",
+    "category_icon": "🎨"
   },
   {
     "id": "skill-writing-plans",
@@ -11417,7 +12936,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 276,
+        "name": "💻 编程开发"
+      }
     ],
     "targets": [
       {
@@ -11444,7 +12966,10 @@
         "target_path": "~/.claude/skills/writing-plans",
         "synced_at": 1786928212003
       }
-    ]
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   },
   {
     "id": "skill-writing-skills",
@@ -11458,7 +12983,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 277,
+        "name": "🤖 Agent系统"
+      }
     ],
     "targets": [
       {
@@ -11485,7 +13013,10 @@
         "target_path": "~/.claude/skills/writing-skills",
         "synced_at": 1786928212003
       }
-    ]
+    ],
+    "category": "agent",
+    "category_name": "Agent系统",
+    "category_icon": "🤖"
   },
   {
     "id": "skill-x-article-publisher",
@@ -11499,8 +13030,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 278,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -11527,7 +13060,10 @@
         "target_path": "~/.claude/skills/x-article-publisher",
         "synced_at": 1786928212005
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-x-reader",
@@ -11541,7 +13077,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 279,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -11568,7 +13107,10 @@
         "target_path": "~/.claude/skills/x-reader",
         "synced_at": 1786928212006
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-x-reader-analyzer",
@@ -11582,7 +13124,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 280,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -11609,7 +13154,10 @@
         "target_path": "~/.claude/skills/x-reader-analyzer",
         "synced_at": 1786928212007
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-x-reader-video",
@@ -11623,8 +13171,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Multimedia"
+      {
+        "id": 281,
+        "name": "🔍 搜索研究"
+      }
     ],
     "targets": [
       {
@@ -11651,7 +13201,10 @@
         "target_path": "~/.claude/skills/x-reader-video",
         "synced_at": 1786928212008
       }
-    ]
+    ],
+    "category": "search",
+    "category_name": "搜索研究",
+    "category_icon": "🔍"
   },
   {
     "id": "skill-xhs-article-to-images",
@@ -11665,8 +13218,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity",
-      "Design"
+      {
+        "id": 282,
+        "name": "✍️ 写作转化"
+      }
     ],
     "targets": [
       {
@@ -11693,7 +13248,10 @@
         "target_path": "~/.claude/skills/xhs-article-to-images",
         "synced_at": 1786928212008
       }
-    ]
+    ],
+    "category": "writing",
+    "category_name": "写作转化",
+    "category_icon": "✍️"
   },
   {
     "id": "skill-xlsx",
@@ -11707,7 +13265,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 283,
+        "name": "🧠 知识大脑"
+      }
     ],
     "targets": [
       {
@@ -11734,7 +13295,10 @@
         "target_path": "~/.claude/skills/xlsx",
         "synced_at": 1786928212009
       }
-    ]
+    ],
+    "category": "knowledge",
+    "category_name": "知识大脑",
+    "category_icon": "🧠"
   },
   {
     "id": "skill-youtube-clipper-skill",
@@ -11748,7 +13312,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 284,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -11775,7 +13342,10 @@
         "target_path": "~/.claude/skills/youtube-clipper-skill",
         "synced_at": 1786928212010
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
   },
   {
     "id": "skill-yt-dlp-skill-new",
@@ -11789,7 +13359,10 @@
     "enabled": true,
     "status": "healthy",
     "tags": [
-      "Antigravity"
+      {
+        "id": 285,
+        "name": "📹 音视频剪辑"
+      }
     ],
     "targets": [
       {
@@ -11816,6 +13389,57 @@
         "target_path": "~/.claude/skills/yt-dlp-skill-new",
         "synced_at": 1786928212011
       }
-    ]
+    ],
+    "category": "video",
+    "category_name": "音视频剪辑",
+    "category_icon": "📹"
+  },
+  {
+    "id": "web-skill-claude-api",
+    "name": "claude-api",
+    "description": "Claude Code official skill for Claude API interactions and completions.",
+    "source_type": "git",
+    "source_ref": "https://github.com/anthropics/skills",
+    "central_path": "~/.skillshub/skills/claude-api",
+    "created_at": 1771146193000,
+    "updated_at": 1771146193000,
+    "last_sync_at": 1771146193000,
+    "enabled": true,
+    "status": "healthy",
+    "tags": [
+      {
+        "id": 286,
+        "name": "💻 编程开发"
+      }
+    ],
+    "targets": [
+      {
+        "tool": "antigravity",
+        "scope": "global",
+        "mode": "symlink",
+        "status": "synced",
+        "target_path": "~/.antigravity/skills/claude-api",
+        "synced_at": 1771146193000
+      },
+      {
+        "tool": "claude-code",
+        "scope": "global",
+        "mode": "symlink",
+        "status": "synced",
+        "target_path": "~/.claude/skills/claude-api",
+        "synced_at": 1771146193000
+      },
+      {
+        "tool": "cursor",
+        "scope": "global",
+        "mode": "symlink",
+        "status": "synced",
+        "target_path": "~/.cursor/skills/claude-api",
+        "synced_at": 1771146193000
+      }
+    ],
+    "category": "dev",
+    "category_name": "编程开发",
+    "category_icon": "💻"
   }
 ]

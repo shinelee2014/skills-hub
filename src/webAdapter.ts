@@ -587,7 +587,7 @@ const DEFAULT_INITIAL_TAGS: TagWithCountDto[] = [
   { id: 4, name: 'multimedia', skill_count: 0, updated_at: Date.now() },
 ]
 
-const CURRENT_DATA_VERSION = 'v2_285_skills'
+const CURRENT_DATA_VERSION = 'v3_categorized_skills'
 const VERSION_KEY = 'skills_hub_web_data_version'
 
 export function getWebFeaturedSkills(): FeaturedSkillDto[] {
@@ -602,7 +602,7 @@ export function getWebManagedSkills(): ManagedSkill[] {
     const raw = window.localStorage.getItem(STORAGE_KEYS.SKILLS)
     if (version === CURRENT_DATA_VERSION && raw) {
       const parsed = JSON.parse(raw) as ManagedSkill[]
-      if (Array.isArray(parsed) && parsed.length >= 285) {
+      if (Array.isArray(parsed) && parsed.length >= 285 && parsed[0]?.category) {
         return parsed
       }
     }

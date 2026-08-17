@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next'
 import { Toaster, toast } from 'sonner'
 import Markdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import CategoryPills from './components/skills/CategoryPills'
 import ExplorePage from './components/skills/ExplorePage'
 import FilterBar from './components/skills/FilterBar'
 import SkillDetailView from './components/skills/SkillDetailView'
@@ -160,6 +161,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('')
   const [sortBy, setSortBy] = useState<'updated' | 'name'>('updated')
   const [scopeFilter, setScopeFilter] = useState<'all' | 'global' | 'project'>('all')
+  const [categoryFilter, setCategoryFilter] = useState<string>('all')
   const [skillViewMode, setSkillViewMode] = useState<'list' | 'cards'>(() =>
     typeof window !== 'undefined' && window.localStorage.getItem(skillViewModeStorageKey) === 'cards'
       ? 'cards'
@@ -844,11 +846,22 @@ function App() {
     [skillScopeState],
   )
 
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = {}
+    for (const s of managedSkills) {
+      if (s.category) {
+        counts[s.category] = (counts[s.category] || 0) + 1
+      }
+    }
+    return counts
+  }, [managedSkills])
+
   const visibleSkills = useMemo(() => {
     const query = searchQuery.trim().toLowerCase()
     const selectedTagSet = new Set(selectedTagIds)
     const hasTagFilter = selectedTagIds.length > 0 || includeUntagged
     const filtered = managedSkills.filter((skill) => {
+      if (categoryFilter !== 'all' && skill.category !== categoryFilter) return false
       if (scopeFilter !== 'all' && getSkillScope(skill) !== scopeFilter) return false
       if (hasTagFilter) {
         const matchesSelectedTag = skill.tags.some((tag) => selectedTagSet.has(tag.id))
@@ -871,6 +884,7 @@ function App() {
     })
     return sorted
   }, [
+    categoryFilter,
     getSkillScope,
     includeUntagged,
     managedSkills,
@@ -3443,6 +3457,12 @@ function App() {
                 </strong>
               </article>
             </section>
+            <CategoryPills
+              selectedCategory={categoryFilter}
+              onSelectCategory={setCategoryFilter}
+              categoryCounts={categoryCounts}
+              totalCount={managedSkills.length}
+            />
             <FilterBar
               sortBy={sortBy}
               searchQuery={searchQuery}

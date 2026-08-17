@@ -41,6 +41,13 @@ export type TagWithCountDto = TagDto & {
   updated_at: number
 }
 
+export type SkillCategory = {
+  id: string
+  name: string
+  icon: string
+  count?: number
+}
+
 export type ManagedSkill = {
   id: string
   name: string
@@ -53,6 +60,9 @@ export type ManagedSkill = {
   last_sync_at?: number | null
   enabled: boolean
   status: string
+  category?: string
+  category_name?: string
+  category_icon?: string
   tags: TagDto[]
   targets: {
     tool: string
